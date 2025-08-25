@@ -14,16 +14,16 @@ const MenuList = ({ item, closeMenu }: { item: any; closeMenu: any }) => {
         onClick={closeMenu}
         target={newTab ? "_blank" : "_self"}
         className={`
-          relative text-2xl font-bold transition-colors duration-300
+          relative text-2xl font-bold
           ${
             isActive
-              ? "text-[#0081c7] dark:text-[#4db8ff] animate-pulse"
-              : "text-gray-700 dark:text-gray-300 hover:text-[#0081c7] dark:hover:text-[#4db8ff]"
+              ? "text-[#0081c7] dark:text-[#4db8ff]"
+              : "text-gray-700 dark:text-gray-300 hover:text-[#0081c7] dark:hover:text-[#4db8ff] transition-colors duration-300"
           }
         `}
       >
         {title}
-        {/* underline effect on hover */}
+        {/* underline effect */}
         <span
           className={`
             absolute left-0 -bottom-1 h-[2px] w-0 bg-[#0081c7] dark:bg-[#4db8ff] transition-all duration-300
