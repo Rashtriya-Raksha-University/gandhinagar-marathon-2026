@@ -1,25 +1,24 @@
-
 import AboutusDetail from "@/app/components/about/aboutus-detail";
-import AboutusFullimg from "@/app/components/about/aboutus-fullimg";
-import AboutusStats from "@/app/components/about/aboutus-stats";
-import Team from "@/app/components/home/team";
 import Herobanner from "@/app/components/shared/hero-banner";
 import { Metadata } from "next";
+
 export const metadata: Metadata = {
-    title: "Aboutus | Studiova",
+  title: "About BCORE | Bharat Centre of Olympic Research and Education",
+  description:
+    "Learn about BCORE - India's first dedicated Olympic Research facility recognized by the International Olympic Committee. Promoting Olympism and fostering Olympic ideals during the Amrit Kaal.",
+  keywords:
+    "BCORE, Olympic Research, India, International Olympic Committee, Indian Olympic Association, Amrit Kaal, Olympic ideals",
 };
 
 export default function Page() {
-    return (
-        <main>
-            <Herobanner
-                bannerimage="/images/about-us/banner/aboutus-banner.png"
-                heading="About us"
-                desc="We craft <span>innovative digital</span> designs that amplify brand identity and drive meaningful results" />
-            <AboutusDetail />
-            <AboutusStats/>
-            <AboutusFullimg/>
-            <Team teamdataNumber="01"/>
-        </main>
-    );
-};
+  return (
+    <main>
+      <Herobanner
+        bannerimage="@/app/components/shared/hero-banner"
+        heading="About BCORE"
+        desc="India's first <span>Olympic Research facility</span> recognized by the International Olympic Committee"
+      />
+      <AboutusDetail />
+    </main>
+  );
+}

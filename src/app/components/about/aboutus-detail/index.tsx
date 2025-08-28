@@ -1,20 +1,129 @@
+"use client";
+
+import Image from "next/image";
 
 const AboutusDetail = () => {
-    return (
-        <section className="py-10 md:py-20 xl:py-40 dark:bg-secondary">
-            <div className='container'>
-                <div className='flex flex-col xl:flex-row gap-8'>
-                    <div className='max-w-xl w-full'>
-                        <h2 className='text-56'>Studiova.</h2>
-                    </div>
-                    <div className='flex flex-col gap-12'>
-                        <p className="text-secondary dark:text-white">It’s a canvas for your creativity. It’s your opportunity to transform bold ideas into dynamic, interactive experiences. Your work can shape identities, tell compelling stories, or spark meaningful change. As the digital landscape grows, so do the possibilities. And whether you thrive working remotely or in a buzzing agency space, the thrill of seeing your vision come to life is unmatched.</p>
-                        <p className='text-secondary dark:text-white'>At Studiova, we bring ideas to life through a range of services: branding, web development, agency solutions, content creation, SaaS, and motion & 3D modeling. As a web designer, you merge artistry and technology to craft "digital experiences" that inform, captivate, and inspire. Every day brings something new — one moment you’re sketching innovative concepts, the next you’re turning them into seamless, responsive designs. Web design keeps you pushing boundaries and creating at every turn!</p>
-                    </div>
-                </div>
+  return (
+    <>
+      {/* About BCORE Section */}
+      <section className="py-10 md:py-20 xl:py-40 dark:bg-secondary">
+        <div className="container">
+          <div className="flex flex-col xl:flex-row gap-8">
+            <div className="max-w-xl w-full flex items-start gap-6">
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/logo/bcore.png"
+                  alt="BCORE Logo"
+                  width={100}
+                  height={100}
+                  className="w-30 h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
+                />
+              </div>
+              {/* <h2 className="text-56 text-gray-800 dark:text-white">
+                About BCORE
+              </h2> */}
             </div>
-        </section>
-    )
-}
+            <div className="flex flex-col gap-8">
+              <p className="text-secondary dark:text-white text-lg leading-relaxed">
+                The Bharat Centre of Olympic Research and Education (BCORE) is
+                the first dedicated Olympic Research facility in India and South
+                Asia officially recognized by the International Olympic
+                Committee and endorsed by the Indian Olympic Association.
+              </p>
+              <p className="text-secondary dark:text-white text-lg leading-relaxed">
+                BCORE serves as a hub for disseminating research-based knowledge
+                with a focus to promote Olympism and fostering Olympic ideals
+                within India during the <em>Amrit Kaal</em>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-export default AboutusDetail
+      {/* Our Objectives Section */}
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-8">
+              OUR OBJECTIVES
+            </h2>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                  <div className="w-6 h-6 bg-primary rounded-full"></div>
+                </div>
+                <p className="text-gray-700 dark:text-white/90 text-lg leading-relaxed">
+                  Inspire fitness and mental well-being in the community.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                  <div className="w-6 h-6 bg-primary rounded-full"></div>
+                </div>
+                <p className="text-gray-700 dark:text-white/90 text-lg leading-relaxed">
+                  Build momentum for World Police & Fire Games 2029 and Olympics
+                  2036.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                  <div className="w-6 h-6 bg-primary rounded-full"></div>
+                </div>
+                <p className="text-gray-700 dark:text-white/90 text-lg leading-relaxed">
+                  Provide a platform for youth, students and armed forces
+                  personnel.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Future Events Section */}
+      <section className="py-16 md:py-24 dark:bg-secondary">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-8">
+              OUR FUTURE EVENTS
+            </h2>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                    All India Sports Police Control Board
+                  </h3>
+                </div>
+                <span className="text-primary font-bold text-lg">2025</span>
+              </div>
+              <div className="flex items-center justify-between p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                    2nd International Olympic Research Conference
+                  </h3>
+                </div>
+                <span className="text-primary font-bold text-lg">2026</span>
+              </div>
+              <div className="flex items-center justify-between p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                    World Police & Fire Games
+                  </h3>
+                </div>
+                <span className="text-primary font-bold text-lg">2029</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default AboutusDetail;

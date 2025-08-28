@@ -3,49 +3,29 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-function MarathonServices() {
+function Services() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [imagePosition, setImagePosition] = useState<number>(0);
   const [isMdScreen, setIsMdScreen] = useState(false);
-  // Static marathon data
-  const [marathonData] = useState({
-    number: "04",
-    name: "Race Categories",
-    heading: "Choose Your Perfect Race Distance",
-    description:
-      "From challenging half-marathons to family-friendly fun runs, we have the perfect race category for every runner. Join us in Gandhinagar for an unforgettable running experience.",
-    data: [
-      {
-        heading: "BCORE Half Marathon",
-        descp:
-          "The BCORE Half-Marathon is going to be one of the fastest and exciting marathons in India. It isn't just any other race – it's the first race organized by an Indian Olympic Centre.",
-        image: "/marathon-half.jpg",
-      },
-      {
-        heading: "BCORE 10KM Run",
-        descp:
-          "The BCORE 10k is the challenge you need. This race will take you across Gandhinagar's most beautiful parks and neighborhoods – from Swarnim Park to the Salt Mount.",
-        image: "/marathon-10k.jpg",
-      },
-      {
-        heading: "BCORE 5KM Run",
-        descp:
-          "The BCORE 5k is the perfect way to create your own running story. With chill and sporty vibes, this is a running event suitable for young and old to challenge themselves and reach new heights.",
-        image: "/marathon-5k.jpg",
-      },
-      {
-        heading: "BCORE Fun Run",
-        descp:
-          "Get ready for big smiles and lots of excitement! The BCORE Fun Run is a 3km race accessible to everyone – perfect for first-timers, families and kids. It's all about celebrating the art of running, ideal for our next generation of runners and people looking to increase their weekend footsteps!",
-        image: "/marathon-fun.jpg",
-      },
-    ],
-  });
+  const [servicesData, setServicesData] = useState<any>(null);
 
   useEffect(() => {
     const checkScreenSize = () => setIsMdScreen(window.innerWidth >= 768);
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/page-data");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        setServicesData(data?.servicesData);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+    fetchData();
+
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
@@ -71,27 +51,27 @@ function MarathonServices() {
   };
 
   return (
-    <section id="marathon-categories" className="bg-secondary py-20 md:py-40">
+    <section id="services" className="bg-secondary py-20 md:py-40">
       <div className="flex flex-col gap-24">
         <div className="container">
           <div className="flex flex-col gap-24">
             <div className="flex flex-col xl:flex xl:flex-row items-start gap-8">
               <div className="flex items-center py-3 gap-4 md:gap-8 w-full max-w-xl">
                 <span className="bg-primary py-1.5 px-2.5 text-base font-medium rounded-full dark:text-secondary">
-                  {marathonData?.number}
+                  {servicesData?.number}
                 </span>
                 <div className="h-px w-16 bg-white/12" />
                 <p className="text-base font-medium text-secondary bg-white py-1.5 px-4 rounded-full">
-                  {marathonData?.name}
+                  {servicesData?.name}
                 </p>
               </div>
               <div className="flex flex-col gap-11">
                 <div className="flex flex-col gap-5">
                   <h2 className="max-w-3xl text-white">
-                    {marathonData?.heading}
+                    {servicesData?.heading}
                   </h2>
                   <p className="max-w-2xl text-white/70">
-                    {marathonData?.description}
+                    {servicesData?.description}
                   </p>
                 </div>
               </div>
@@ -110,13 +90,13 @@ function MarathonServices() {
                       : {}
                   }
                 >
-                  {marathonData?.data[activeIndex]?.image && (
+                  {servicesData?.data[activeIndex]?.image && (
                     <Image
-                      src={marathonData?.data[activeIndex]?.image}
-                      alt={`${marathonData?.data[activeIndex]?.heading} Image`}
+                      src={servicesData?.data[activeIndex]?.image}
+                      alt="Service Image"
                       width={400}
                       height={250}
-                      className="w-full h-full object-cover rounded-lg"
+                      className="w-full h-full object-cover"
                     />
                   )}
                 </div>
@@ -124,18 +104,18 @@ function MarathonServices() {
 
               <div className="w-full flex flex-col gap-16">
                 <div>
-                  {marathonData?.data.map((race: any, index: any) => (
+                  {servicesData?.data.map((value: any, index: any) => (
                     <div
                       key={index}
                       onMouseEnter={(e) => handleMouseEnter(index, e)}
                       className="group py-6 xl:py-10 border-t border-white/12 cursor-pointer flex xl:flex-row flex-col xl:items-center items-start justify-between xl:gap-10 gap-1 relative"
                     >
                       <h3 className="text-white group-hover:text-primary 2xl:w-full 2xl:max-w-sm py-1">
-                        {race.heading}
+                        {value.heading}
                       </h3>
                       {activeIndex === index && (
                         <p className="text-white/70 text-base transition-all duration-300 flex-1">
-                          {race.descp}
+                          {value.descp}
                         </p>
                       )}
                     </div>
@@ -143,11 +123,11 @@ function MarathonServices() {
                 </div>
                 <div>
                   <Link
-                    href="/register"
+                    href="/projects"
                     className="group flex gap-4 items-center w-fit bg-primary border border-primary hover:border hover:border-white/30 hover:bg-secondary rounded-full transition-all duration-200 ease-in-out"
                   >
                     <span className="pl-6 text-lg font-bold text-secondary group-hover:text-white group-hover:translate-x-12 transform transition-transform duration-200 ease-in-out">
-                      Register Now
+                      See our Work
                     </span>
                     <svg
                       className={` py-1 group-hover:-translate-x-37 group-hover:rotate-45 transition-all duration-200 ease-in-out `}
@@ -226,4 +206,4 @@ function MarathonServices() {
   );
 }
 
-export default MarathonServices;
+export default Services;

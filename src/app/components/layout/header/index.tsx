@@ -1,13 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import MenuList from "./MenuList";
-import ThemeToggler from "./ThemeToggle";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Logo from "../logo";
 
 const Header = () => {
-  const { data: session } = useSession();
   const [user, setUser] = useState<{ user: any } | null>(null);
   const [menuData, setMenuData] = useState<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -79,27 +76,6 @@ const Header = () => {
             <Logo sticky={sticky} />
           </div>
           <div className="flex items-center gap-7">
-            <div className="flex item-center gap-3">
-              <ThemeToggler />
-              {user?.user || session?.user ? (
-                <div className="relative group flex items-center justify-center">
-                  <Image
-                    src="/images/avatar/avatar_1.jpg"
-                    alt="Image"
-                    width={35}
-                    height={35}
-                    quality={100}
-                    className="rounded-full cursor-pointer "
-                  />
-                  <p className="absolute w-fit text-sm font-medium text-center z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-200 bg-gray text-white py-1 px-2 min-w-28 rounded-full shadow-2xl top-full left-1/2 transform -translate-x-1/2 mt-3">
-                    {user?.user || session?.user?.name}
-                  </p>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-
             <div className="relative flex align-middle">
               {menuOpen === false ? (
                 <div className="flex align-middle">
