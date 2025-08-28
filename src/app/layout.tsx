@@ -29,12 +29,7 @@ export default function RootLayout({
     });
   }, [pathname]);
 
-  const excludedRoutes = [
-    "/signin",
-    "/signup",
-    "/forgot-password",
-    "/documentation",
-  ];
+  const excludedRoutes = ["/register"];
   const hideLayout = excludedRoutes.includes(pathname) || is404;
 
   return (
