@@ -127,14 +127,14 @@ function Aboutus() {
               </div>
               <div className="flex flex-col gap-4 relative z-10">
                 <Image
-                  src={"/images/logo/BlackLogo.svg"}
+                  src={"/images/logo/Black_Logo.svg"}
                   alt="Logo Image"
                   height={44}
                   width={160}
                   className="dark:hidden"
                 />
                 <Image
-                  src={"/images/logo/WhiteLogo.svg"}
+                  src={"/images/logo/White_Logo.svg"}
                   alt="Logo Image"
                   height={44}
                   width={160}

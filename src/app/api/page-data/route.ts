@@ -53,14 +53,14 @@ const servicesData = {
   data: [
     {
       id: 1,
-      image: "/images/home/services/services_1.png",
+      image: "/images/home/services/service_1.jpg",
       heading: "BCORE Half Marathon",
       descp:
         "The BCORE Half-Marathon is going to be one of the fastest and exciting marathons in India. It isn't just any other race – it's the first race organized by an Indian Olympic Centre.",
     },
     {
       id: 2,
-      image: "/images/home/services/services_2.png",
+      image: "/images/home/services/service_2.jpg",
       heading: "BCORE 10KM Run",
       descp:
         "The BCORE 10k is the challenge you need. This race will take you across Gandhinagar's most beautiful parks and neighborhoods – from Swarnim Park to the Salt Mount.",
@@ -190,44 +190,54 @@ const teamData = {
 const pricingData = {
   data: [
     {
-      planName: "Launch",
-      planPrice: "$699",
-      planDescp:
-        "Ideal for startups and small businesses taking their first steps online.",
+      planName: "Half Marathon",
+      planPrice: "₹1100",
+      planDescp: "Challenge yourself with the 21.1 KM half marathon distance.",
       planIncludes: [
-        "Competitive research & insights",
-        "Wireframing and prototyping",
-        "Basic tracking setup (Google Analytics, etc.)",
-        "Standard contact form integration",
+        "Race bib with timing chip",
+        "Finisher medal",
+        "Refreshments & hydration support",
+        "Official event T-shirt",
       ],
     },
     {
-      planName: "Scale",
-      tag: "Most popular",
-      planPrice: "$1,699",
-      cancelPrice: "$2,199",
+      planName: "10 KM Run",
+      tag: "Most Popular",
+      planPrice: "₹800",
       planDescp:
-        "Perfect for growing brands needing more customization and flexibility.",
+        "Perfect for fitness enthusiasts looking for a competitive run.",
       planIncludes: [
-        "Everything in the Launch Plan",
-        "Custom design for up to 10 pages",
-        "Seamless social media integration",
-        "SEO enhancements for key pages",
+        "Race bib with timing chip",
+        "Finisher medal",
+        "Refreshments & hydration support",
+        "Official event T-shirt",
       ],
     },
     {
-      planName: "Elevate",
-      planPrice: "$3,499",
-      planDescp:
-        "Best suited for established businesses wanting a fully tailored experience.",
+      planName: "5 KM Run",
+      planPrice: "₹600",
+      planDescp: "A short and energetic run for beginners and fun runners.",
       planIncludes: [
-        "Everything in the Scale Plan",
-        "E-commerce functionality (if needed)",
-        "Branded email template design",
-        "Priority support for six months after launch",
+        "Race bib",
+        "Finisher medal",
+        "Refreshments & hydration support",
+        "Official event T-shirt",
+      ],
+    },
+    {
+      planName: "Fun Run",
+      planPrice: "₹350",
+      planDescp:
+        "Enjoy the joy of running with friends and family in this non-competitive category.",
+      planIncludes: [
+        "Race bib",
+        "NA",
+        "Refreshments",
+        "Official event T-shirt",
       ],
     },
   ],
+
   partnerLogo: [
     {
       light: "/images/home/pricing/partner-1.svg",
