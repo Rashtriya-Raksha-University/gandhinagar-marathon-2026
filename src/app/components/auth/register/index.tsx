@@ -1,15 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Phone,
-  MapPin,
-  Shield,
-  Home,
-  ChevronDown,
-  Mail,
-  Shirt,
-} from "lucide-react";
+import { Phone, MapPin, Shield, ChevronDown, Mail, Shirt } from "lucide-react";
 
 import PhoneInput, {
   isValidPhoneNumber,
@@ -239,18 +231,6 @@ export default function SignUpForm() {
 
   return (
     <section className="min-h-screen py-8 md:py-16 bg-gradient-to-br from-primary to-indigo-200">
-      {/* Home Button */}
-      <div className="fixed top-6 left-6 z-10">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => router.push("/")}
-          className="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200 group"
-        >
-          <Home className="w-5 h-5 text-white" />
-        </motion.button>
-      </div>
-
       <div className="container mx-auto px-4">
         <motion.div
           variants={container}
