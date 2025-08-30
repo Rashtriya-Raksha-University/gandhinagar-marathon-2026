@@ -43,7 +43,6 @@ export default function RootLayout({
       <body className={manrope.className}>
         {!hideLayout && <Header />}
 
-        {/* ✅ Wrap children with global page transition */}
         <PageTransition>{children}</PageTransition>
 
         {!hideLayout && <Footer />}

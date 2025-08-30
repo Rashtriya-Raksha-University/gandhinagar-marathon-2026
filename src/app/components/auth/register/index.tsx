@@ -123,6 +123,10 @@ export default function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const turnstileRef = useRef<HTMLDivElement | null>(null);
 
+  // Get Turnstile site key from environment variables
+  const TURNSTILE_SITE_KEY =
+    process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || "0x4AAAAAABwXAJXgNrXvAXSy";
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
@@ -133,7 +137,7 @@ export default function SignUpForm() {
     script.onload = () => {
       if (window.turnstile && turnstileRef.current) {
         window.turnstile.render(turnstileRef.current, {
-          sitekey: "0x4AAAAAAABkMYinukE_MYnj",
+          sitekey: TURNSTILE_SITE_KEY,
           callback: (token: string) => setTurnstileToken(token),
           "expired-callback": () => setTurnstileToken(null),
           "error-callback": () => setTurnstileToken(null),
@@ -144,7 +148,7 @@ export default function SignUpForm() {
     return () => {
       if (document.head.contains(script)) document.head.removeChild(script);
     };
-  }, []);
+  }, [TURNSTILE_SITE_KEY]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -241,7 +245,7 @@ export default function SignUpForm() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.push("/")}
-          className="flex items-center justify-center w-12 h-12   rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200 group"
+          className="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200 group"
         >
           <Home className="w-5 h-5 text-white" />
         </motion.button>
@@ -597,7 +601,12 @@ export default function SignUpForm() {
                     </span>
                   </div>
                   <div className="flex flex-col items-start gap-2">
-                    <div ref={turnstileRef} className="cf-turnstile" />
+                    <div
+                      className="cf-turnstile"
+                      data-sitekey={TURNSTILE_SITE_KEY}
+                      data-theme="light"
+                    />
+
                     {errors.turnstile && (
                       <p className="text-red-500 text-sm">{errors.turnstile}</p>
                     )}
