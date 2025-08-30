@@ -17,7 +17,7 @@ import PhoneInput, {
 } from "react-phone-number-input";
 import { useRouter } from "next/navigation";
 import "react-phone-number-input/style.css";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 
 type FieldError =
   | "firstName"
@@ -228,7 +228,7 @@ export default function SignUpForm() {
         staggerChildren: 0.08,
         delayChildren: 0.05,
         duration: 0.35,
-        ease: "easeOut",
+        ease: easeOut,
       },
     },
   };
