@@ -3,15 +3,16 @@
 import Image from "next/image";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [
-    "/images/crousal/img1.jpg",
+    // "/images/crousal/img1.jpg",
+    "/images/crousal/img5.jpg",
     "/images/crousal/img2.jpg",
     "/images/crousal/img3.jpg",
-    "/images/crousal/img4.jpg",
-    "/images/crousal/img5.jpg",
+    // "/images/crousal/img4.jpg",
   ];
 
   // Auto-advance carousel every 5 seconds
@@ -80,14 +81,16 @@ function HeroSection() {
               <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4">
                 <h1 className="large-heading">Register</h1>
                 <div>
-                  <div className="bg-primary rounded-full p-1.5 pl-8">
-                    <Image
-                      src={"/images/Icon/arrow-icon.svg"}
-                      alt="icon"
-                      height={52}
-                      width={52}
-                    />
-                  </div>
+                  <Link href="/register">
+                    <div className="bg-primary rounded-full p-1.5 pl-8 cursor-pointer">
+                      <Image
+                        src={"/images/Icon/arrow-icon.svg"}
+                        alt="icon"
+                        height={52}
+                        width={52}
+                      />
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>

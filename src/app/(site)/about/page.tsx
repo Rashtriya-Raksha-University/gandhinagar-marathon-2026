@@ -1,6 +1,7 @@
 import AboutusDetail from "@/app/components/about/aboutus-detail";
 import Herobanner from "@/app/components/shared/hero-banner";
 import { Metadata } from "next";
+import { fadeInUp } from "@/lib/animation";
 
 export const metadata: Metadata = {
   title: "About BCORE | Bharat Centre of Olympic Research and Education",

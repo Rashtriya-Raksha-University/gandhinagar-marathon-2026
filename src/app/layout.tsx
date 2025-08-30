@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import ScrollToTop from "./components/scroll-to-top";
+import PageTransition from "@/app/components/PageTransition"; // ✅ import transition wrapper
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -41,7 +42,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={manrope.className}>
         {!hideLayout && <Header />}
-        {children}
+
+        {/* ✅ Wrap children with global page transition */}
+        <PageTransition>{children}</PageTransition>
+
         {!hideLayout && <Footer />}
         <ScrollToTop />
       </body>
