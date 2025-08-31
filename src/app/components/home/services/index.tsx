@@ -2,6 +2,10 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import SectionAnimation, {
+  StaggerContainer,
+  StaggerItem,
+} from "@/app/components/SectionAnimation";
 
 function Services() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -55,8 +59,13 @@ function Services() {
       <div className="flex flex-col gap-24">
         <div className="container">
           <div className="flex flex-col gap-24">
+            {/* Header Section Animation */}
             <div className="flex flex-col xl:flex xl:flex-row items-start gap-8">
-              <div className="flex items-center py-3 gap-4 md:gap-8 w-full max-w-xl">
+              <SectionAnimation
+                animationType="slideRight"
+                duration={0.8}
+                className="flex items-center py-3 gap-4 md:gap-8 w-full max-w-xl"
+              >
                 <span className="bg-primary py-1.5 px-2.5 text-base font-medium rounded-full dark:text-secondary">
                   {servicesData?.number}
                 </span>
@@ -64,8 +73,14 @@ function Services() {
                 <p className="text-base font-medium text-secondary bg-white py-1.5 px-4 rounded-full">
                   {servicesData?.name}
                 </p>
-              </div>
-              <div className="flex flex-col gap-11">
+              </SectionAnimation>
+
+              <SectionAnimation
+                animationType="fadeUp"
+                delay={0.2}
+                duration={0.8}
+                className="flex flex-col gap-11"
+              >
                 <div className="flex flex-col gap-5">
                   <h2 className="max-w-3xl text-white">
                     {servicesData?.heading}
@@ -74,11 +89,18 @@ function Services() {
                     {servicesData?.description}
                   </p>
                 </div>
-              </div>
+              </SectionAnimation>
             </div>
 
+            {/* Main Content Section */}
             <div className="flex flex-col md:flex-row relative gap-10 2xl:gap-56">
-              <div className="relative w-full md:max-w-sm">
+              {/* Image Section Animation */}
+              <SectionAnimation
+                animationType="slideLeft"
+                delay={0.4}
+                duration={0.8}
+                className="relative w-full md:max-w-sm"
+              >
                 <div
                   className={`relative md:absolute md:right-0 xl:left-0 transition-all duration-300 z-10 h-80`}
                   style={
@@ -100,28 +122,46 @@ function Services() {
                     />
                   )}
                 </div>
-              </div>
+              </SectionAnimation>
 
-              <div className="w-full flex flex-col gap-16">
-                <div>
+              {/* Services List Section */}
+              <SectionAnimation
+                animationType="slideRight"
+                delay={0.6}
+                duration={0.8}
+                className="w-full flex flex-col gap-16"
+              >
+                {/* Services List with Stagger Animation */}
+                <StaggerContainer delay={0.8} staggerDelay={0.1}>
                   {servicesData?.data.map((value: any, index: any) => (
-                    <div
+                    <StaggerItem
                       key={index}
-                      onMouseEnter={(e) => handleMouseEnter(index, e)}
+                      animationType="fadeUp"
                       className="group py-6 xl:py-10 border-t border-white/12 cursor-pointer flex xl:flex-row flex-col xl:items-center items-start justify-between xl:gap-10 gap-1 relative"
                     >
-                      <h3 className="text-white group-hover:text-primary 2xl:w-full 2xl:max-w-sm py-1">
-                        {value.heading}
-                      </h3>
-                      {activeIndex === index && (
-                        <p className="text-white/70 text-base transition-all duration-300 flex-1">
-                          {value.descp}
-                        </p>
-                      )}
-                    </div>
+                      <div
+                        onMouseEnter={(e) => handleMouseEnter(index, e)}
+                        className="w-full flex xl:flex-row flex-col xl:items-center items-start justify-between xl:gap-10 gap-1"
+                      >
+                        <h3 className="text-white group-hover:text-primary 2xl:w-full 2xl:max-w-sm py-1 transition-colors duration-300">
+                          {value.heading}
+                        </h3>
+                        {activeIndex === index && (
+                          <p className="text-white/70 text-base transition-all duration-300 flex-1">
+                            {value.descp}
+                          </p>
+                        )}
+                      </div>
+                    </StaggerItem>
                   ))}
-                </div>
-                <div>
+                </StaggerContainer>
+
+                {/* CTA Button Animation */}
+                <SectionAnimation
+                  animationType="fadeUp"
+                  delay={1.2}
+                  duration={0.6}
+                >
                   <Link
                     href="/register"
                     className="group flex gap-4 items-center w-fit bg-primary border border-primary hover:border hover:border-white/30 hover:bg-secondary rounded-full transition-all duration-200 ease-in-out"
@@ -196,8 +236,8 @@ function Services() {
                       </defs>
                     </svg>
                   </Link>
-                </div>
-              </div>
+                </SectionAnimation>
+              </SectionAnimation>
             </div>
           </div>
         </div>
