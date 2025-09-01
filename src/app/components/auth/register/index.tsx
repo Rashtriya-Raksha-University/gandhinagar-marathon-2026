@@ -7,7 +7,6 @@ import PhoneInput, {
   isValidPhoneNumber,
   parsePhoneNumber,
 } from "react-phone-number-input";
-import { useRouter } from "next/navigation";
 import "react-phone-number-input/style.css";
 import { motion, easeOut } from "framer-motion";
 
@@ -27,6 +26,8 @@ type FieldError =
 
 type Errors = Partial<Record<FieldError, string>>;
 
+// -------------------- Global (Turnstile) --------------------
+
 declare global {
   interface Window {
     turnstile?: {
@@ -37,6 +38,7 @@ declare global {
           callback?: (token: string) => void;
           "expired-callback"?: () => void;
           "error-callback"?: () => void;
+          theme?: "light" | "dark" | "auto";
         }
       ) => void;
     };
@@ -98,8 +100,9 @@ const UnderlineSelect: React.FC<{
 
 const tshirtSizes = ["XS", "S", "M", "L", "XL", "2XL"] as const;
 
-export default function SignUpForm() {
-  const router = useRouter();
+// -------------------- Page --------------------
+
+export default function RegisterPage() {
   const [formData, setFormData] = useState({
     firstName: "",
     middleName: "",
@@ -115,10 +118,11 @@ export default function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const turnstileRef = useRef<HTMLDivElement | null>(null);
 
-  // Get Turnstile site key from environment variables
+  // Cloudflare Turnstile site key
   const TURNSTILE_SITE_KEY =
     process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || "0x4AAAAAABwXAJXgNrXvAXSy";
 
+  // Load & render Turnstile
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
@@ -126,10 +130,11 @@ export default function SignUpForm() {
     script.defer = true;
     document.head.appendChild(script);
 
-    script.onload = () => {
+    const onLoad = () => {
       if (window.turnstile && turnstileRef.current) {
         window.turnstile.render(turnstileRef.current, {
           sitekey: TURNSTILE_SITE_KEY,
+          theme: "auto",
           callback: (token: string) => setTurnstileToken(token),
           "expired-callback": () => setTurnstileToken(null),
           "error-callback": () => setTurnstileToken(null),
@@ -137,7 +142,9 @@ export default function SignUpForm() {
       }
     };
 
+    script.addEventListener("load", onLoad);
     return () => {
+      script.removeEventListener("load", onLoad);
       if (document.head.contains(script)) document.head.removeChild(script);
     };
   }, [TURNSTILE_SITE_KEY]);
@@ -155,6 +162,7 @@ export default function SignUpForm() {
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
+
     if (errors[name as FieldError]) {
       setErrors((prev) => ({ ...prev, [name as FieldError]: undefined }));
     }
@@ -175,9 +183,13 @@ export default function SignUpForm() {
     } else if (!isValidPhoneNumber(formData.phone)) {
       next.phoneNumber = "Please enter a valid phone number";
     } else {
-      const phoneNumber = parsePhoneNumber(formData.phone);
-      if (phoneNumber && phoneNumber.nationalNumber.length !== 10) {
-        next.phoneNumber = "Phone number must be exactly 10 digits";
+      try {
+        const phoneNumber = parsePhoneNumber(formData.phone);
+        if (phoneNumber && phoneNumber.nationalNumber.length !== 10) {
+          next.phoneNumber = "Phone number must be exactly 10 digits";
+        }
+      } catch {
+        next.phoneNumber = "Please enter a valid phone number";
       }
     }
 
@@ -204,10 +216,27 @@ export default function SignUpForm() {
   const handleSubmit = () => {
     if (!validateForm()) return;
     setIsSubmitting(true);
+
+    // Mock submit (no API)
     setTimeout(() => {
-      console.log("Form submitted:", { ...formData, turnstileToken });
-      alert("Form submitted successfully!");
+      // eslint-disable-next-line no-console
+      console.log("Register form submitted:", { ...formData, turnstileToken });
+      alert("Registered successfully! (demo)");
       setIsSubmitting(false);
+
+      // Optional: reset
+      setFormData({
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        tshirtSize: "",
+        address: { street: "", city: "", state: "", zipCode: "", country: "" },
+      });
+      setTurnstileToken(null);
+
+      // router.push("/"); // uncomment if you want to redirect
     }, 600);
   };
 
@@ -242,7 +271,7 @@ export default function SignUpForm() {
             {/* Header */}
             <motion.div variants={item} className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                Create your account
+                Register
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-400">
                 Join our community with just a few simple steps
@@ -360,9 +389,8 @@ export default function SignUpForm() {
                                   }));
                                 }
                               } else {
-                                let nationalDigitCount = 0;
-
-                                const countryCodes = {
+                                // Fallback length control for unknown parsing
+                                const countryCodes: Record<string, number> = {
                                   "1": 1,
                                   "7": 1,
                                   "91": 2,
@@ -395,9 +423,8 @@ export default function SignUpForm() {
                                   }
                                 }
 
-                                nationalDigitCount =
+                                const nationalDigitCount =
                                   currentDigits.length - countryCodeLength;
-
                                 if (nationalDigitCount <= 10) {
                                   setFormData((prev) => ({
                                     ...prev,
@@ -581,12 +608,7 @@ export default function SignUpForm() {
                     </span>
                   </div>
                   <div className="flex flex-col items-start gap-2">
-                    <div
-                      className="cf-turnstile"
-                      data-sitekey={TURNSTILE_SITE_KEY}
-                      data-theme="light"
-                    />
-
+                    <div ref={turnstileRef} className="cf-turnstile" />
                     {errors.turnstile && (
                       <p className="text-red-500 text-sm">{errors.turnstile}</p>
                     )}
@@ -607,10 +629,10 @@ export default function SignUpForm() {
                     }}
                     whileTap={{ scale: 0.98 }}
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-primary to-primary  text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                    className="w-full bg-gradient-to-r from-primary to-primary text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                   >
                     <span className="text-lg">
-                      {isSubmitting ? "Submitting..." : "Create Account"}
+                      {isSubmitting ? "Submitting..." : "Register"}
                     </span>
                     {!isSubmitting && (
                       <motion.div

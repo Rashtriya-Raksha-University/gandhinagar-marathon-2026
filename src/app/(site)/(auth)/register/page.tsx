@@ -1,14 +1,14 @@
 import { Metadata } from "next";
-import SignUp from "@/app/components/auth/register";
+import Register from "@/app/components/auth/register";
 
 export const metadata: Metadata = {
-  title: "Sign Up | Studiova",
+  title: "Register",
 };
 
 const SignupPage = () => {
   return (
     <>
-      <SignUp />
+      <Register />
     </>
   );
 };

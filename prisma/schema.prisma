@@ -1,0 +1,76 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Registration {
+    id       String @id @default(cuid())
+    runnerId String @unique @default(uuid())
+
+    firstName  String
+    middleName String?
+    lastName   String
+    email      String
+    phone      String
+    tshirtSize TshirtSize
+    street     String
+    city       String
+    state      String
+    zipCode    String
+    country    String
+
+    raceName raceName @default(MARATHON)
+
+    amount        Float
+    paymentId     String?
+    receiptId     String?
+    paymentStatus PaymentStatus @default(PENDING)
+
+    status RegistrationStatus @default(PENDING)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("registrations")
+}
+
+enum TshirtSize {
+    XS
+    S
+    M
+    L
+    XL
+    XXL @map("2XL")
+
+    @@map("tshirt_size")
+}
+
+enum raceName {
+    MARATHON
+    HALF_MARATHON
+    TEN_K
+    FIVE_K
+
+    @@map("race_name")
+}
+
+enum RegistrationStatus {
+    PENDING
+    CONFIRMED
+    CANCELLED
+    COMPLETED
+
+    @@map("registration_status")
+}
+
+enum PaymentStatus {
+    PENDING
+    SUCCESS
+    FAILED
+
+    @@map("payment_status")
+}
