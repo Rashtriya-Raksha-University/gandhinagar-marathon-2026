@@ -35,6 +35,7 @@ export default function RootLayout({
     "/signup",
     "/forgot-password",
     "/documentation",
+    "/register",
   ];
   const hideLayout = excludedRoutes.includes(pathname) || is404;
 
