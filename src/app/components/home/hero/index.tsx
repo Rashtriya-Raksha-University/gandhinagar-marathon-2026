@@ -4,18 +4,17 @@ import Image from "next/image";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeIn, fadeInUp } from "@/lib/animation";
 
 function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [
-    // "/images/crousal/img1.jpg",
     "/images/crousal/img5.jpg",
     "/images/crousal/img2.jpg",
     "/images/crousal/img3.jpg",
-    // "/images/crousal/img4.jpg",
   ];
 
-  // Auto-advance carousel every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -42,7 +41,7 @@ function HeroSection() {
                   alt={`Carousel image ${index + 1}`}
                   fill
                   className="object-cover"
-                  priority={index === 0} // Prioritize first image loading
+                  priority={index === 0}
                 />
               </div>
             ))}
@@ -70,15 +69,28 @@ function HeroSection() {
           {/* Content */}
           <div className="relative z-10 container text-left">
             <div className="flex flex-col gap-6 Xxl:pb-20 pb-10">
-              <div className="flex items-start gap-2 md:gap-6">
+              <motion.div
+                variants={fadeIn}
+                initial="hidden"
+                animate="visible"
+                transition={{ duration: 1 }}
+                className="flex items-start gap-2 md:gap-6"
+              >
                 <p className="text-white/70 max-w-md">
                   Run through{" "}
                   <span className="text-primary">Gandhinagar&apos;s </span>
                   iconic cityscape, cultural landmarks, and scenic green
                   avenues.
                 </p>
-              </div>
-              <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4">
+              </motion.div>
+
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                animate="visible"
+                transition={{ duration: 1, delay: 0.5 }}
+                className="flex flex-col lg:flex-row items-start lg:items-end gap-4"
+              >
                 <h1 className="large-heading">Register</h1>
                 <div>
                   <Link href="/register">
@@ -92,7 +104,7 @@ function HeroSection() {
                     </div>
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>

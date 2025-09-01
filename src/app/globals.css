@@ -125,3 +125,8 @@ body {
     @apply text-lg font-normal leading-normal text-black dark:text-white;
   }
 }
+
+::selection {
+  background-color: var(--color-primary);
+  color: black;
+}

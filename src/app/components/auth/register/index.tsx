@@ -1,33 +1,313 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { Phone, MapPin, Shield, ChevronDown, Mail, Shirt } from "lucide-react";
-
-import PhoneInput, {
-  isValidPhoneNumber,
-  parsePhoneNumber,
-} from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import {
+  Phone,
+  MapPin,
+  Shield,
+  ChevronDown,
+  Mail,
+  Shirt,
+  AlertCircle,
+  Flag,
+} from "lucide-react";
 import { motion, easeOut } from "framer-motion";
+import PhoneInput from "react-phone-number-input";
 
-type FieldError =
-  | "firstName"
-  | "middleName"
-  | "lastName"
-  | "email"
-  | "phoneNumber"
-  | "tshirtSize"
-  | "turnstile"
-  | "address.street"
-  | "address.city"
-  | "address.state"
-  | "address.zipCode"
-  | "address.country";
+import "react-phone-number-input/style.css";
+import { Country, State, City } from "country-state-city";
 
-type Errors = Partial<Record<FieldError, string>>;
+interface ValidationResult {
+  success: boolean;
+  errors: Record<string, string>;
+}
 
-// -------------------- Global (Turnstile) --------------------
+interface ValidationRule {
+  validate: (value: unknown) => string | null;
+}
 
+/** Common interface so we can avoid `any` */
+interface ZLike {
+  parse(value: unknown): unknown;
+}
+
+class ZodLikeString implements ZLike {
+  private rules: ValidationRule[] = [];
+
+  min(length: number, message?: string): this {
+    this.rules.push({
+      validate: (value) => {
+        if (typeof value !== "string") return "Must be a string";
+        if (value.length < length)
+          return message || `Must be at least ${length} characters`;
+        return null;
+      },
+    });
+    return this;
+  }
+
+  max(length: number, message?: string): this {
+    this.rules.push({
+      validate: (value) => {
+        if (typeof value !== "string") return "Must be a string";
+        if (value.length > length)
+          return message || `Must be less than ${length} characters`;
+        return null;
+      },
+    });
+    return this;
+  }
+
+  email(message?: string): this {
+    this.rules.push({
+      validate: (value) => {
+        if (typeof value !== "string") return "Must be a string";
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value))
+          return message || "Please enter a valid email address";
+        return null;
+      },
+    });
+    return this;
+  }
+
+  regex(pattern: RegExp, message: string): this {
+    this.rules.push({
+      validate: (value) => {
+        if (typeof value !== "string") return "Must be a string";
+        if (!pattern.test(value)) return message;
+        return null;
+      },
+    });
+    return this;
+  }
+
+  optional(): this {
+    return this;
+  }
+
+  parse(value: unknown): string {
+    for (const rule of this.rules) {
+      const error = rule.validate(value);
+      if (error) throw new Error(error);
+    }
+    return value as string;
+  }
+}
+
+class ZodLikeEnum implements ZLike {
+  constructor(
+    private values: readonly string[],
+    private errorMessage?: string
+  ) {}
+
+  parse(value: unknown): string {
+    if (typeof value !== "string" || !this.values.includes(value)) {
+      throw new Error(
+        this.errorMessage || `Must be one of: ${this.values.join(", ")}`
+      );
+    }
+    return value;
+  }
+}
+
+class ZodLikeObject implements ZLike {
+  constructor(public shape: Record<string, ZLike>) {}
+
+  parse(value: unknown): Record<string, unknown> {
+    if (typeof value !== "object" || value === null) {
+      throw new Error("Must be an object");
+    }
+    const result: Record<string, unknown> = {};
+    const obj = value as Record<string, unknown>;
+    for (const [key, validator] of Object.entries(this.shape)) {
+      result[key] = validator.parse(obj[key]);
+    }
+    return result;
+  }
+}
+
+const string = () => new ZodLikeString();
+const enumType = (values: readonly string[], errorMessage?: string) =>
+  new ZodLikeEnum(values, errorMessage);
+const object = (shape: Record<string, ZLike>) => new ZodLikeObject(shape);
+
+/* =============================
+   Schema & Types
+   ============================= */
+const TSHIRT_SIZES = ["XS", "S", "M", "L", "XL", "2XL"] as const;
+type TShirtSize = (typeof TSHIRT_SIZES)[number];
+
+const RACE_TYPES = ["Half Marathon", "10km", "5km", "Fun Run"] as const;
+type RaceType = (typeof RACE_TYPES)[number];
+
+const registrationSchema = object({
+  firstName: string()
+    .min(1, "First name is required")
+    .min(2, "First name must be at least 2 characters")
+    .max(50, "First name must be less than 50 characters")
+    .regex(
+      /^[a-zA-Z\s'-]+$/,
+      "First name can only contain letters, spaces, hyphens, and apostrophes"
+    ),
+
+  middleName: string()
+    .max(50, "Middle name must be less than 50 characters")
+    .regex(
+      /^[a-zA-Z\s'-]*$/,
+      "Middle name can only contain letters, spaces, hyphens, and apostrophes"
+    )
+    .optional(),
+
+  lastName: string()
+    .min(1, "Last name is required")
+    .min(2, "Last name must be at least 2 characters")
+    .max(50, "Last name must be less than 50 characters")
+    .regex(
+      /^[a-zA-Z\s'-]+$/,
+      "Last name can only contain letters, spaces, hyphens, and apostrophes"
+    ),
+
+  email: string()
+    .min(1, "Email is required")
+    .email("Please enter a valid email address")
+    .max(100, "Email must be less than 100 characters"),
+
+  phone: string()
+    .min(1, "Phone number is required")
+    .regex(/^\+?[\d\s()-]+$/, "Phone number contains invalid characters"),
+
+  tshirtSize: enumType(TSHIRT_SIZES, "Please select a valid t-shirt size"),
+  raceType: enumType(RACE_TYPES, "Please select a valid race type"),
+
+  address: object({
+    street: string()
+      .min(1, "Street address is required")
+      .max(200, "Street address must be less than 200 characters"),
+    city: string()
+      .min(1, "City is required")
+      .max(100, "City name must be less than 100 characters")
+      .regex(
+        /^[a-zA-Z\s'-]+$/,
+        "City name can only contain letters, spaces, hyphens, and apostrophes"
+      ),
+    state: string()
+      .min(1, "State/Province is required")
+      .max(100, "State/Province name must be less than 100 characters"),
+    zipCode: string()
+      .min(1, "ZIP/Postal code is required")
+      .regex(/^[a-zA-Z0-9\s-]+$/, "Invalid ZIP/Postal code format")
+      .min(3, "ZIP/Postal code is too short")
+      .max(20, "ZIP/Postal code is too long"),
+    country: string()
+      .min(1, "Country is required")
+      .max(100, "Country name must be less than 100 characters"),
+  }),
+
+  turnstileToken: string().min(1, "Please complete the security verification"),
+});
+
+const validatePhoneLength = (phone: string): string | null => {
+  const clean = phone.replace(/\D/g, "");
+  if (clean.length < 10) return "Phone number is too short";
+  if (clean.length > 15) return "Phone number is too long";
+  return null;
+};
+
+type FormData = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  tshirtSize: TShirtSize | "";
+  raceType: RaceType | "";
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
+};
+
+type AddressKey = keyof FormData["address"];
+
+type FormErrors = Partial<
+  Record<
+    keyof FormData | `address.${keyof FormData["address"]}` | "turnstileToken",
+    string
+  >
+>;
+
+/* =============================
+   UI helpers
+   ============================= */
+const Label: React.FC<
+  React.PropsWithChildren<React.LabelHTMLAttributes<HTMLLabelElement>>
+> = ({ className = "", children, ...props }) => (
+  <label
+    className={`text-base font-medium text-gray-700 dark:text-gray-300 ${className}`}
+    {...props}
+  >
+    {children}
+  </label>
+);
+
+const UnderlineInput = React.forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement> & { error?: boolean }
+>(({ className = "", error, ...props }, ref) => (
+  <input
+    ref={ref}
+    {...props}
+    className={`w-full border-b-2 bg-transparent ${
+      error
+        ? "border-red-500"
+        : "border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary"
+    } focus:outline-none py-3.5 text-gray-900 dark:text-gray-100 transition-colors duration-200 ${className}`}
+  />
+));
+UnderlineInput.displayName = "UnderlineInput";
+
+const UnderlineSelect: React.FC<{
+  name: string;
+  id: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error?: boolean;
+  children: React.ReactNode;
+  disabled?: boolean;
+}> = ({ name, id, value, onChange, error, children, disabled }) => (
+  <div className="relative">
+    <select
+      id={id}
+      name={name}
+      value={value}
+      disabled={disabled}
+      onChange={onChange}
+      className={`w-full appearance-none bg-transparent border-b-2 ${
+        error
+          ? "border-red-500"
+          : "border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary"
+      } focus:outline-none py-3.5 text-gray-900 dark:text-gray-100 transition-colors duration-200 pr-8 disabled:opacity-50`}
+    >
+      {children}
+    </select>
+    <ChevronDown className="absolute right-0 top-1/2 transform -translate-y-1/2 w-5 h-5 text-primary pointer-events-none" />
+  </div>
+);
+
+const ErrorMessage: React.FC<{ message: string }> = ({ message }) => (
+  <div className="flex items-center gap-2 text-red-500 text-sm mt-2">
+    <AlertCircle className="w-4 h-4" />
+    <span>{message}</span>
+  </div>
+);
+
+/* =============================
+   Turnstile loader
+   ============================= */
 declare global {
   interface Window {
     turnstile?: {
@@ -40,558 +320,790 @@ declare global {
           "error-callback"?: () => void;
           theme?: "light" | "dark" | "auto";
         }
-      ) => void;
+      ) => string;
+      reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
     };
   }
 }
 
-const Label: React.FC<
-  React.PropsWithChildren<React.LabelHTMLAttributes<HTMLLabelElement>>
-> = ({ className = "", children, ...props }) => (
-  <label
-    className={`text-base font-medium text-gray-700 dark:text-gray-300 ${className}`}
-    {...props}
-  >
-    {children}
-  </label>
-);
+const TURNSTILE_SITE_KEY = "1x00000000000000000000AA";
 
-const UnderlineInput = (
-  props: React.InputHTMLAttributes<HTMLInputElement> & { error?: boolean }
-) => {
-  const { className = "", error, ...rest } = props;
-  return (
-    <input
-      {...rest}
-      className={`w-full border-b-2 bg-transparent ${
-        error
-          ? "border-red-500"
-          : "border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400"
-      } focus:outline-none py-3.5 text-gray-900 dark:text-gray-100 transition-colors duration-200 ${className}`}
-    />
-  );
+const useTurnstile = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadTurnstile = () => {
+      if (document.getElementById("turnstile-script")) {
+        setIsLoaded(true);
+        return;
+      }
+      const script = document.createElement("script");
+      script.id = "turnstile-script";
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.onload = () => setIsLoaded(true);
+      script.onerror = () => setError("Failed to load Turnstile");
+      document.head.appendChild(script);
+    };
+    loadTurnstile();
+  }, []);
+
+  return { isLoaded, error };
 };
 
-const UnderlineSelect: React.FC<{
-  name: string;
-  id: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  error?: boolean;
-  children: React.ReactNode;
-}> = ({ name, id, value, onChange, error, children }) => (
-  <div className="relative">
-    <select
-      id={id}
-      name={name}
-      value={value}
-      onChange={onChange}
-      className={`w-full appearance-none bg-transparent border-b-2 ${
-        error
-          ? "border-red-500"
-          : "border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400"
-      } focus:outline-none py-3.5 text-gray-900 dark:text-gray-100 transition-colors duration-200 pr-8`}
-    >
-      {children}
-    </select>
-    <ChevronDown className="absolute right-0 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400 pointer-events-none" />
-  </div>
-);
-
-const tshirtSizes = ["XS", "S", "M", "L", "XL", "2XL"] as const;
-
-// -------------------- Page --------------------
-
+/* =============================
+   Component
+   ============================= */
 export default function RegisterPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     middleName: "",
     lastName: "",
     email: "",
     phone: "",
     tshirtSize: "",
-    address: { street: "", city: "", state: "", zipCode: "", country: "" },
+    raceType: "",
+    address: {
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      country: "IN",
+    },
   });
 
-  const [errors, setErrors] = useState<Errors>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const turnstileRef = useRef<HTMLDivElement | null>(null);
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(
+    null
+  );
 
-  // Cloudflare Turnstile site key
-  const TURNSTILE_SITE_KEY =
-    process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || "0x4AAAAAABwXAJXgNrXvAXSy";
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const { isLoaded: turnstileLoaded, error: turnstileError } = useTurnstile();
 
-  // Load & render Turnstile
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-
-    const onLoad = () => {
-      if (window.turnstile && turnstileRef.current) {
-        window.turnstile.render(turnstileRef.current, {
+    if (
+      turnstileLoaded &&
+      window.turnstile &&
+      turnstileRef.current &&
+      !turnstileWidgetId
+    ) {
+      try {
+        const widgetId = window.turnstile.render(turnstileRef.current, {
           sitekey: TURNSTILE_SITE_KEY,
-          theme: "auto",
-          callback: (token: string) => setTurnstileToken(token),
+          theme: "light",
+          callback: (token: string) => {
+            setTurnstileToken(token);
+            setErrors((prev) => ({ ...prev, turnstileToken: undefined }));
+          },
           "expired-callback": () => setTurnstileToken(null),
-          "error-callback": () => setTurnstileToken(null),
+          "error-callback": () => {
+            setTurnstileToken(null);
+            setErrors((prev) => ({
+              ...prev,
+              turnstileToken: "Security verification failed",
+            }));
+          },
         });
+        setTurnstileWidgetId(widgetId);
+      } catch (err) {
+        console.error("Failed to render Turnstile:", err);
+        setErrors((prev) => ({
+          ...prev,
+          turnstileToken: "Security verification unavailable",
+        }));
       }
-    };
+    }
+  }, [turnstileLoaded, turnstileWidgetId]);
 
-    script.addEventListener("load", onLoad);
-    return () => {
-      script.removeEventListener("load", onLoad);
-      if (document.head.contains(script)) document.head.removeChild(script);
-    };
-  }, [TURNSTILE_SITE_KEY]);
+  /* ========= Country/State/City derived lists & handlers (top-level) ======== */
+  const countries = React.useMemo(() => Country.getAllCountries(), []);
+  const states = React.useMemo(
+    () =>
+      formData.address.country
+        ? State.getStatesOfCountry(formData.address.country)
+        : [],
+    [formData.address.country]
+  );
+  const cities = React.useMemo(
+    () =>
+      formData.address.country && formData.address.state
+        ? City.getCitiesOfState(
+            formData.address.country,
+            formData.address.state
+          )
+        : [],
+    [formData.address.country, formData.address.state]
+  );
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    if (name.startsWith("address.")) {
-      const key = name.split(".")[1] as keyof typeof formData.address;
+  const handleCountrySelect = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const iso2 = e.target.value;
       setFormData((prev) => ({
         ...prev,
-        address: { ...prev.address, [key]: value },
+        address: { ...prev.address, country: iso2, state: "", city: "" },
       }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+      setErrors((prev) => ({
+        ...prev,
+        ["address.country"]: undefined,
+        ["address.state"]: undefined,
+        ["address.city"]: undefined,
+      }));
+    },
+    []
+  );
 
-    if (errors[name as FieldError]) {
-      setErrors((prev) => ({ ...prev, [name as FieldError]: undefined }));
-    }
-  };
+  const handleStateSelect = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const stateIso = e.target.value;
+      setFormData((prev) => ({
+        ...prev,
+        address: { ...prev.address, state: stateIso, city: "" },
+      }));
+      setErrors((prev) => ({
+        ...prev,
+        ["address.state"]: undefined,
+        ["address.city"]: undefined,
+      }));
+    },
+    []
+  );
 
-  const validateForm = () => {
-    const next: Errors = {};
+  const handleCitySelect = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const cityName = e.target.value;
+      setFormData((prev) => ({
+        ...prev,
+        address: { ...prev.address, city: cityName },
+      }));
+      setErrors((prev) => ({ ...prev, ["address.city"]: undefined }));
+    },
+    []
+  );
 
-    if (!formData.firstName.trim()) next.firstName = "First name is required";
-    if (!formData.lastName.trim()) next.lastName = "Last name is required";
+  /* =============================
+     Handlers
+     ============================= */
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
 
-    if (!formData.email.trim()) next.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      next.email = "Please enter a valid email address";
-
-    if (!formData.phone) {
-      next.phoneNumber = "Phone number is required";
-    } else if (!isValidPhoneNumber(formData.phone)) {
-      next.phoneNumber = "Please enter a valid phone number";
-    } else {
-      try {
-        const phoneNumber = parsePhoneNumber(formData.phone);
-        if (phoneNumber && phoneNumber.nationalNumber.length !== 10) {
-          next.phoneNumber = "Phone number must be exactly 10 digits";
+      setFormData((prev) => {
+        if (name.startsWith("address.")) {
+          const addressKey = name.split(".")[1] as AddressKey;
+          return {
+            ...prev,
+            address: { ...prev.address, [addressKey]: value },
+          };
         }
-      } catch {
-        next.phoneNumber = "Please enter a valid phone number";
+        return { ...prev, [name]: value } as FormData;
+      });
+
+      const key = name as keyof FormErrors;
+      if (key in errors) {
+        setErrors((prev) => ({
+          ...prev,
+          [key]: undefined,
+        }));
       }
+    },
+    [errors]
+  );
+
+  const handlePhoneChangeWithLimit = (value?: string) => {
+    const phoneValue = value || "";
+
+    const digits = phoneValue.replace(/\D/g, "");
+
+    const limited = digits.slice(0, 10);
+
+    const formatted = "+91" + limited;
+
+    setFormData((prev) => ({ ...prev, phone: formatted }));
+
+    if (errors.phone) {
+      setErrors((prev) => ({ ...prev, phone: undefined }));
+    }
+  };
+
+  const validatePostalByCountry = (
+    countryISO: string,
+    code: string
+  ): string | null => {
+    if (!code.trim()) return "ZIP/Postal code is required";
+
+    if (countryISO === "IN") {
+      if (!/^\d{6}$/.test(code)) return "PIN code must be exactly 6 digits";
+      return null;
     }
 
-    if (!formData.tshirtSize) next.tshirtSize = "T-shirt size is required";
-
-    if (!formData.address.street.trim())
-      next["address.street"] = "Street address is required";
-    if (!formData.address.city.trim())
-      next["address.city"] = "City is required";
-    if (!formData.address.state.trim())
-      next["address.state"] = "State/Province is required";
-    if (!formData.address.zipCode.trim())
-      next["address.zipCode"] = "ZIP/Postal code is required";
-    if (!formData.address.country.trim())
-      next["address.country"] = "Country is required";
-
-    if (!turnstileToken)
-      next.turnstile = "Please complete the security verification";
-
-    setErrors(next);
-    return Object.keys(next).length === 0;
+    return null;
   };
 
-  const handleSubmit = () => {
-    if (!validateForm()) return;
-    setIsSubmitting(true);
+  const parseValidator = (v: ZLike, value: unknown) => {
+    v.parse(value);
+  };
 
-    // Mock submit (no API)
-    setTimeout(() => {
-      // eslint-disable-next-line no-console
-      console.log("Register form submitted:", { ...formData, turnstileToken });
-      alert("Registered successfully! (demo)");
-      setIsSubmitting(false);
+  const validateField = useCallback(
+    (fieldName: string, value: string) => {
+      try {
+        if (fieldName.startsWith("address.")) {
+          const addressField = fieldName.split(".")[1] as AddressKey;
+          const addressSchema = registrationSchema.shape
+            .address as ZodLikeObject;
 
-      // Optional: reset
-      setFormData({
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        tshirtSize: "",
-        address: { street: "", city: "", state: "", zipCode: "", country: "" },
+          parseValidator(addressSchema.shape[addressField], value);
+
+          if (addressField === "zipCode") {
+            const pinErr = validatePostalByCountry(
+              formData.address.country,
+              value
+            );
+            if (pinErr) throw new Error(pinErr);
+          }
+        } else if (fieldName === "phone") {
+          parseValidator(registrationSchema.shape.phone, value);
+          const phoneError = validatePhoneLength(value);
+          if (phoneError) throw new Error(phoneError);
+        } else {
+          const schema =
+            registrationSchema.shape[
+              fieldName as keyof typeof registrationSchema.shape
+            ];
+          if (schema) parseValidator(schema, value);
+        }
+        setErrors((prev) => ({ ...prev, [fieldName]: undefined }));
+      } catch (error) {
+        if (error instanceof Error) {
+          setErrors((prev) => ({ ...prev, [fieldName]: error.message }));
+        }
+      }
+    },
+    [formData.address.country]
+  );
+
+  const handleInputChangeWithValidation = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      handleInputChange(e);
+
+      setTimeout(() => {
+        const key = name as keyof FormErrors;
+        if (value.trim() || errors[key]) {
+          validateField(name, value);
+        }
+      }, 300);
+    },
+    [handleInputChange, validateField, errors]
+  );
+
+  const handlePhoneChangeWithValidation = useCallback(
+    (value?: string) => {
+      handlePhoneChangeWithValidation(value);
+      const v = value || "";
+      setTimeout(() => {
+        if (v.trim() || errors.phone) {
+          validateField("phone", v);
+        }
+      }, 300);
+    },
+    [validateField, errors.phone]
+  );
+
+  const validateForm = useCallback((): ValidationResult => {
+    const newErrors: FormErrors = {};
+    try {
+      const dataToValidate = {
+        ...formData,
+        turnstileToken: turnstileToken || "",
+      };
+
+      const { shape } = registrationSchema;
+
+      const tryParse = (
+        validator: ZLike,
+        value: unknown,
+        mapKey: keyof FormErrors
+      ) => {
+        try {
+          parseValidator(validator, value);
+        } catch (err) {
+          if (err instanceof Error) newErrors[mapKey] = err.message;
+        }
+      };
+
+      tryParse(shape.firstName, dataToValidate.firstName, "firstName");
+      if (dataToValidate.middleName) {
+        tryParse(shape.middleName, dataToValidate.middleName, "middleName");
+      }
+      tryParse(shape.lastName, dataToValidate.lastName, "lastName");
+      tryParse(shape.email, dataToValidate.email, "email");
+
+      tryParse(shape.phone, dataToValidate.phone, "phone");
+      const phoneLenError = validatePhoneLength(dataToValidate.phone);
+      if (phoneLenError) newErrors.phone = phoneLenError;
+
+      tryParse(shape.tshirtSize, dataToValidate.tshirtSize, "tshirtSize");
+      tryParse(shape.raceType, dataToValidate.raceType, "raceType");
+
+      const addrSchema = shape.address as ZodLikeObject;
+      (
+        ["street", "city", "state", "zipCode", "country"] as AddressKey[]
+      ).forEach((field) => {
+        try {
+          parseValidator(
+            addrSchema.shape[field],
+            (dataToValidate.address as Record<AddressKey, string>)[field]
+          );
+        } catch (err) {
+          if (err instanceof Error)
+            newErrors[`address.${field}` as const] = err.message;
+        }
       });
-      setTurnstileToken(null);
 
-      // router.push("/"); // uncomment if you want to redirect
-    }, 600);
-  };
+      {
+        const pinErr = validatePostalByCountry(
+          (dataToValidate.address as Record<AddressKey, string>).country,
+          (dataToValidate.address as Record<AddressKey, string>).zipCode
+        );
+        if (pinErr) newErrors["address.zipCode"] = pinErr;
+      }
 
-  const container = {
-    hidden: { opacity: 0, y: 10 },
+      tryParse(
+        shape.turnstileToken,
+        dataToValidate.turnstileToken,
+        "turnstileToken"
+      );
+
+      setErrors(newErrors);
+      return {
+        success: Object.keys(newErrors).length === 0,
+        errors: newErrors as Record<string, string>,
+      };
+    } catch (e) {
+      console.error("Validation error:", e);
+      return { success: false, errors: newErrors as Record<string, string> };
+    }
+  }, [formData, turnstileToken]);
+
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+
+      const validation = validateForm();
+      if (!validation.success) {
+        const firstErrorField = Object.keys(validation.errors)[0];
+        const element = document.getElementById(
+          firstErrorField.replace(".", "\\.")
+        );
+        element?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      setIsSubmitting(true);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const submissionData = { ...formData, turnstileToken };
+        console.log("Registration data:", submissionData);
+        alert("Registration successful! Welcome to our community!");
+
+        setFormData({
+          firstName: "",
+          middleName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          tshirtSize: "",
+          raceType: "",
+          address: {
+            street: "",
+            city: "",
+            state: "",
+            zipCode: "",
+            country: "IN",
+          },
+        });
+        setTurnstileToken(null);
+        setErrors({});
+        if (window.turnstile && turnstileWidgetId) {
+          window.turnstile.reset(turnstileWidgetId);
+        }
+      } catch (err) {
+        console.error("Registration failed:", err);
+        alert("Registration failed. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [formData, turnstileToken, validateForm, turnstileWidgetId]
+  );
+
+  /* =============================
+     Animations
+     ============================= */
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.05,
-        duration: 0.35,
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+        duration: 0.4,
         ease: easeOut,
       },
     },
-  };
-  const item = {
-    hidden: { opacity: 0, y: 8 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
-  };
+  } as const;
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  } as const;
 
   return (
-    <section className="min-h-screen py-8 md:py-16 bg-gradient-to-br from-primary to-indigo-200">
+    <section
+      className="min-h-screen pb-8 md:pb-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800"
+      style={{ paddingTop: "calc(var(--nav-h, 80px) + 2.5rem)" }}
+    >
       <div className="container mx-auto px-4">
         <motion.div
-          variants={container}
+          variants={containerVariants}
           initial="hidden"
           animate="show"
           className="flex justify-center"
         >
-          <div className="w-full max-w-3xl">
+          <div className="w-full max-w-4xl">
             {/* Header */}
-            <motion.div variants={item} className="text-center mb-12">
+            <motion.div variants={itemVariants} className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                Register
+                Register Today
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-400">
-                Join our community with just a few simple steps
+                Complete your registration in just a few simple steps
               </p>
             </motion.div>
 
             {/* Form */}
-            <motion.div
-              variants={item}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-12"
+            <motion.form
+              variants={itemVariants}
+              onSubmit={handleSubmit}
+              className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12"
             >
-              <div className="space-y-8">
-                {/* Name row */}
-                <div className="grid gap-6 md:grid-cols-3">
-                  <div>
-                    <Label htmlFor="firstName">
-                      First Name <span className="text-red-500">*</span>
-                    </Label>
-                    <UnderlineInput
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      error={!!errors.firstName}
-                    />
-                    {errors.firstName && (
-                      <p className="text-red-500 text-sm mt-2">
-                        {errors.firstName}
-                      </p>
-                    )}
-                  </div>
+              <div className="space-y-10">
+                {/* Personal Information */}
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+                    Personal Information
+                  </h2>
 
-                  <div>
-                    <Label htmlFor="middleName">Middle Name</Label>
-                    <UnderlineInput
-                      id="middleName"
-                      name="middleName"
-                      value={formData.middleName}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+                  <div className="grid gap-6 md:grid-cols-3">
+                    <div>
+                      <Label htmlFor="firstName">
+                        First Name <span className="text-red-500">*</span>
+                      </Label>
+                      <UnderlineInput
+                        id="firstName"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleInputChangeWithValidation}
+                        error={!!errors.firstName}
+                        placeholder="Enter your first name"
+                        autoComplete="given-name"
+                      />
+                      {errors.firstName && (
+                        <ErrorMessage message={errors.firstName} />
+                      )}
+                    </div>
 
-                  <div>
-                    <Label htmlFor="lastName">
-                      Last Name <span className="text-red-500">*</span>
-                    </Label>
-                    <UnderlineInput
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      error={!!errors.lastName}
-                    />
-                    {errors.lastName && (
-                      <p className="text-red-500 text-sm mt-2">
-                        {errors.lastName}
-                      </p>
-                    )}
+                    <div>
+                      <Label htmlFor="middleName">Middle Name</Label>
+                      <UnderlineInput
+                        id="middleName"
+                        name="middleName"
+                        value={formData.middleName}
+                        onChange={handleInputChangeWithValidation}
+                        error={!!errors.middleName}
+                        placeholder="Middle name (optional)"
+                        autoComplete="additional-name"
+                      />
+                      {errors.middleName && (
+                        <ErrorMessage message={errors.middleName} />
+                      )}
+                    </div>
+
+                    <div>
+                      <Label htmlFor="lastName">
+                        Last Name <span className="text-red-500">*</span>
+                      </Label>
+                      <UnderlineInput
+                        id="lastName"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChangeWithValidation}
+                        error={!!errors.lastName}
+                        placeholder="Enter your last name"
+                        autoComplete="family-name"
+                      />
+                      {errors.lastName && (
+                        <ErrorMessage message={errors.lastName} />
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                {/* Contact row */}
+                {/* Contact Information */}
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+                    Contact Information
+                  </h2>
+
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <div>
+                      <Label
+                        htmlFor="email"
+                        className="flex items-center gap-2"
+                      >
+                        <Mail className="w-4 h-4 text-primary" />
+                        Email Address <span className="text-red-500">*</span>
+                      </Label>
+                      <UnderlineInput
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChangeWithValidation}
+                        error={!!errors.email}
+                        placeholder="your.email@example.com"
+                        autoComplete="email"
+                      />
+                      {errors.email && <ErrorMessage message={errors.email} />}
+                    </div>
+
+                    <div>
+                      <Label className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-primary" />
+                        Phone Number <span className="text-red-500">*</span>
+                      </Label>
+                      <div
+                        className={`border-b-2 ${
+                          errors.phone
+                            ? "border-red-500"
+                            : "border-gray-300 dark:border-gray-600 focus-within:border-primary"
+                        } transition-colors duration-200 py-3.5`}
+                      >
+                        <PhoneInput
+                          international
+                          countryCallingCodeEditable={false}
+                          defaultCountry="IN"
+                          value={formData.phone}
+                          onChange={handlePhoneChangeWithLimit}
+                          inputstyle={{
+                            width: "100%",
+                            backgroundColor: "transparent",
+                            border: "none",
+                            color: "inherit",
+                            padding: "0.875rem 0",
+                          }}
+                          containerstyle={{
+                            borderBottom: errors.phone
+                              ? "2px solid red"
+                              : "2px solid #D1D5DB",
+                          }}
+                          countrystyle={{ border: "none" }}
+                        />
+                      </div>
+                      {errors.phone && <ErrorMessage message={errors.phone} />}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Size & Race (side-by-side) */}
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <Label htmlFor="email" className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      Email Address <span className="text-red-500">*</span>
+                    <Label
+                      htmlFor="tshirtSize"
+                      className="flex items-center gap-2"
+                    >
+                      <Shirt className="w-4 h-4 text-primary" />
+                      T-shirt Size <span className="text-red-500">*</span>
                     </Label>
-                    <UnderlineInput
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      error={!!errors.email}
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-2">
-                        {errors.email}
-                      </p>
+                    <UnderlineSelect
+                      id="tshirtSize"
+                      name="tshirtSize"
+                      value={formData.tshirtSize}
+                      onChange={handleInputChangeWithValidation}
+                      error={!!errors.tshirtSize}
+                    >
+                      <option value="">Select your size</option>
+                      {TSHIRT_SIZES.map((size) => (
+                        <option key={size} value={size}>
+                          {size}
+                        </option>
+                      ))}
+                    </UnderlineSelect>
+                    {errors.tshirtSize && (
+                      <ErrorMessage message={errors.tshirtSize} />
                     )}
                   </div>
 
                   <div>
-                    <Label htmlFor="phone" className="flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      Phone Number <span className="text-red-500">*</span>
-                    </Label>
-                    <div
-                      className={`PhoneInput w-full border-b-2 ${
-                        errors.phoneNumber
-                          ? "border-red-500"
-                          : "border-gray-300 dark:border-gray-600 focus-within:border-blue-500 dark:focus-within:border-blue-400"
-                      } focus-within:outline-none transition-colors duration-200`}
+                    <Label
+                      htmlFor="raceType"
+                      className="flex items-center gap-2"
                     >
-                      <PhoneInput
-                        international
-                        countryCallingCodeEditable={false}
-                        defaultCountry="IN"
-                        id="phone"
-                        value={formData.phone}
-                        onChange={(value) => {
-                          if (!value) {
-                            setFormData((prev) => ({ ...prev, phone: "" }));
-                          } else {
-                            const currentDigits = value.replace(/\D/g, "");
-
-                            try {
-                              const parsed = parsePhoneNumber(value);
-                              if (parsed && parsed.nationalNumber) {
-                                if (parsed.nationalNumber.length <= 10) {
-                                  setFormData((prev) => ({
-                                    ...prev,
-                                    phone: value,
-                                  }));
-                                }
-                              } else {
-                                // Fallback length control for unknown parsing
-                                const countryCodes: Record<string, number> = {
-                                  "1": 1,
-                                  "7": 1,
-                                  "91": 2,
-                                  "44": 2,
-                                  "33": 2,
-                                  "49": 2,
-                                  "81": 2,
-                                  "86": 2,
-                                  "61": 2,
-                                  "39": 2,
-                                  "34": 2,
-                                  "55": 2,
-                                  "52": 2,
-                                  "82": 2,
-                                  "65": 2,
-                                  "60": 2,
-                                  "62": 2,
-                                  "66": 2,
-                                  "84": 2,
-                                  "63": 2,
-                                };
-
-                                let countryCodeLength = 0;
-                                for (const [code, length] of Object.entries(
-                                  countryCodes
-                                )) {
-                                  if (currentDigits.startsWith(code)) {
-                                    countryCodeLength = length;
-                                    break;
-                                  }
-                                }
-
-                                const nationalDigitCount =
-                                  currentDigits.length - countryCodeLength;
-                                if (nationalDigitCount <= 10) {
-                                  setFormData((prev) => ({
-                                    ...prev,
-                                    phone: value,
-                                  }));
-                                }
-                              }
-                            } catch {
-                              const nationalCount = Math.max(
-                                0,
-                                currentDigits.length - 2
-                              );
-                              if (nationalCount <= 10) {
-                                setFormData((prev) => ({
-                                  ...prev,
-                                  phone: value,
-                                }));
-                              }
-                            }
-                          }
-
-                          if (errors.phoneNumber) {
-                            setErrors((prev) => ({
-                              ...prev,
-                              phoneNumber: undefined,
-                            }));
-                          }
-                        }}
-                        className="flex items-center gap-2 py-3.5"
-                      />
-                    </div>
-                    {errors.phoneNumber && (
-                      <p className="text-red-500 text-sm mt-2">
-                        {errors.phoneNumber}
-                      </p>
+                      <Flag className="w-4 h-4 text-primary" />
+                      Race Type <span className="text-red-500">*</span>
+                    </Label>
+                    <UnderlineSelect
+                      id="raceType"
+                      name="raceType"
+                      value={formData.raceType}
+                      onChange={handleInputChangeWithValidation}
+                      error={!!errors.raceType}
+                    >
+                      <option value="">Select race type</option>
+                      {RACE_TYPES.map((race) => (
+                        <option key={race} value={race}>
+                          {race}
+                        </option>
+                      ))}
+                    </UnderlineSelect>
+                    {errors.raceType && (
+                      <ErrorMessage message={errors.raceType} />
                     )}
                   </div>
-                </div>
-
-                {/* T-shirt size */}
-                <div>
-                  <Label
-                    htmlFor="tshirtSize"
-                    className="flex items-center gap-2"
-                  >
-                    <Shirt className="w-4 h-4" />
-                    T-shirt Size <span className="text-red-500">*</span>
-                  </Label>
-                  <UnderlineSelect
-                    id="tshirtSize"
-                    name="tshirtSize"
-                    value={formData.tshirtSize}
-                    onChange={handleInputChange}
-                    error={!!errors.tshirtSize}
-                  >
-                    <option value="">Select size</option>
-                    {tshirtSizes.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </UnderlineSelect>
-                  {errors.tshirtSize && (
-                    <p className="text-red-500 text-sm mt-2">
-                      {errors.tshirtSize}
-                    </p>
-                  )}
                 </div>
 
                 {/* Address */}
                 <div>
                   <div className="flex items-center gap-3 mb-6">
-                    <MapPin className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                    <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <MapPin className="w-5 h-5 text-primary" />
+                    <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
                       Address Information
-                    </span>
+                    </h2>
                   </div>
+
                   <div className="space-y-6">
                     <div>
                       <Label htmlFor="address.street">
-                        Address Line 1 <span className="text-red-500">*</span>
+                        Street Address <span className="text-red-500">*</span>
                       </Label>
                       <UnderlineInput
                         id="address.street"
                         name="address.street"
                         value={formData.address.street}
-                        onChange={handleInputChange}
+                        onChange={handleInputChangeWithValidation}
                         error={!!errors["address.street"]}
+                        placeholder="123 Main Street, Apartment 4B"
+                        autoComplete="street-address"
                       />
                       {errors["address.street"] && (
-                        <p className="text-red-500 text-sm mt-2">
-                          {errors["address.street"]}
-                        </p>
+                        <ErrorMessage message={errors["address.street"]} />
                       )}
                     </div>
 
+                    {/* Reordered: Country → State → City → PIN */}
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                      {/* Country (select) */}
                       <div>
-                        <Label htmlFor="address.city">
-                          City <span className="text-red-500">*</span>
+                        <Label htmlFor="address.country">
+                          Country <span className="text-red-500">*</span>
                         </Label>
-                        <UnderlineInput
-                          id="address.city"
-                          name="address.city"
-                          value={formData.address.city}
-                          onChange={handleInputChange}
-                          error={!!errors["address.city"]}
-                        />
-                        {errors["address.city"] && (
-                          <p className="text-red-500 text-sm mt-2">
-                            {errors["address.city"]}
-                          </p>
+                        <UnderlineSelect
+                          id="address.country"
+                          name="address.country"
+                          value={formData.address.country}
+                          onChange={handleCountrySelect}
+                          error={!!errors["address.country"]}
+                        >
+                          <option value="">Select country</option>
+                          {countries.map((c) => (
+                            <option key={c.isoCode} value={c.isoCode}>
+                              {c.name}
+                            </option>
+                          ))}
+                        </UnderlineSelect>
+                        {errors["address.country"] && (
+                          <ErrorMessage message={errors["address.country"]} />
                         )}
                       </div>
 
+                      {/* State/Province (select) */}
                       <div>
                         <Label htmlFor="address.state">
                           State/Province <span className="text-red-500">*</span>
                         </Label>
-                        <UnderlineInput
+                        <UnderlineSelect
                           id="address.state"
                           name="address.state"
                           value={formData.address.state}
-                          onChange={handleInputChange}
+                          onChange={handleStateSelect}
                           error={!!errors["address.state"]}
-                        />
+                          disabled={!formData.address.country}
+                        >
+                          <option value="">Select state</option>
+                          {states.map((s) => (
+                            <option key={s.isoCode} value={s.isoCode}>
+                              {s.name}
+                            </option>
+                          ))}
+                        </UnderlineSelect>
                         {errors["address.state"] && (
-                          <p className="text-red-500 text-sm mt-2">
-                            {errors["address.state"]}
-                          </p>
+                          <ErrorMessage message={errors["address.state"]} />
                         )}
                       </div>
 
+                      {/* City (select) */}
+                      <div>
+                        <Label htmlFor="address.city">
+                          City <span className="text-red-500">*</span>
+                        </Label>
+                        <UnderlineSelect
+                          id="address.city"
+                          name="address.city"
+                          value={formData.address.city}
+                          onChange={handleCitySelect}
+                          error={!!errors["address.city"]}
+                          disabled={!formData.address.state}
+                        >
+                          <option value="">Select city</option>
+                          {cities.map((ct) => (
+                            <option
+                              key={`${ct.name}-${ct.latitude}-${ct.longitude}`}
+                              value={ct.name}
+                            >
+                              {ct.name}
+                            </option>
+                          ))}
+                        </UnderlineSelect>
+                        {errors["address.city"] && (
+                          <ErrorMessage message={errors["address.city"]} />
+                        )}
+                      </div>
+
+                      {/* PIN/ZIP */}
                       <div>
                         <Label htmlFor="address.zipCode">
-                          ZIP/Postal Code{" "}
-                          <span className="text-red-500">*</span>
+                          PIN/ZIP Code <span className="text-red-500">*</span>
                         </Label>
                         <UnderlineInput
                           id="address.zipCode"
                           name="address.zipCode"
                           value={formData.address.zipCode}
-                          onChange={handleInputChange}
+                          onChange={handleInputChangeWithValidation}
                           error={!!errors["address.zipCode"]}
+                          placeholder={
+                            formData.address.country === "IN"
+                              ? "400001"
+                              : "Postal Code"
+                          }
+                          autoComplete="postal-code"
                         />
                         {errors["address.zipCode"] && (
-                          <p className="text-red-500 text-sm mt-2">
-                            {errors["address.zipCode"]}
-                          </p>
-                        )}
-                      </div>
-
-                      <div>
-                        <Label htmlFor="address.country">
-                          Country <span className="text-red-500">*</span>
-                        </Label>
-                        <UnderlineInput
-                          id="address.country"
-                          name="address.country"
-                          value={formData.address.country}
-                          onChange={handleInputChange}
-                          error={!!errors["address.country"]}
-                        />
-                        {errors["address.country"] && (
-                          <p className="text-red-500 text-sm mt-2">
-                            {errors["address.country"]}
-                          </p>
+                          <ErrorMessage message={errors["address.zipCode"]} />
                         )}
                       </div>
                     </div>
@@ -601,43 +1113,57 @@ export default function RegisterPage() {
                 {/* Security Verification */}
                 <div>
                   <div className="flex items-center gap-3 mb-6">
-                    <Shield className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                    <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <Shield className="w-5 h-5 text-primary" />
+                    <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
                       Security Verification{" "}
                       <span className="text-red-500">*</span>
-                    </span>
+                    </h2>
                   </div>
-                  <div className="flex flex-col items-start gap-2">
-                    <div ref={turnstileRef} className="cf-turnstile" />
-                    {errors.turnstile && (
-                      <p className="text-red-500 text-sm">{errors.turnstile}</p>
+
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                    {turnstileError ? (
+                      <div className="text-center py-4">
+                        <ErrorMessage message="Security verification temporarily unavailable" />
+                      </div>
+                    ) : !turnstileLoaded ? (
+                      <div className="text-center py-4">
+                        <div className="animate-pulse">
+                          <div className="h-16 bg-gray-300 dark:bg-gray-600 rounded"></div>
+                        </div>
+                        <p className="text-sm text-gray-500 mt-2">
+                          Loading security verification...
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="flex justify-center">
+                        <div ref={turnstileRef} />
+                      </div>
+                    )}
+                    {errors.turnstileToken && (
+                      <ErrorMessage message={errors.turnstileToken} />
                     )}
                   </div>
                 </div>
 
-                {/* Submit Button */}
-                <div className="pt-6">
+                {/* Submit */}
+                <div className="pt-8">
                   <motion.button
                     type="submit"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleSubmit();
-                    }}
-                    whileHover={{
-                      scale: 1.02,
-                      boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.3)",
-                    }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-primary to-primary text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                    disabled={isSubmitting || !turnstileLoaded}
+                    className="w-full inline-flex items-center justify-center gap-3 rounded-xl border border-primary bg-transparent text-primary font-semibold py-4 px-8 shadow-sm transition-all duration-300 hover:bg-primary hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="text-lg">
-                      {isSubmitting ? "Submitting..." : "Register"}
+                      {isSubmitting
+                        ? "Creating Account..."
+                        : "Complete Registration"}
                     </span>
                     {!isSubmitting && (
                       <motion.div
                         animate={{ x: [0, 4, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5 }}
+                        transition={{ repeat: Infinity, duration: 1.8 }}
+                        className="text-xl"
                       >
                         →
                       </motion.div>
@@ -645,7 +1171,7 @@ export default function RegisterPage() {
                   </motion.button>
                 </div>
               </div>
-            </motion.div>
+            </motion.form>
           </div>
         </motion.div>
       </div>

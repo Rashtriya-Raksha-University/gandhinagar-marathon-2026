@@ -202,7 +202,6 @@ const pricingData = {
     },
     {
       planName: "10 KM Run",
-      tag: "Most Popular",
       planPrice: "₹800",
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
