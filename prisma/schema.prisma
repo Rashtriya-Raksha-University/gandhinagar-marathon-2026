@@ -1,5 +1,7 @@
 generator client {
     provider = "prisma-client-js"
+
+    binaryTargets = ["native", "linux-musl"]
 }
 
 datasource db {
@@ -9,13 +11,13 @@ datasource db {
 
 model Registration {
     id       String @id @default(cuid())
-    runnerId String @unique @default(uuid())
+    runnerId String @unique @default(uuid()) @db.Uuid
 
     firstName  String
     middleName String?
     lastName   String
-    email      String
-    phone      String
+    email      String     @unique
+    phone      String     @unique
     tshirtSize TshirtSize
     street     String
     city       String
@@ -25,7 +27,7 @@ model Registration {
 
     raceName raceName @default(MARATHON)
 
-    amount        Float
+    amount        Decimal       @db.Decimal(10, 2)
     paymentId     String?
     receiptId     String?
     paymentStatus PaymentStatus @default(PENDING)
@@ -35,6 +37,9 @@ model Registration {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
+    @@index([createdAt])
+    @@index([raceName, status])
+    @@index([paymentStatus])
     @@map("registrations")
 }
 

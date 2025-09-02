@@ -130,3 +130,7 @@ body {
   background-color: var(--color-primary);
   color: black;
 }
+
+#react-hot-toast {
+  z-index: 9999;
+}

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import ScrollToTop from "./components/scroll-to-top";
-import PageTransition from "@/app/components/PageTransition"; // ✅ import transition wrapper
+import PageTransition from "@/app/components/PageTransition";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -30,12 +30,7 @@ export default function RootLayout({
     });
   }, [pathname]);
 
-  const excludedRoutes = [
-    "/signin",
-    "/signup",
-    "/forgot-password",
-    "/documentation",
-  ];
+  const excludedRoutes = ["/register", "/checkout"];
   const hideLayout = excludedRoutes.includes(pathname) || is404;
 
   return (
