@@ -602,7 +602,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-500 via-blue-400 to-slate-500 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br slate-500 via-blue-400 to-slate-500from- flex items-center justify-center p-4">
       {/* Background decoration */}
       <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
