@@ -41,7 +41,7 @@ function GeneralHero() {
             <div>
               <NavigationLink
                 navigationTitle=""
-                navigationLink="/general"
+                navigationLink="/register"
                 transform={false}
               />
             </div>

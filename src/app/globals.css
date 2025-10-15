@@ -42,6 +42,10 @@ body {
   height: 100%;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
 @layer utilities {
   .container {
     @apply w-full max-w-[105rem] my-0 mx-auto py-0 sm:px-7 px-5;

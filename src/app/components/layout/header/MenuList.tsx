@@ -25,36 +25,35 @@ const MenuList = ({
 
   return (
     <li className="relative group">
-      {/* Main Item */}
       {submenu ? (
         <>
           <button
             onClick={() => setOpen(!open)}
-            className={`flex items-center gap-2 text-2xl font-bold transition-colors duration-300 
+            className={`flex w-full items-center justify-between text-2xl font-semibold transition-colors duration-300 
               ${
                 isActive
                   ? "text-[#0081c7] dark:text-[#4db8ff]"
-                  : "text-gray-700 dark:text-gray-300 hover:text-[#0081c7] dark:hover:text-[#4db8ff]"
+                  : "text-gray-800 dark:text-gray-300 hover:text-[#0081c7] dark:hover:text-[#4db8ff]"
               }`}
           >
             {title}
-            <span className="text-sm">{open ? "▲" : "▼"}</span>
+            <span className="text-base">{open ? "▲" : "▼"}</span>
           </button>
 
-          {/* Dropdown */}
+          {/* Expanded submenu inside full overlay */}
           {open && (
-            <ul className="absolute left-0 mt-2 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-2 space-y-2 z-50">
+            <ul className="mt-3 space-y-2 pl-4 border-l border-gray-300 dark:border-gray-700">
               {submenu.map((sub) => (
                 <li key={sub.id}>
                   <Link
                     href={sub.path ?? "#"}
                     onClick={closeMenu}
                     target={sub.newTab ? "_blank" : "_self"}
-                    className={`block px-4 py-2 rounded-md transition-colors duration-300 
+                    className={`block py-1 text-lg transition-colors duration-300 
                       ${
                         pathname === sub.path
                           ? "text-[#0081c7] dark:text-[#4db8ff] font-semibold"
-                          : "text-gray-700 dark:text-gray-300 hover:text-[#0081c7] dark:hover:text-[#4db8ff]"
+                          : "text-gray-600 dark:text-gray-400 hover:text-[#0081c7] dark:hover:text-[#4db8ff]"
                       }`}
                   >
                     {sub.title}
@@ -69,20 +68,14 @@ const MenuList = ({
           href={path ?? "#"}
           onClick={closeMenu}
           target={newTab ? "_blank" : "_self"}
-          className={`relative text-2xl font-bold transition-colors duration-300 
+          className={`block text-2xl font-semibold transition-colors duration-300 
             ${
               isActive
                 ? "text-[#0081c7] dark:text-[#4db8ff]"
-                : "text-gray-700 dark:text-gray-300 hover:text-[#0081c7] dark:hover:text-[#4db8ff]"
+                : "text-gray-800 dark:text-gray-300 hover:text-[#0081c7] dark:hover:text-[#4db8ff]"
             }`}
         >
           {title}
-          {/* underline effect */}
-          <span
-            className={`absolute left-0 -bottom-1 h-[2px] w-0 bg-[#0081c7] dark:bg-[#4db8ff] transition-all duration-300
-              group-hover:w-full
-              ${isActive ? "w-full" : ""}`}
-          />
         </Link>
       )}
     </li>

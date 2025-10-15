@@ -27,7 +27,7 @@ const statsFactData = {
     "The Gandhinagar Marathon 2026 presented by Bcore is set to welcome tens of thousands of participants, spectators, and sponsors, making it one of India's most remarkable running events.",
   scoreData: [
     {
-      number: 50,
+      number: 1.5,
       numberValue: "K",
       scoreDescp: "Expected Participants",
     },
@@ -191,7 +191,7 @@ const pricingData = {
   data: [
     {
       planName: "Half Marathon",
-      planPrice: "₹1100",
+      planPrice: "₹999",
       planDescp: "Challenge yourself with the 21.1 KM half marathon distance.",
       planIncludes: [
         "Race bib with timing chip",
@@ -203,7 +203,7 @@ const pricingData = {
     {
       planName: "10 KM Run",
       tag: "Most Popular",
-      planPrice: "₹800",
+      planPrice: "₹699",
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
       planIncludes: [
@@ -215,8 +215,8 @@ const pricingData = {
     },
     {
       planName: "5 KM Run",
-      planPrice: "₹600",
-      planDescp: "A short and energetic run for beginners and 3KMners.",
+      planPrice: "₹599",
+      planDescp: "A short and energetic run for beginners and fitness lovers.",
       planIncludes: [
         "Race bib",
         "Finisher medal",
@@ -225,13 +225,13 @@ const pricingData = {
       ],
     },
     {
-      planName: "3KM",
-      planPrice: "₹350",
+      planName: "3 KM Run",
+      planPrice: "₹199",
       planDescp:
-        "Enjoy the joy of running with friends and family in this non-competitive category.",
+        "Fun and family-friendly race for kids and first-time participants.",
       planIncludes: [
         "Race bib",
-        "NA",
+        "Finisher medal",
         "Refreshments",
         "Official event T-shirt",
       ],

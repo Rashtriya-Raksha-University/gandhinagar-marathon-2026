@@ -14,9 +14,9 @@ const AboutusDetail = () => {
                 <Image
                   src="/images/logo/bcore.png"
                   alt="BCORE Logo"
-                  width={100}
-                  height={100}
-                  className="w-30 h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
+                  width={300}
+                  height={150}
+                  className="max-w-full h-auto"
                 />
               </div>
               {/* <h2 className="text-56 text-gray-800 dark:text-white">

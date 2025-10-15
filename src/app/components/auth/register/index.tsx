@@ -602,14 +602,13 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br slate-500 via-blue-400 to-slate-500from- flex items-center justify-center p-4">
-      {/* Background decoration */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-      <div className="absolute bottom-20 right-20 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/5 rounded-full blur-lg"></div>
+    <div className="min-h-screen relative flex items-center justify-center p-4 bg-gradient-to-br from-blue-400 via-teal-300 to-indigo-400">
+      {/* Decorative gradient orbs (optional) */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-300/20 rounded-full blur-3xl"></div>
 
-      <div className="w-full max-w-2xl">
-        {/* Back to Home Button */}
+      {/* Solid Form Card */}
+      <div className="relative w-full max-w-2xl z-10">
         <Link
           href="/"
           className="mb-6 flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-200"
@@ -618,22 +617,21 @@ export default function SignUpForm() {
           <span className="text-sm">Back to Home</span>
         </Link>
 
-        {/* Main Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white rounded-2xl shadow-2xl overflow-hidden"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-500 to-green-400 px-8 py-6 text-white">
+          <div className="bg-gradient-to-r from-blue-500 to-teal-400 px-8 py-6 text-white">
             <h1 className="text-2xl font-bold text-center">
               Create New Account
             </h1>
           </div>
 
-          {/* Step Indicator */}
-          <div className="px-8 py-6 border-b bg-gray-50">
+          {/* Step Indicators */}
+          <div className="px-8 py-6 border-b border-gray-100 bg-gray-50">
             <div className="flex items-center justify-between">
               {steps.map((step, index) => (
                 <div key={step.id} className="flex items-center">
@@ -643,7 +641,7 @@ export default function SignUpForm() {
                         ? "bg-green-500 text-white"
                         : step.id === currentStep
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-200 text-gray-500"
+                        : "bg-gray-200 text-gray-600"
                     }`}
                   >
                     {step.id < currentStep ? (
@@ -655,7 +653,7 @@ export default function SignUpForm() {
                   {index < steps.length - 1 && (
                     <div
                       className={`w-12 h-1 mx-2 ${
-                        step.id < currentStep ? "bg-green-500" : "bg-gray-200"
+                        step.id < currentStep ? "bg-green-500" : "bg-gray-300"
                       }`}
                     />
                   )}
@@ -666,7 +664,7 @@ export default function SignUpForm() {
               {steps.map((step) => (
                 <div
                   key={step.id}
-                  className="text-xs text-center text-gray-600 max-w-[100px]"
+                  className="text-xs text-center text-gray-500 max-w-[100px]"
                 >
                   {step.name}
                 </div>
@@ -674,8 +672,8 @@ export default function SignUpForm() {
             </div>
           </div>
 
-          {/* Form Content */}
-          <div className="px-8 py-8">
+          {/* Form Section */}
+          <div className="px-8 py-8 text-gray-800 bg-white">
             <motion.div
               key={currentStep}
               initial={{ opacity: 0, x: 20 }}
@@ -686,40 +684,38 @@ export default function SignUpForm() {
             </motion.div>
           </div>
 
-          {/* Footer with Navigation */}
-          <div className="px-8 py-6 bg-gray-50 border-t">
-            <div className="flex justify-between items-center">
-              <button
-                onClick={handlePrev}
-                disabled={currentStep === 1}
-                className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back
-              </button>
+          {/* Footer */}
+          <div className="px-8 py-6 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+            <button
+              onClick={handlePrev}
+              disabled={currentStep === 1}
+              className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-50 transition"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </button>
 
-              <div className="text-sm text-gray-500">
-                Step {currentStep} of {steps.length}
-              </div>
-
-              {currentStep < steps.length ? (
-                <button
-                  onClick={handleNext}
-                  className="flex items-center gap-2 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
-                >
-                  Next
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              ) : (
-                <button
-                  onClick={handleSubmit}
-                  disabled={isSubmitting}
-                  className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 transition-colors duration-200"
-                >
-                  {isSubmitting ? "Submitting..." : "Complete Registration"}
-                </button>
-              )}
+            <div className="text-sm text-gray-600">
+              Step {currentStep} of {steps.length}
             </div>
+
+            {currentStep < steps.length ? (
+              <button
+                onClick={handleNext}
+                className="flex items-center gap-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md transition"
+              >
+                Next
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow-md disabled:opacity-50 transition"
+              >
+                {isSubmitting ? "Submitting..." : "Complete Registration"}
+              </button>
+            )}
           </div>
         </motion.div>
       </div>
