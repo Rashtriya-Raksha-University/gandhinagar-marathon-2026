@@ -12,7 +12,7 @@ const TenKmDetail = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
               <br />
-              10 KM RACE
+              10KM RACE
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
@@ -28,7 +28,7 @@ const TenKmDetail = () => {
             </div>
           </div>
 
-          {/* Right Side - Runner Amenities and Add-Ons */}
+          {/* Right Side - Runner Info */}
           <div className="flex flex-col gap-12">
             {/* Runner Amenities */}
             <div>
@@ -36,36 +36,72 @@ const TenKmDetail = () => {
                 RUNNER AMENITIES INCLUDED
               </h3>
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Unique race bib with name
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Limited edition race shirt
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Exclusive medal
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Surprise goody kit
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Official timing E-certificate
-                  </p>
-                </div>
+                {[
+                  "Unique race bib with name",
+                  "Limited edition race shirt",
+                  "Exclusive medal",
+                  "Surprise goody kit",
+                  "Official timing E-certificate",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                    <p className="text-gray-600 dark:text-white/80">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Categories */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                CATEGORIES
+              </h3>
+              <div className="text-gray-600 dark:text-white/80 text-lg space-y-2">
+                <p>
+                  <strong>General Public:</strong>
+                </p>
+                <p className="ml-4">
+                  Men/Boys — Under 30 | Above 30
+                  <br />
+                  Women/Girls — Under 30 | Above 30
+                </p>
+                <p className="mt-3">
+                  <strong>In-Service Personnel:</strong>
+                </p>
+                <p className="ml-4">Men | Women</p>
+              </div>
+            </div>
+
+            {/* Registration Fee */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                REGISTRATION FEE
+              </h3>
+              <div className="text-gray-600 dark:text-white/80 text-lg space-y-1">
+                <p>
+                  <strong>General Public:</strong> ₹699/- (Including GST)
+                </p>
+                <p>
+                  <strong>In-Service Personnel:</strong> ₹499/- (Including GST)
+                </p>
+              </div>
+            </div>
+
+            {/* Prize Money */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                PRIZE MONEY
+              </h3>
+              <div className="text-gray-600 dark:text-white/80 text-lg space-y-1">
+                <p>
+                  <strong>1st Prize:</strong> ₹10,000
+                </p>
+                <p>
+                  <strong>2nd Prize:</strong> ₹7,000
+                </p>
+                <p>
+                  <strong>3rd Prize:</strong> ₹5,000
+                </p>
               </div>
             </div>
 
@@ -75,24 +111,12 @@ const TenKmDetail = () => {
                 Add-Ons
               </h3>
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Customized race shirt
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Medal engraving
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Participation in International Olympic Conference
-                  </p>
-                </div>
+                {["Customized race shirt", "Photo session"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
+                    <p className="text-gray-600 dark:text-white/80">{item}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

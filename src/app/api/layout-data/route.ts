@@ -38,7 +38,7 @@ const MenuData = [
       },
       {
         id: 54,
-        title: "Fun Run",
+        title: "3KM",
         path: "/race/fun-run",
         newTab: false,
       },

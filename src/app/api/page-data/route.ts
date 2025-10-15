@@ -49,7 +49,7 @@ const servicesData = {
   name: "Race Categories",
   heading: "Choose Your Perfect Race Distance",
   description:
-    "From challenging half-marathons to family-friendly fun runs, we have the perfect race category for every runner. Join us in Gandhinagar for an unforgettable running experience.",
+    "From challenging half-marathons to family-friendly 3KMs, we have the perfect race category for every runner. Join us in Gandhinagar for an unforgettable running experience.",
   data: [
     {
       id: 1,
@@ -75,9 +75,9 @@ const servicesData = {
     {
       id: 4,
       image: "/images/home/services/services_4.png",
-      heading: "BCORE Fun Run",
+      heading: "BCORE 3KM",
       descp:
-        "Get ready for big smiles and lots of excitement! The BCORE Fun Run is a 3km race accessible to everyone – perfect for first-timers, families and kids. It's all about celebrating the art of running, ideal for our next generation of runners and people looking to increase their weekend footsteps!",
+        "Get ready for big smiles and lots of excitement! The BCORE 3KM is a 3km race accessible to everyone – perfect for first-timers, families and kids. It's all about celebrating the art of running, ideal for our next generation of runners and people looking to increase their weekend footsteps!",
     },
   ],
 };
@@ -216,7 +216,7 @@ const pricingData = {
     {
       planName: "5 KM Run",
       planPrice: "₹600",
-      planDescp: "A short and energetic run for beginners and fun runners.",
+      planDescp: "A short and energetic run for beginners and 3KMners.",
       planIncludes: [
         "Race bib",
         "Finisher medal",
@@ -225,7 +225,7 @@ const pricingData = {
       ],
     },
     {
-      planName: "Fun Run",
+      planName: "3KM",
       planPrice: "₹350",
       planDescp:
         "Enjoy the joy of running with friends and family in this non-competitive category.",
@@ -277,7 +277,7 @@ const faqData = {
     },
     {
       faq_que: "What is the minimum age of participants for all the events?",
-      faq_ans: `Minimum age as on 4 January 2025:\n- Half Marathon (HM): 18 years\n- 10K Run: 12 years\n- 5K Run: 6 years\n- Fun Run (3 km): 6 years`,
+      faq_ans: `Minimum age as on 4 January 2025:\n- Half Marathon (HM): 18 years\n- 10K Run: 12 years\n- 5K Run: 6 years\n- 3KM (3 km): 6 years`,
     },
     {
       faq_que: "When is the last date to register?",
@@ -285,7 +285,7 @@ const faqData = {
     },
     {
       faq_que: "What are the cut-off times for all the events?",
-      faq_ans: `- Half Marathon (HM): 3 hours\n- 10K Run: 1 hour 30 mins\n- 5K Run: 1 hour\n- Fun Run (3 km): 45 minutes`,
+      faq_ans: `- Half Marathon (HM): 3 hours\n- 10K Run: 1 hour 30 mins\n- 5K Run: 1 hour\n- 3KM (3 km): 45 minutes`,
     },
     {
       faq_que: "Can I run barefoot in all the events?",

@@ -12,24 +12,25 @@ const FunRaceDetail = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
               <br />
-              FUN RACE
+              3KM RACE
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE Fun Race is designed for families, kids, and everyone
-                who wants to experience the joy of running without the pressure
-                of competition. It's all about participation, fun, and creating
-                memories.
+                The BCORE 3KM RACE is perfect for young runners and families who
+                want to enjoy the excitement of the marathon in a fun, friendly,
+                and non-competitive atmosphere. It’s a great opportunity to
+                celebrate health, fitness, and community spirit together.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Bring your loved ones and enjoy a leisurely run through
-                Gandhinagar's beautiful streets, celebrating fitness and
-                community spirit at India's first Olympic Centre hosted event.
+                Categories include Boys/Men and Girls/Women under 16 years of
+                age. Participants can enjoy a joyful run through Gandhinagar’s
+                scenic streets, part of India’s first Olympic Centre–hosted
+                marathon.
               </p>
             </div>
           </div>
 
-          {/* Right Side - Runner Amenities and Add-Ons */}
+          {/* Right Side - Runner Amenities, Fee, and Prizes */}
           <div className="flex flex-col gap-12">
             {/* Runner Amenities */}
             <div>
@@ -37,36 +38,46 @@ const FunRaceDetail = () => {
                 RUNNER AMENITIES INCLUDED
               </h3>
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Unique race bib with name
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Limited edition race shirt
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Exclusive medal
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Surprise goody kit
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Official participation E-certificate
-                  </p>
-                </div>
+                {[
+                  "Unique race bib with name",
+                  "Limited edition race shirt",
+                  "Exclusive medal",
+                  "Surprise goody kit",
+                  "Official participation E-certificate",
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                    <p className="text-gray-600 dark:text-white/80">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Registration Fee */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                REGISTRATION FEE
+              </h3>
+              <p className="text-lg text-gray-600 dark:text-white/80">
+                ₹199/- (per person)
+              </p>
+            </div>
+
+            {/* Prize Money */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                PRIZE MONEY
+              </h3>
+              <div className="text-gray-600 dark:text-white/80 text-lg">
+                <p>
+                  <strong>1st Prize:</strong> ₹5,000
+                </p>
+                <p>
+                  <strong>2nd Prize:</strong> ₹3,000
+                </p>
+                <p>
+                  <strong>3rd Prize:</strong> ₹2,000
+                </p>
               </div>
             </div>
 
@@ -76,24 +87,14 @@ const FunRaceDetail = () => {
                 Add-Ons
               </h3>
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Customized race shirt
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Medal engraving
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                  <p className="text-gray-600 dark:text-white/80">
-                    Family photo session
-                  </p>
-                </div>
+                {["Customized size race shirt", "Photo session"].map(
+                  (item, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
+                      <p className="text-gray-600 dark:text-white/80">{item}</p>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>

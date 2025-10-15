@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import Image from "next/image";
 
@@ -80,9 +81,12 @@ const GeneralDetail = () => {
                   HALF-MARATHON
                 </h3>
                 <div className="text-center">
-                  <button className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110">
+                  <Link
+                    href="/register"
+                    className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110"
+                  >
                     Register
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -93,9 +97,12 @@ const GeneralDetail = () => {
               <div className="relative z-10">
                 <h3 className="text-3xl font-bold mb-6 text-center">10 KM</h3>
                 <div className="text-center">
-                  <button className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110">
+                  <Link
+                    href="/register"
+                    className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110"
+                  >
                     Register
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 to-teal-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -106,22 +113,28 @@ const GeneralDetail = () => {
               <div className="relative z-10">
                 <h3 className="text-3xl font-bold mb-6 text-center">5 KM</h3>
                 <div className="text-center">
-                  <button className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110">
+                  <Link
+                    href="/register"
+                    className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110"
+                  >
                     Register
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-red-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
 
-            {/* Fun Run Card */}
+            {/* 3KM Card */}
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 p-8 text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-6 text-center">FUN RUN</h3>
+                <h3 className="text-3xl font-bold mb-6 text-center">3KM</h3>
                 <div className="text-center">
-                  <button className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110">
+                  <Link
+                    href="/register"
+                    className="bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110"
+                  >
                     Register
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-pink-600/20 to-purple-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

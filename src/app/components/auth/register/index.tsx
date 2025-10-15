@@ -23,7 +23,7 @@ import Link from "next/link";
 import "react-phone-number-input/style.css";
 import { motion, easeOut } from "framer-motion";
 
-type RaceType = "Half Marathon" | "10 Km" | "5 KM" | "Fun Run";
+type RaceType = "Half Marathon" | "10 Km" | "5 KM" | "3KM";
 
 type FieldError =
   | "firstName"
@@ -133,7 +133,7 @@ const raceTypes: RaceType[] = [
   "Half Marathon",
   "10 Km",
   "5 KM",
-  "Fun Run",
+  "3KM",
 ] as const;
 
 const steps = [

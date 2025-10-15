@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "BCORE Gandhinagar Marathon | General Information",
   description:
-    "Join the 1st edition of BCORE Gandhinagar Marathon - India's first Olympic Centre hosted marathon. Choose from Half-Marathon, 10KM, 5KM, or Fun Run categories.",
+    "Join the 1st edition of BCORE Gandhinagar Marathon - India's first Olympic Centre hosted marathon. Choose from Half-Marathon, 10KM, 5KM, or 3KM categories.",
 };
 
 export default function Page() {
