@@ -1,8 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* breakpoint */
@@ -46,6 +45,7 @@ html,
 body {
   overflow-x: hidden;
 }
+
 @layer utilities {
   .container {
     @apply w-full max-w-[105rem] my-0 mx-auto py-0 sm:px-7 px-5;
