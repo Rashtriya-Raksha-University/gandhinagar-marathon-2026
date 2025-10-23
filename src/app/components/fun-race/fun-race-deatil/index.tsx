@@ -16,16 +16,17 @@ const FunRaceDetail = () => {
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE 3KM RACE is perfect for young runners and families who
-                want to enjoy the excitement of the marathon in a fun, friendly,
-                and non-competitive atmosphere. It’s a great opportunity to
-                celebrate health, fitness, and community spirit together.
+                The BCORE 3KM Night Run is perfect for young runners and
+                families who want to experience the thrill of the marathon in a
+                fun, friendly, and non-competitive atmosphere. It’s a joyful way
+                to embrace health, fitness, and community spirit under the stars
+                — a celebration for every stride.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Categories include Boys/Men and Girls/Women under 16 years of
-                age. Participants can enjoy a joyful run through Gandhinagar’s
-                scenic streets, part of India’s first Olympic Centre–hosted
-                marathon.
+                Open to Under-16 and Para-abled categories, participants can
+                enjoy a glowing night run through Gandhinagar’s scenic,
+                illuminated streets as part of India’s first Olympic
+                Centre–hosted marathon experience.
               </p>
             </div>
           </div>

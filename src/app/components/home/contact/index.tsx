@@ -1,66 +1,62 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const Contact = (props: { contactdataNumber: string }) => {
-  const { contactdataNumber } = props;
-  const [submitted, setSubmitted] = useState(false);
-  const [loader, setLoader] = useState(false);
-  const [contactData, setContactData] = useState<any>(null);
+const Contact = ({
+  contactdataNumber,
+  contactData,
+}: {
+  contactdataNumber?: string;
+  contactData?: any;
+}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
+    category: "general",
     message: "",
   });
+  const [loader, setLoader] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/page-data");
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json();
-        setContactData(data?.statsFactData);
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      }
-    };
-    fetchData();
-  }, []);
-  const reset = () => {
-    formData.name = "";
-    formData.email = "";
-    formData.message = "";
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  const handleSubmit = async (e: any) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoader(true);
 
-    fetch("https://formsubmit.co/ajax/kaniarajveer02@gmail.com", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setSubmitted(data.success);
-        setLoader(false);
-        reset();
-      })
-      .catch((error) => {
-        console.log(error.message);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-  };
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          category: "general",
+          message: "",
+        });
+      } else {
+        console.error("Failed to send email");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoader(false);
+    }
   };
 
   return (
@@ -71,7 +67,7 @@ const Contact = (props: { contactdataNumber: string }) => {
             <div className="flex flex-col xl:flex xl:flex-row items-start gap-8">
               <div className="flex items-center py-3 gap-4 md:gap-8 w-full max-w-xl">
                 <span className="bg-primary dark:text-secondary py-1.5 px-2.5 text-base font-medium rounded-full">
-                  {contactdataNumber ? contactdataNumber : 10}
+                  {contactdataNumber ? contactdataNumber : "10"}
                 </span>
                 <div className="h-px w-16 bg-black/12 dark:bg-white/12" />
                 <p className="section-bedge py-1.5 px-4 rounded-full">
@@ -79,18 +75,19 @@ const Contact = (props: { contactdataNumber: string }) => {
                 </p>
               </div>
               <div className="flex flex-col gap-11">
-                <div className="flex flex-col gap-5 ">
+                <div className="flex flex-col gap-5">
                   <h2 className="max-w-3xl">Get in touch</h2>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="flex flex-col xl:flex xl:flex-row gap-15 xl:gap-48">
             <div className="max-w-md flex flex-col gap-9 md:gap-16">
               <div className="flex flex-col gap-5 md:gap-8">
                 <p className="max-w-2xl text-secondary/70 dark:text-white/70">
-                  Let’s collaborate and create something amazing! Tell me about
-                  your project—I’m all ears.
+                  Let's collaborate and create something amazing! Tell me about
+                  your project—I'm all ears.
                 </p>
                 <div>
                   <ul className="flex flex-col gap-3">
@@ -133,6 +130,7 @@ const Contact = (props: { contactdataNumber: string }) => {
                 </div>
               </div>
             </div>
+
             <div className="w-full">
               <form
                 onSubmit={handleSubmit}
@@ -147,7 +145,7 @@ const Contact = (props: { contactdataNumber: string }) => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Name"
+                    placeholder="Full Name *"
                   />
                 </div>
                 <div>
@@ -155,21 +153,48 @@ const Contact = (props: { contactdataNumber: string }) => {
                     required
                     className="w-full border-b border-secondary dark:border-white/20 focus:border-black dark:focus:border-white focus:outline-none py-3.5"
                     id="email"
-                    type="text"
+                    type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email"
+                    placeholder="Email Address *"
                   />
                 </div>
                 <div>
+                  <input
+                    className="w-full border-b border-secondary dark:border-white/20 focus:border-black dark:focus:border-white focus:outline-none py-3.5"
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone Number (Optional)"
+                  />
+                </div>
+                <div>
+                  <select
+                    required
+                    className="w-full border-b border-secondary dark:border-white/20 focus:border-black dark:focus:border-white focus:outline-none py-3.5 bg-transparent"
+                    id="category"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                  >
+                    <option value="general">General Inquiry</option>
+                    <option value="support">Payment iss</option>
+                    <option value="complaint">Complaint/Issue</option>
+                    <option value="feedback">Feedback</option>
+                  </select>
+                </div>
+                <div>
                   <textarea
+                    required
                     className="w-full border-b border-secondary dark:border-white/20 focus:border-black dark:focus:border-white focus:outline-none py-3.5"
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your project"
+                    placeholder="Tell us about your inquiry, issue, or feedback *"
                     rows={4}
                   />
                 </div>
@@ -184,8 +209,8 @@ const Contact = (props: { contactdataNumber: string }) => {
                       />
                     </div>
                     <p className="text-secondary">
-                      Great!!! Email has been Successfully Sent. We will get in
-                      touch asap.
+                      Great!!! Your message has been successfully sent. We will
+                      get in touch within 24-48 hours.
                     </p>
                   </div>
                 )}

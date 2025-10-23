@@ -16,14 +16,16 @@ const TenKmDetail = () => {
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE 10KM Race offers the perfect balance of challenge and
-                achievement. Designed for runners who want to push their limits
-                while maintaining an achievable distance goal.
+                The BCORE 10KM Night Run strikes the perfect balance between
+                challenge and accomplishment, designed for runners eager to test
+                their limits under the night sky. This dynamic race offers an
+                achievable yet exhilarating distance that keeps the adrenaline
+                high from start to finish
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Experience the thrill of running through Gandhinagar's beautiful
-                landscapes in this exciting 10-kilometer journey, organized by
-                India's first Olympic Centre.
+                Experience the magic of Gandhinagar illuminated — as you run
+                through its glowing streets and scenic pathways in this
+                signature event hosted by India’s first Olympic Centre.
               </p>
             </div>
           </div>

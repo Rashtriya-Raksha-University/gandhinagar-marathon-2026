@@ -778,32 +778,7 @@ export default function SignUpForm(): React.ReactElement {
 
             <div className="bg-white border-2 border-gray-200 rounded-xl p-8">
               <div className="flex flex-col items-center">
-                {/* <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 text-center mb-4">
-                    Scan QR Code to Pay
-                  </h3>
-                  <div className="bg-white p-4 rounded-lg border-4 border-blue-500 shadow-lg">
-                    <img
-                      src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=example@upi&pn=GandhinagarMarathon&am=500&cu=INR"
-                      alt="Payment QR Code"
-                      className="w-48 h-48"
-                    />
-                  </div>
-                  <p className="text-center text-sm text-gray-600 mt-2">
-                    Registration Fee: ₹500
-                  </p>
-                </div> */}
-
                 <div className="w-full max-w-md">
-                  {/* <div className="relative my-6">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div className="relative flex justify-center text-sm">
-                      <span className="px-4 bg-white text-gray-500">OR</span>
-                    </div>
-                  </div> */}
-
                   <div className="text-center mb-6">
                     <h4 className="text-sm font-medium text-gray-700 mb-3">
                       Pay via Link
@@ -867,94 +842,11 @@ export default function SignUpForm(): React.ReactElement {
   };
 
   return (
-    // <>
-    //   <style>{`
-    //     .phone-input-container {
-    //       width: 100%;
-    //     }
-
-    //     .phone-input {
-    //       width: 100% !important;
-    //       padding: 12px 14px 12px 52px !important;
-    //       border: 1px solid #d1d5db !important;
-    //       border-radius: 0.5rem !important;
-    //       font-size: 0.95rem !important;
-    //       transition: all 0.2s ease !important;
-    //     }
-
-    //     .phone-input:focus {
-    //       outline: none !important;
-    //       border-color: #3b82f6 !important;
-    //       box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-    //     }
-
-    //     .phone-input:hover:not(:focus) {
-    //       border-color: #9ca3af !important;
-    //     }
-
-    //     .phone-button {
-    //       background-color: #f9fafb !important;
-    //       border: 1px solid #d1d5db !important;
-    //       border-right: none !important;
-    //       border-radius: 0.5rem 0 0 0.5rem !important;
-    //       padding: 0 8px !important;
-    //       transition: background-color 0.2s ease !important;
-    //     }
-
-    //     .phone-button:hover {
-    //       background-color: #f3f4f6 !important;
-    //     }
-
-    //     .phone-dropdown {
-    //       width: 280px !important;
-    //       border-radius: 0.5rem !important;
-    //       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-    //       border: 1px solid #e5e7eb !important;
-    //       margin-top: 4px !important;
-    //     }
-
-    //     .phone-search {
-    //       padding: 10px 12px !important;
-    //       border-radius: 0.375rem !important;
-    //       border: 1px solid #d1d5db !important;
-    //       margin: 8px !important;
-    //       width: calc(100% - 16px) !important;
-    //     }
-
-    //     .phone-search:focus {
-    //       outline: none !important;
-    //       border-color: #3b82f6 !important;
-    //     }
-
-    //     .country-list {
-    //       max-height: 200px !important;
-    //     }
-
-    //     .country-list .country:hover {
-    //       background-color: #f3f4f6 !important;
-    //     }
-
-    //     .country-list .country.highlight {
-    //       background-color: #eff6ff !important;
-    //     }
-
-    //     .selected-flag {
-    //       padding: 0 0 0 12px !important;
-    //     }
-
-    //     .flag-dropdown.open .selected-flag {
-    //       background-color: #f3f4f6 !important;
-    //     }
-    //   `}</style>
     <div className="min-h-screen relative flex items-center justify-center p-4 bg-gradient-to-br from-blue-400 via-teal-300 to-indigo-400">
       <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-300/20 rounded-full blur-3xl"></div>
 
       <div className="relative w-full max-w-2xl z-10">
-        <div className="mb-6 flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-200">
-          <span className="text-sm">Gandhinagar Marathon Registration</span>
-        </div>
-
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
           <div className="bg-gradient-to-r from-blue-500 to-teal-400 px-8 py-6 text-white">
             <h1 className="text-2xl font-bold text-center">

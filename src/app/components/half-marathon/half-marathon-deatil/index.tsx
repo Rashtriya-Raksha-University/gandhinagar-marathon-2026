@@ -16,16 +16,18 @@ const HalfMarathonDetail = () => {
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE Half-Marathon is one of India’s most exciting and
-                challenging races — a prestigious event hosted by the country’s
-                first Olympic Centre. This half-marathon offers a test of
-                endurance, passion, and dedication for every long-distance
-                runner.
+                The BCORE Night Half-Marathon is one of India’s most thrilling
+                and prestigious races — a flagship event hosted by the country’s
+                first Olympic Centre. Set under the starlit skies of
+                Gandhinagar, this night run challenges your endurance and
+                ignites your passion as you conquer every mile in the cool
+                evening air.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Join thousands of participants and become part of India's
-                Olympic legacy, as you run through Gandhinagar’s scenic
-                landscapes and vibrant streets.
+                Join thousands of runners and become part of India’s Olympic
+                legacy, as you race through illuminated streets and scenic
+                nightscapes in an unforgettable celebration of
+                fitness and spirit.
               </p>
             </div>
           </div>

@@ -16,17 +16,17 @@ const FiveKmDetail = () => {
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE 5KM Race is perfect for beginners, fitness
-                enthusiasts, and those looking to start their running journey.
-                This distance strikes the perfect balance between fun and
-                challenge — great for testing endurance and celebrating personal
-                milestones.
+                The BCORE 5KM Night Run is perfect for beginners, fitness
+                enthusiasts, and anyone turning their New Year’s resolutions —
+                or last year’s unfinished ones — into action under the stars.
+                Blending fun and challenge, this run celebrates endurance and
+                personal milestones with an energetic night-time vibe lit up by
+                glow bands and illuminated routes.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Participants compete in categories based on age and gender,
-                making it a fair and inclusive race. Join hundreds of runners
-                along Gandhinagar’s scenic streets for a vibrant celebration of
-                fitness and community spirit.
+                With age and gender-based categories, warm water stations, and a
+                lively crowd, it’s a glowing celebration of fitness, community,
+                and fresh starts along Gandhinagar’s scenic streets.
               </p>
             </div>
           </div>

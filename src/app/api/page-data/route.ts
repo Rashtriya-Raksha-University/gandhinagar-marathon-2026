@@ -22,9 +22,9 @@ const avatarList = [
 const statsFactData = {
   number: "01",
   name: "Stats & facts",
-  heading: "We're more than just a marathon...",
+  heading: "We're more than just a running event...",
   description:
-    "The Gandhinagar Marathon 2026 presented by Bcore is set to welcome tens of thousands of participants, spectators, and sponsors, making it one of India's most remarkable running events.",
+    "The BCORE Night Run 2026 is set to welcome thousands of participants, spectators, and sponsors, making it one of India's most remarkable running events. The twist to the tale is that it take place in the glowing night of Gandhinagar. From all across the country, the law enforcement officers shall blend with the civilians, para-abled and u-16 athletes runners. Excited? Simply Register.",
   scoreData: [
     {
       number: 1.5,
@@ -32,7 +32,7 @@ const statsFactData = {
       scoreDescp: "Expected Participants",
     },
     {
-      number: 10,
+      number: 5,
       numberValue: "K",
       scoreDescp: "Spectators",
     },
@@ -49,35 +49,42 @@ const servicesData = {
   name: "Race Categories",
   heading: "Choose Your Perfect Race Distance",
   description:
-    "From challenging half-marathons to family-friendly 3KMs, we have the perfect race category for every runner. Join us in Gandhinagar for an unforgettable running experience.",
+    "From challenging half-marathons to family-friendly team run, we have the perfect race category for every runner. Join us in Gandhinagar for an unforgettable running experience.",
   data: [
     {
       id: 1,
       image: "/images/home/services/service_1.jpg",
-      heading: "BCORE Half Marathon",
+      heading: "Half Marathon",
       descp:
         "The BCORE Half-Marathon is going to be one of the fastest and exciting marathons in India. It isn't just any other race – it's the first race organized by an Indian Olympic Centre.",
     },
     {
       id: 2,
       image: "/images/home/services/service_2.jpg",
-      heading: "BCORE 10KM Run",
+      heading: "10KM Run",
       descp:
         "The BCORE 10k is the challenge you need. This race will take you across Gandhinagar's most beautiful parks and neighborhoods – from Swarnim Park to the Salt Mount.",
     },
     {
       id: 3,
       image: "/images/home/services/services_3.png",
-      heading: "BCORE 5KM Run",
+      heading: "5KM Run",
       descp:
         "The BCORE 5k is the perfect way to create your own running story. With chill and sporty vibes, this is a running event suitable for young and old to challenge themselves and reach new heights.",
     },
     {
       id: 4,
       image: "/images/home/services/services_4.png",
-      heading: "BCORE 3KM",
+      heading: "3KM",
       descp:
-        "Get ready for big smiles and lots of excitement! The BCORE 3KM is a 3km race accessible to everyone – perfect for first-timers, families and kids. It's all about celebrating the art of running, ideal for our next generation of runners and people looking to increase their weekend footsteps!",
+        " Get ready for big smiles and lots of excitement! The 3km race is accessible to the u-16 age category and the para-abled. It's all about celebrating the art of inclusivity, ideal for our next generation of runners and people looking to feel a mini mini minimarathon!",
+    },
+    {
+      id: 4,
+      image: "/images/home/services/services_4.png",
+      heading: "Team Run",
+      descp:
+        "Bhaag Milkar Bhaag embodies the spirit of collaboration and endurance across every domain — sea, air, and land. Designed to foster unity and camaraderie, this unique team run invites 3- person pairs to achieve success or gossip together. The event culminates with winning teams receiving personalized gift vouchers, celebrating both achievement and teamwork.",
     },
   ],
 };

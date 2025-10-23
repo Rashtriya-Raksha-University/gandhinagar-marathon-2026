@@ -9,7 +9,7 @@ function GeneralHero() {
       <Image
         className="absolute top-0 left-0 w-full h-full object-cover"
         alt="Gandhinagar Marathon"
-        src={"/images/crousal/img1.jpg"}
+        src={"/images/crousal/img6.jpg"}
         height={694}
         width={1800}
       />
@@ -37,7 +37,7 @@ function GeneralHero() {
             </p>
           </div>
           <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4">
-            <h1 className="large-heading">BCORE Marathon</h1>
+            <h1 className="large-heading">BCORE Night Run</h1>
             <div>
               <NavigationLink
                 navigationTitle=""
