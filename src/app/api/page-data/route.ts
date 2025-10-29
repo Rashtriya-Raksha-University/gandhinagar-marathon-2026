@@ -80,7 +80,7 @@ const servicesData = {
         " Get ready for big smiles and lots of excitement! The 3km race is accessible to the u-16 age category and the para-abled. It's all about celebrating the art of inclusivity, ideal for our next generation of runners and people looking to feel a mini mini minimarathon!",
     },
     {
-      id: 4,
+      id: 5,
       image: "/images/home/services/services_4.png",
       heading: "Team Run",
       descp:

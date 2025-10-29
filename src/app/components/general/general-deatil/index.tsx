@@ -24,7 +24,7 @@ const GeneralDetail = () => {
               </p>
               <p className="text-secondary dark:text-white text-lg leading-relaxed">
                 Have you ever seen Gandhinagar in the night? Imagine the
-                lightings, the hot chai, the bonfire, the music, and teh energy
+                lightings, the hot chai, the bonfire, the music, and the energy
                 to run in the Cleanest Capital of India. Join us in the BCORE
                 Night Run, the to-be fastest and exciting run in India! No city
                 in India has ever hosted a running event by an Olympic Study
