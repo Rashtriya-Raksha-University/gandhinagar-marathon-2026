@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <main>
       <Herobanner
-        bannerimage="@/app/components/shared/hero-banner"
+        bannerimage="/images/crousal/img6.jpg"
         heading="About BCORE"
         desc="India's first <span>Olympic Research facility</span> recognized by the International Olympic Committee"
       />

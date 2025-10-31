@@ -8,6 +8,12 @@ const MenuData = [
     newTab: false,
   },
   {
+    id: 2,
+    title: "Donation",
+    path: "/donation",
+    newTab: false,
+  },
+  {
     id: 5,
     title: "General",
     path: "/general",
@@ -18,6 +24,12 @@ const MenuData = [
     title: "Races",
     newTab: false,
     submenu: [
+      {
+        id: 50,
+        title: "Team Run",
+        path: "/race/team-run",
+        newTab: false,
+      },
       {
         id: 51,
         title: "Half Marathon",

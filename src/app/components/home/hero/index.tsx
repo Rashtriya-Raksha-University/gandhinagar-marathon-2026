@@ -9,6 +9,8 @@ function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [
     "/images/crousal/img5.jpg",
+    "/images/crousal/img10.jpg",
+    "/images/crousal/img7.jpg",
     "/images/crousal/img2.jpg",
     "/images/crousal/img3.jpg",
   ];
