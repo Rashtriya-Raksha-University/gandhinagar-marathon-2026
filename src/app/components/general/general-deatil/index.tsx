@@ -55,7 +55,7 @@ const GeneralDetail = () => {
               </p>
               <h2 className="text-4xl lg:text-6xl font-bold text-primary">
                 Sunday
-                <br />3 January 2026
+                <br /> 10 January 2026
               </h2>
             </div>
           </div>

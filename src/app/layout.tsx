@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import ScrollToTop from "./components/scroll-to-top";
+import { Analytics } from "@vercel/analytics/next";
 import PageTransition from "@/app/components/PageTransition"; // ✅ import transition wrapper
 
 const manrope = Manrope({
@@ -48,6 +49,7 @@ export default function RootLayout({
 
         {!hideLayout && <Footer />}
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );
