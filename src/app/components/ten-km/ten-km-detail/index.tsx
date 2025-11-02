@@ -12,25 +12,26 @@ const TenKmDetail = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
               <br />
-              10KM RACE
+              10 KM RUN
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE 10KM Night Run strikes the perfect balance between
-                challenge and accomplishment, designed for runners eager to test
-                their limits under the night sky. This dynamic race offers an
-                achievable yet exhilarating distance that keeps the adrenaline
-                high from start to finish
+                The BCORE 10KM Night Run is for serious fitness enthusiasts
+                ready to push their limits under the night sky. This competitive
+                race combines the thrill of racing with the unique atmosphere of
+                a night-time event, featuring glow elements and illuminated
+                routes through Gandhinagar.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Experience the magic of Gandhinagar illuminated — as you run
-                through its glowing streets and scenic pathways in this
-                signature event hosted by India’s first Olympic Centre.
+                With multiple age categories, special discounts for women
+                runners, and exciting prize money, this is your chance to test
+                your endurance while being part of India's premier Olympic
+                Centre night running experience.
               </p>
             </div>
           </div>
 
-          {/* Right Side - Runner Info */}
+          {/* Right Side - Runner Amenities, Fee, and Prizes */}
           <div className="flex flex-col gap-12">
             {/* Runner Amenities */}
             <div>
@@ -44,8 +45,8 @@ const TenKmDetail = () => {
                   "Exclusive medal",
                   "Surprise goody kit",
                   "Official timing E-certificate",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
                     <p className="text-gray-600 dark:text-white/80">{item}</p>
                   </div>
@@ -58,19 +59,23 @@ const TenKmDetail = () => {
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
                 CATEGORIES
               </h3>
-              <div className="text-gray-600 dark:text-white/80 text-lg space-y-2">
+              <div className="text-gray-600 dark:text-white/80 text-lg">
                 <p>
-                  <strong>General Public:</strong>
+                  <strong>Men/Boys:</strong> Under 30 | Above 30
                 </p>
-                <p className="ml-4">
-                  Men/Boys — Under 30 | Above 30
+                <p>
+                  <strong>Women/Girls:</strong> Up to 30
+                </p>
+                <p className="mt-2 text-base">
+                  <strong>Women Age Discounts:</strong>
+                </p>
+                <p className="ml-4 text-base">
+                  31–40: Rs.747/- (10% discount)
                   <br />
-                  Women/Girls — Under 30 | Above 30
+                  41–50: Rs.622/- (25% discount)
+                  <br />
+                  51+: Rs.415/- (50% discount)
                 </p>
-                <p className="mt-3">
-                  <strong>In-Service Personnel:</strong>
-                </p>
-                <p className="ml-4">Men | Women</p>
               </div>
             </div>
 
@@ -79,12 +84,9 @@ const TenKmDetail = () => {
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
                 REGISTRATION FEE
               </h3>
-              <div className="text-gray-600 dark:text-white/80 text-lg space-y-1">
+              <div className="text-gray-600 dark:text-white/80 text-lg">
                 <p>
-                  <strong>General Public:</strong> ₹699/- (Including GST)
-                </p>
-                <p>
-                  <strong>In-Service Personnel:</strong> ₹499/- (Including GST)
+                  <strong>Individual:</strong> Rs.830/- (Including GST)
                 </p>
               </div>
             </div>
@@ -94,15 +96,15 @@ const TenKmDetail = () => {
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
                 PRIZE MONEY
               </h3>
-              <div className="text-gray-600 dark:text-white/80 text-lg space-y-1">
+              <div className="text-gray-600 dark:text-white/80 text-lg">
                 <p>
-                  <strong>1st Prize:</strong> ₹10,000
+                  <strong>1st Prize:</strong> ₹15,000
                 </p>
                 <p>
-                  <strong>2nd Prize:</strong> ₹7,000
+                  <strong>2nd Prize:</strong> ₹10,000
                 </p>
                 <p>
-                  <strong>3rd Prize:</strong> ₹5,000
+                  <strong>3rd Prize:</strong> ₹7,500
                 </p>
               </div>
             </div>
@@ -113,8 +115,12 @@ const TenKmDetail = () => {
                 Add-Ons
               </h3>
               <div className="flex flex-col gap-3">
-                {["Customized race shirt", "Photo session"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
+                {[
+                  "Customized race shirt",
+                  "Medal engraving",
+                  "Participation in International Olympic Conference",
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
                     <p className="text-gray-600 dark:text-white/80">{item}</p>
                   </div>

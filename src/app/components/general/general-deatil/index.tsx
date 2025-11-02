@@ -54,7 +54,7 @@ const GeneralDetail = () => {
                 Event Date
               </p>
               <h2 className="text-4xl lg:text-6xl font-bold text-primary">
-                Sunday
+                Saturday
                 <br /> 10 January 2026
               </h2>
             </div>

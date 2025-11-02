@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-const FunRaceDetail = () => {
+const FunRunDetail = () => {
   return (
     <section className="py-16 md:py-24 lg:py-32 dark:bg-secondary">
       <div className="container">
@@ -11,27 +11,25 @@ const FunRaceDetail = () => {
           <div className="flex flex-col gap-8">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
-              <br />
-              3KM RACE
+              <br />3 KM FUN RUN
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE 3KM Night Run is perfect for young runners and
-                families who want to experience the thrill of the marathon in a
-                fun, friendly, and non-competitive atmosphere. It’s a joyful way
-                to embrace health, fitness, and community spirit under the stars
-                — a celebration for every stride.
+                The BCORE 3KM Fun Run is designed for everyone — civilians,
+                families, kids, and para-athletes! It's the perfect way to kick
+                off your fitness journey or enjoy a fun night out under the
+                stars. With a relaxed atmosphere and inclusive spirit, this race
+                welcomes first-timers and seasoned runners alike.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Open to Under-16 and Para-abled categories, participants can
-                enjoy a glowing night run through Gandhinagar’s scenic,
-                illuminated streets as part of India’s first Olympic
-                Centre–hosted marathon experience.
+                Whether you're running solo or with friends, the 3KM Fun Run
+                promises a joyful celebration of movement, community, and the
+                night's glow along Gandhinagar's scenic routes.
               </p>
             </div>
           </div>
 
-          {/* Right Side - Runner Amenities, Fee, and Prizes */}
+          {/* Right Side - Runner Amenities, Fee, and Info */}
           <div className="flex flex-col gap-12">
             {/* Runner Amenities */}
             <div>
@@ -54,32 +52,42 @@ const FunRaceDetail = () => {
               </div>
             </div>
 
+            {/* Categories */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                CATEGORIES
+              </h3>
+              <div className="text-gray-600 dark:text-white/80 text-lg">
+                <p>
+                  <strong>Men/Boys:</strong> Under 16 | Para-Abled
+                </p>
+                <p>
+                  <strong>Women/Girls:</strong> Under 16 | Para-Abled
+                </p>
+                <p className="mt-2">
+                  <strong>Team:</strong> Up to 5 Members
+                </p>
+              </div>
+            </div>
+
             {/* Registration Fee */}
             <div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
                 REGISTRATION FEE
               </h3>
-              <p className="text-lg text-gray-600 dark:text-white/80">
-                ₹199/- (per person)
-              </p>
-            </div>
-
-            {/* Prize Money */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
-                PRIZE MONEY
-              </h3>
               <div className="text-gray-600 dark:text-white/80 text-lg">
                 <p>
-                  <strong>1st Prize:</strong> ₹5,000
-                </p>
-                <p>
-                  <strong>2nd Prize:</strong> ₹3,000
-                </p>
-                <p>
-                  <strong>3rd Prize:</strong> ₹2,000
+                  <strong>Individual:</strong> Rs.240/- (Including GST)
                 </p>
               </div>
+            </div>
+
+            {/* Important Note */}
+            <div className="bg-primary/10 dark:bg-primary/20 p-6 rounded-lg">
+              <p className="text-base text-gray-700 dark:text-white/90">
+                <strong>Note:</strong> Half Marathon is not available for
+                participants under 16 years of age.
+              </p>
             </div>
 
             {/* Add-Ons */}
@@ -88,14 +96,16 @@ const FunRaceDetail = () => {
                 Add-Ons
               </h3>
               <div className="flex flex-col gap-3">
-                {["Customized size race shirt", "Photo session"].map(
-                  (item, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                      <p className="text-gray-600 dark:text-white/80">{item}</p>
-                    </div>
-                  )
-                )}
+                {[
+                  "Customized size race shirt",
+                  "Medal engraving",
+                  "Photo session",
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
+                    <p className="text-gray-600 dark:text-white/80">{item}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -116,4 +126,4 @@ const FunRaceDetail = () => {
   );
 };
 
-export default FunRaceDetail;
+export default FunRunDetail;

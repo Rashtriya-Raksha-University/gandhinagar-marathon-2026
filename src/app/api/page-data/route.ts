@@ -27,17 +27,17 @@ const statsFactData = {
     "The BCORE Night Run 2026 is set to welcome thousands of participants, spectators, and sponsors, making it one of India's most remarkable running events. The twist to the tale is that it take place in the glowing night of Gandhinagar. From all across the country, the law enforcement officers shall blend with the civilians, para-abled and u-16 athletes runners. Excited? Simply Register.",
   scoreData: [
     {
-      number: 1.5,
-      numberValue: "K",
+      number: 1500,
+      numberValue: "",
       scoreDescp: "Expected Participants",
     },
     {
-      number: 5,
-      numberValue: "K",
+      number: 500,
+      numberValue: "",
       scoreDescp: "Spectators",
     },
     {
-      number: 10,
+      number: 5,
       numberValue: "",
       scoreDescp: "Sponsors",
     },
@@ -67,21 +67,21 @@ const servicesData = {
     },
     {
       id: 3,
-      image: "/images/home/services/services_3.png",
+      image: "/images/crousal/img3.jpg",
       heading: "5KM Run",
       descp:
         "The BCORE 5k is the perfect way to create your own running story. With chill and sporty vibes, this is a running event suitable for young and old to challenge themselves and reach new heights.",
     },
     {
       id: 4,
-      image: "/images/home/services/services_4.png",
+      image: "/images/crousal/img2.jpg",
       heading: "3KM",
       descp:
         " Get ready for big smiles and lots of excitement! The 3km race is accessible to the u-16 age category and the para-abled. It's all about celebrating the art of inclusivity, ideal for our next generation of runners and people looking to feel a mini mini minimarathon!",
     },
     {
       id: 5,
-      image: "/images/home/services/services_4.png",
+      image: "/images/crousal/img4.jpg",
       heading: "Team Run",
       descp:
         "Bhaag Milkar Bhaag embodies the spirit of collaboration and endurance across every domain — sea, air, and land. Designed to foster unity and camaraderie, this unique team run invites 3- person pairs to achieve success or gossip together. The event culminates with winning teams receiving personalized gift vouchers, celebrating both achievement and teamwork.",
@@ -197,75 +197,139 @@ const teamData = {
 const pricingData = {
   data: [
     {
-      planName: "Half Marathon",
-      planPrice: "₹999",
-      planDescp: "Challenge yourself with the 21.1 KM half marathon distance.",
-      planIncludes: [
-        "Race bib with timing chip",
-        "Finisher medal",
-        "Refreshments & hydration support",
-        "Official event T-shirt",
+      planName: "3 km Fun Run",
+      planPrice: "Rs.240/-",
+      cancelPrice: "",
+      tag: "",
+      planDescp:
+        "Fun and family-friendly race for civilians, including para-athletes.",
+      eligibility: "Under 16 + Para-Abled (Men/Boy, Women/Girl)",
+      tags: [
+        "Flat Fee: Rs.240/- Including GST",
+        "Open for Under 16 & Para-Abled",
+        "Inclusive Run for All",
       ],
+      discounts: [],
+      slug: "race/fun-run",
     },
     {
-      planName: "10 KM Run",
+      planName: "5 km Run",
+      planPrice: "Rs.710/-",
+      cancelPrice: "",
+      tag: "",
+      planDescp:
+        "Perfect for beginners and fitness enthusiasts above 16 years.",
+      eligibility: "Civilians (Men/Boy, Women/Girl)",
+      tags: [
+        "Base Fee: Rs.710/- Including GST",
+        "Age-Based Discounts (Women/Girl)",
+      ],
+      discounts: [
+        {
+          group: "Women/Girl (31–40 years)",
+          discount: "10%",
+          fee: "Rs.639/-",
+        },
+        {
+          group: "Women/Girl (41–50 years)",
+          discount: "25%",
+          fee: "Rs.532/-",
+        },
+        {
+          group: "Women/Girl (Above 51 years)",
+          discount: "50%",
+          fee: "Rs.355/-",
+        },
+      ],
+      slug: "race/five-km",
+    },
+    {
+      planName: "10 km Run",
+      planPrice: "Rs.830/-",
+      cancelPrice: "",
       tag: "Most Popular",
-      planPrice: "₹699",
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
-      planIncludes: [
-        "Race bib with timing chip",
-        "Finisher medal",
-        "Refreshments & hydration support",
-        "Official event T-shirt",
+      eligibility: "Civilians (Men/Boy, Women/Girl)",
+      tags: [
+        "Base Fee: Rs.830/- Including GST",
+        "Age-Based Discounts (Women/Girl)",
       ],
+      discounts: [
+        {
+          group: "Women/Girl (31–40 years)",
+          discount: "10%",
+          fee: "Rs.747/-",
+        },
+        {
+          group: "Women/Girl (41–50 years)",
+          discount: "25%",
+          fee: "Rs.622/-",
+        },
+        {
+          group: "Women/Girl (Above 51 years)",
+          discount: "50%",
+          fee: "Rs.415/-",
+        },
+      ],
+      slug: "race/ten-km",
     },
     {
-      planName: "5 KM Run",
-      planPrice: "₹599",
-      planDescp: "A short and energetic run for beginners and fitness lovers.",
-      planIncludes: [
-        "Race bib",
-        "Finisher medal",
-        "Refreshments & hydration support",
-        "Official event T-shirt",
-      ],
-    },
-    {
-      planName: "3 KM Run",
-      planPrice: "₹199",
+      planName: "Half Marathon",
+      planPrice: "Rs.1200/-",
+      cancelPrice: "",
+      tag: "",
       planDescp:
-        "Fun and family-friendly race for kids and first-time participants.",
-      planIncludes: [
-        "Race bib",
-        "Finisher medal",
-        "Refreshments",
-        "Official event T-shirt",
+        "Challenge yourself with India's prestigious night half-marathon.",
+      eligibility: "Civilians (Above 16 only)",
+      tags: [
+        "Base Fee: Rs.1200/- Including GST",
+        "Age-Based Discounts (Women/Girl)",
+        "Not Applicable for Under 16",
       ],
+      discounts: [
+        {
+          group: "Women/Girl (31–40 years)",
+          discount: "10%",
+          fee: "Rs.1080/-",
+        },
+        {
+          group: "Women/Girl (41–50 years)",
+          discount: "25%",
+          fee: "Rs.900/-",
+        },
+        {
+          group: "Women/Girl (Above 51 years)",
+          discount: "50%",
+          fee: "Rs.600/-",
+        },
+      ],
+      slug: "race/half-marathon",
+    },
+    {
+      planName: "Team Run",
+      planPrice: "1200/- per team",
+      cancelPrice: "",
+      tag: "Teamwork",
+      planDescp:
+        "Run together with your team of 3 members in this exciting night challenge.",
+      eligibility: "Teams of 3 Members ",
+      tags: [
+        "Team Category",
+        "Based on Race Type (3 km, 5 km, 10 km, Half Marathon)",
+        "Same Discounts Apply per Race",
+      ],
+      discounts: ["Applicable as per selected race (A & B tables)"],
+      slug: "race/team-run",
     },
   ],
 
   partnerLogo: [
-    {
-      light: "/images/home/pricing/partner-1.svg",
-      dark: "/images/home/pricing/partner-dark-1.svg",
-    },
-    {
-      light: "/images/home/pricing/partner-2.svg",
-      dark: "/images/home/pricing/partner-dark-2.svg",
-    },
-    {
-      light: "/images/home/pricing/partner-3.svg",
-      dark: "/images/home/pricing/partner-dark-3.svg",
-    },
-    {
-      light: "/images/home/pricing/partner-4.svg",
-      dark: "/images/home/pricing/partner-dark-4.svg",
-    },
-    {
-      light: "/images/home/pricing/partner-5.svg",
-      dark: "/images/home/pricing/partner-dark-5.svg",
-    },
+    "/images/logo/partner1.png",
+    "/images/logo/partner2.png",
+    "/images/logo/partner3.jpg",
+    "/images/logo/bcore.png",
+    "/images/logo/partner4.jpg",
   ],
 };
 

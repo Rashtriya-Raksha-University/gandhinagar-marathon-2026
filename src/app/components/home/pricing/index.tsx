@@ -10,16 +10,24 @@ import SectionAnimation, {
   StaggerContainer,
   StaggerItem,
 } from "@/app/components/SectionAnimation";
+import type {
+  PageData,
+  PricingPlan,
+  PartnerLogo,
+  Discount,
+} from "@/types/race.type";
 
 function Pricing() {
-  const [pricingData, setPricingData] = useState<any>(null);
+  const [pricingData, setPricingData] = useState<
+    PageData["pricingData"] | undefined
+  >(undefined);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/page-data");
         if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json();
+        const data: PageData = await res.json();
         setPricingData(data?.pricingData);
       } catch (error) {
         console.error("Error fetching services:", error);
@@ -27,6 +35,29 @@ function Pricing() {
     };
     fetchData();
   }, []);
+
+  // Function to get tag color based on index
+  const getTagColor = (index: number): string => {
+    const colors = [
+      "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300",
+      "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300",
+      "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
+      "bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300",
+    ];
+    return colors[index % colors.length];
+  };
+
+  // Function to get discount badge color
+  const getDiscountColor = (discount: string): string => {
+    if (discount === "10%")
+      return "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300";
+    if (discount === "25%")
+      return "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300";
+    if (discount === "50%")
+      return "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300";
+    return "bg-gray-100 text-gray-700 dark:bg-gray-900/30 dark:text-gray-300";
+  };
 
   return (
     <section className="bg-lightgray dark:bg-secondary py-20 md:py-40">
@@ -50,9 +81,9 @@ function Pricing() {
                     <div className="flex flex-col gap-5 ">
                       <h2 className="max-w-3xl">Affordable pricing</h2>
                       <p className="max-w-2xl text-secondary/70 dark:text-white/70">
-                        A glimpse into our creativity—exploring innovative
-                        designs, successful collaborations, and transformative
-                        digital experiences.
+                        Join India's premier night run event with multiple race
+                        categories designed for all fitness levels. Choose your
+                        distance and register today!
                       </p>
                     </div>
                   </div>
@@ -61,92 +92,146 @@ function Pricing() {
 
               {/* Pricing Cards with Stagger Animation */}
               <StaggerContainer
-                className="grid md:grid-cols-2 xl:grid-cols-4 gap-7"
+                className="grid md:grid-cols-2 xl:grid-cols-3 gap-12"
                 delay={0.2}
                 staggerDelay={0.15}
               >
-                {pricingData?.data?.map((value: any, index: any) => {
+                {pricingData?.data?.map((value: PricingPlan, index: number) => {
                   return (
                     <StaggerItem
                       key={index}
                       animationType="fadeUp"
-                      className="bg-white dark:bg-lightgray/10 p-3 sm:p-5 xl:p-12 flex flex-col gap-10"
+                      className="bg-white dark:bg-lightgray/10 p-5 xl:p-7 flex flex-col gap-6 rounded-lg hover:shadow-xl transition-shadow duration-300"
                     >
+                      {/* Header Section */}
                       <div className="flex flex-col gap-5">
-                        <div className="flex items-center gap-4">
-                          <p className="font-medium">{value?.planName}</p>
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <p className="font-semibold text-lg">
+                            {value.planName}
+                          </p>
 
-                          {value?.tag && (
+                          {value.tag && (
                             <div className="flex items-center gap-2 bg-secondary w-fit py-1 px-3 rounded-full">
                               <Icon
                                 icon="fluent:fire-20-regular"
-                                width="20"
-                                height="20"
+                                width="16"
+                                height="16"
                                 style={{ color: "#fff" }}
                               />
-                              <span className="text-white text-base">
-                                {value?.tag}
+                              <span className="text-white text-sm font-medium">
+                                {value.tag}
                               </span>
                             </div>
                           )}
                         </div>
+
+                        {/* Price */}
                         <div>
                           <div className="flex items-center gap-3">
                             {value.cancelPrice && (
-                              <h3 className="text-secondary/40 dark:text-white/40">
+                              <h3 className="text-2xl text-secondary/40 dark:text-white/40">
                                 <del>{value.cancelPrice}</del>
                               </h3>
                             )}
-                            <h3>{value.planPrice}</h3>
-                            <span className="text-base text-secondary/70 dark:text-white/70">
-                              /race
-                            </span>
+                            <h3 className="text-2xl font-bold">
+                              {value.planPrice}
+                            </h3>
                           </div>
                         </div>
-                        <p className="text-base text-secondary/70 dark:text-white/70">
+
+                        {/* Description */}
+                        <p className="text-sm text-secondary/70 dark:text-white/70 leading-relaxed">
                           {value.planDescp}
                         </p>
-                      </div>
-                      <div className="pt-10 border-t border-secondary/12 dark:border-white/12">
-                        <p className="text-base pb-5">What's Included:</p>
-                        <div>
-                          <ul className="flex flex-col gap-3">
-                            {value?.planIncludes?.map(
-                              (value: any, index: any) => {
-                                return (
-                                  <li
-                                    key={index}
-                                    className="flex items-center gap-1.5 sm:gap-4"
-                                  >
-                                    <div className="bg-primary w-fit p-1 sm:p-1.5 rounded-full flex-shrink-0">
-                                      <Image
-                                        src={"/images/Icon/right-check.svg"}
-                                        alt="right-icon"
-                                        width={20}
-                                        height={20}
-                                      />
-                                    </div>
-                                    <span className="flex-1">{value}</span>
-                                  </li>
-                                );
-                              }
-                            )}
-                          </ul>
+
+                        {/* Eligibility */}
+                        <div className="pt-3 border-t border-secondary/10 dark:border-white/10">
+                          <p className="text-xs font-semibold text-secondary/60 dark:text-white/60 mb-2">
+                            ELIGIBILITY
+                          </p>
+                          <p className="text-sm text-secondary/80 dark:text-white/80">
+                            {value.eligibility}
+                          </p>
                         </div>
                       </div>
-                      <div>
+
+                      {/* Tags Section */}
+                      <div className="flex flex-col gap-3">
+                        {value.tags.map((tag: string, tagIndex: number) => (
+                          <div
+                            key={tagIndex}
+                            className={`${getTagColor(tagIndex)} px-3 py-2 rounded-lg text-xs font-medium`}
+                          >
+                            {tag}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Discounts Section */}
+                      {Array.isArray(value.discounts) &&
+                        value.discounts.length > 0 && (
+                          <div className="pt-4 border-t border-secondary/10 dark:border-white/10">
+                            <p className="text-xs font-semibold text-secondary/60 dark:text-white/60 mb-3">
+                              SPECIAL DISCOUNTS
+                            </p>
+                            <div className="flex flex-col gap-2">
+                              {value.discounts.map(
+                                (
+                                  discount: Discount | string,
+                                  discIndex: number
+                                ) => {
+                                  if (typeof discount === "string") {
+                                    return (
+                                      <p
+                                        key={discIndex}
+                                        className="text-xs text-secondary/70 dark:text-white/70 italic"
+                                      >
+                                        {discount}
+                                      </p>
+                                    );
+                                  }
+                                  return (
+                                    <div
+                                      key={discIndex}
+                                      className="flex items-center justify-between gap-2 bg-secondary/5 dark:bg-white/5 px-3 py-2 rounded-lg"
+                                    >
+                                      <span className="text-xs text-secondary/80 dark:text-white/80 flex-1">
+                                        {discount.group}
+                                      </span>
+                                      <div className="flex items-center gap-2">
+                                        <span
+                                          className={`${getDiscountColor(discount.discount)} px-2 py-1 rounded-md text-xs font-bold`}
+                                        >
+                                          {discount.discount} OFF
+                                        </span>
+                                        <span className="text-xs font-semibold text-secondary dark:text-white">
+                                          {discount.fee}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                      {/* Button */}
+                      {/* Buttons Section */}
+                      <div className="mt-auto pt-4 flex flex-col sm:flex-row gap-3">
+                        {/* Learn More Button */}
                         <Link
-                          href="/register"
+                          href={`/${value.slug}`}
                           className="group relative flex justify-center items-center w-full bg-primary hover:bg-secondary rounded-full transition-all duration-300 ease-in-out"
                         >
-                          <span className="py-4 px-2 text-lg font-bold text-secondary group-hover:text-white transition-all duration-300 ease-in-out">
-                            Race now
+                          <span className="py-3 px-4 text-base font-bold text-secondary group-hover:text-white transition-all duration-300 ease-in-out">
+                            More
                           </span>
                           <div className="absolute top-0.5 right-0.5 transition-all duration-300 ease-in-out group-hover:left-0">
                             <svg
                               className="flex items-center transition-transform duration-300 ease-in-out group-hover:rotate-45"
-                              width="58"
-                              height="58"
+                              width="48"
+                              height="48"
                               viewBox="0 0 58 58"
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg"
@@ -168,47 +253,18 @@ function Pricing() {
                                   strokeLinejoin="round"
                                 />
                               </g>
-                              <defs>
-                                <filter
-                                  id="filter0_d_1_873"
-                                  x="0"
-                                  y="0"
-                                  width="58"
-                                  height="58"
-                                  filterUnits="userSpaceOnUse"
-                                  colorInterpolationFilters="sRGB"
-                                >
-                                  <feFlood
-                                    floodOpacity="0"
-                                    result="BackgroundImageFix"
-                                  />
-                                  <feColorMatrix
-                                    in="SourceAlpha"
-                                    type="matrix"
-                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                    result="hardAlpha"
-                                  />
-                                  <feOffset dy="1" />
-                                  <feGaussianBlur stdDeviation="1.5" />
-                                  <feColorMatrix
-                                    type="matrix"
-                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"
-                                  />
-                                  <feBlend
-                                    mode="normal"
-                                    in2="BackgroundImageFix"
-                                    result="effect1_dropShadow_1_873"
-                                  />
-                                  <feBlend
-                                    mode="normal"
-                                    in="SourceGraphic"
-                                    in2="effect1_dropShadow_1_873"
-                                    result="shape"
-                                  />
-                                </filter>
-                              </defs>
                             </svg>
                           </div>
+                        </Link>
+
+                        {/* Register Now Button */}
+                        <Link
+                          href="/register"
+                          className="flex justify-center items-center w-full bg-secondary hover:bg-primary rounded-full transition-all duration-300 ease-in-out"
+                        >
+                          <span className="py-3 px-4 text-base font-bold text-white group-hover:text-secondary transition-all duration-300 ease-in-out">
+                            Register Now
+                          </span>
                         </Link>
                       </div>
                     </StaggerItem>
@@ -228,9 +284,21 @@ function Pricing() {
               </p>
               <Slider duration={20} pauseOnHover={true} blurBorders={false}>
                 {(pricingData?.partnerLogo || []).map(
-                  (items: any, index: any) => (
-                    <Logoslider key={index} logo={items} />
-                  )
+                  (items: PartnerLogo | any, index: number) => {
+                    // normalize different possible shapes into the expected { light: string; dark: string }
+                    const logo =
+                      (items as any)?.light || (items as any)?.dark
+                        ? {
+                            light: (items as any).light ?? "",
+                            dark:
+                              (items as any).dark ?? (items as any).light ?? "",
+                          }
+                        : {
+                            light: String((items as any)?.url ?? items ?? ""),
+                            dark: String((items as any)?.url ?? items ?? ""),
+                          };
+                    return <Logoslider key={index} logo={logo} />;
+                  }
                 )}
               </Slider>
             </SectionAnimation>

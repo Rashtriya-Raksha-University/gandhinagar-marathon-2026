@@ -16,18 +16,18 @@ const HalfMarathonDetail = () => {
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                The BCORE Night Half-Marathon is one of India’s most thrilling
-                and prestigious races — a flagship event hosted by the country’s
+                The BCORE Night Half-Marathon is one of India's most thrilling
+                and prestigious races — a flagship event hosted by the country's
                 first Olympic Centre. Set under the starlit skies of
                 Gandhinagar, this night run challenges your endurance and
                 ignites your passion as you conquer every mile in the cool
                 evening air.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
-                Join thousands of runners and become part of India’s Olympic
+                Join thousands of runners and become part of India's Olympic
                 legacy, as you race through illuminated streets and scenic
-                nightscapes in an unforgettable celebration of
-                fitness and spirit.
+                nightscapes in an unforgettable celebration of fitness and
+                spirit.
               </p>
             </div>
           </div>
@@ -62,18 +62,30 @@ const HalfMarathonDetail = () => {
               </h3>
               <div className="text-gray-600 dark:text-white/80 text-lg space-y-2">
                 <p>
-                  <strong>General Public:</strong>
+                  <strong>Men/Boys:</strong> Under 30 | Above 30
                 </p>
-                <p className="ml-4">
-                  Men/Boys — Under 30 | Above 30
+                <p>
+                  <strong>Women/Girls:</strong> Up to 30
+                </p>
+                <p className="mt-2 text-base">
+                  <strong>Women Age Discounts:</strong>
+                </p>
+                <p className="ml-4 text-base">
+                  31–40: Rs.1080/- (10% discount)
                   <br />
-                  Women/Girls — Under 30 | Above 30
+                  41–50: Rs.900/- (25% discount)
+                  <br />
+                  51+: Rs.600/- (50% discount)
                 </p>
-                <p className="mt-3">
-                  <strong>In-Service Personnel:</strong>
-                </p>
-                <p className="ml-4">Men | Women</p>
               </div>
+            </div>
+
+            {/* Eligibility Note */}
+            <div className="bg-primary/10 dark:bg-primary/20 p-6 rounded-lg">
+              <p className="text-base text-gray-700 dark:text-white/90">
+                <strong>Important:</strong> Half Marathon is only available for
+                participants above 16 years of age.
+              </p>
             </div>
 
             {/* Registration Fee */}
@@ -83,10 +95,7 @@ const HalfMarathonDetail = () => {
               </h3>
               <div className="text-gray-600 dark:text-white/80 text-lg space-y-1">
                 <p>
-                  <strong>General Public:</strong> ₹999/- (Including GST)
-                </p>
-                <p>
-                  <strong>In-Service Personnel:</strong> ₹599/- (Including GST)
+                  <strong>Individual:</strong> Rs.1200/- (Including GST)
                 </p>
               </div>
             </div>

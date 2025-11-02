@@ -88,13 +88,23 @@ const footerData = {
   links: [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
+    { name: "Donation", href: "/donation" },
+    { name: "General", href: "/general" },
+    { name: "Races", href: "/race" },
     { name: "Contact", href: "/contact" },
-    { name: "Error 404", href: "/not-found" },
   ],
   socialLinks: [
-    { name: "Facebook", href: "https://www.facebook.com/" },
-    { name: "Instagram", href: "https://www.instagram.com/" },
-    { name: "Twitter", href: "https://x.com/" },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/bcore_rru/?igsh=MXFxejQzbzlqbDNjeg%3D%3D#",
+    },
+    { name: "Twitter", href: "https://x.com/bcorerru" },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/company/bharat-centre-of-olympic-research-and-education-bcore/",
+    },
+    { name: "Email", href: "mailto:bcorenightrun@rru.ac.in" },
+    { name: "Phone", href: "tel:+916357436705" },
   ],
   copyright: "© BCORE copyright 2025",
 };

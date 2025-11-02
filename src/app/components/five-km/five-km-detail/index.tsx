@@ -11,22 +11,21 @@ const FiveKmDetail = () => {
           <div className="flex flex-col gap-8">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
-              <br />
-              5KM RACE
+              <br />5 KM NIGHT RUN
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
                 The BCORE 5KM Night Run is perfect for beginners, fitness
-                enthusiasts, and anyone turning their New Year’s resolutions —
-                or last year’s unfinished ones — into action under the stars.
+                enthusiasts, and anyone turning their New Year's resolutions —
+                or last year's unfinished ones — into action under the stars.
                 Blending fun and challenge, this run celebrates endurance and
                 personal milestones with an energetic night-time vibe lit up by
                 glow bands and illuminated routes.
               </p>
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
                 With age and gender-based categories, warm water stations, and a
-                lively crowd, it’s a glowing celebration of fitness, community,
-                and fresh starts along Gandhinagar’s scenic streets.
+                lively crowd, it's a glowing celebration of fitness, community,
+                and fresh starts along Gandhinagar's scenic streets.
               </p>
             </div>
           </div>
@@ -64,7 +63,17 @@ const FiveKmDetail = () => {
                   <strong>Men/Boys:</strong> Under 30 | Above 30
                 </p>
                 <p>
-                  <strong>Women/Girls:</strong> Under 30 | Above 30
+                  <strong>Women/Girls:</strong> Up to 30
+                </p>
+                <p className="mt-2 text-base">
+                  <strong>Women Age Discounts:</strong>
+                </p>
+                <p className="ml-4 text-base">
+                  31–40: Rs.639/- (10% discount)
+                  <br />
+                  41–50: Rs.532/- (25% discount)
+                  <br />
+                  51+: Rs.355/- (50% discount)
                 </p>
               </div>
             </div>
@@ -74,9 +83,11 @@ const FiveKmDetail = () => {
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
                 REGISTRATION FEE
               </h3>
-              <p className="text-lg text-gray-600 dark:text-white/80">
-                ₹599/- (per person)
-              </p>
+              <div className="text-gray-600 dark:text-white/80 text-lg">
+                <p>
+                  <strong>Individual:</strong> Rs.710/- (Including GST)
+                </p>
+              </div>
             </div>
 
             {/* Prize Money */}
