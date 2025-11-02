@@ -69,16 +69,7 @@ const Registration = () => {
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white text-base sm:text-lg font-semibold py-3 sm:py-4 px-8 sm:px-10 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg text-center"
             >
-              Individual Payment
-            </a>
-
-            <a
-              href="https://forms.eduqfix.com/bcorenightrun/add"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white text-base sm:text-lg font-semibold py-3 sm:py-4 px-8 sm:px-10 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg text-center"
-            >
-              Team Payment
+              Payment Now
             </a>
           </div>
         </div>

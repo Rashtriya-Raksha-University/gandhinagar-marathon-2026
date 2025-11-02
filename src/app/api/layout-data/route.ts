@@ -14,6 +14,12 @@ const MenuData = [
     newTab: false,
   },
   {
+    id: 2,
+    title: "Registration",
+    path: "/register",
+    newTab: false,
+  },
+  {
     id: 5,
     title: "General",
     path: "/general",
@@ -86,6 +92,7 @@ const footerData = {
     },
   ],
   links: [
+    { name: "Registration", href: "/register" },
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Donation", href: "/donation" },
