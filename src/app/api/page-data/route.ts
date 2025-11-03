@@ -326,11 +326,11 @@ const pricingData = {
   ],
 
   partnerLogo: [
-    "/images/logo/partner1.png",
-    "/images/logo/partner2.png",
-    "/images/logo/partner3.jpg",
+    "/images/logo/hyperlab.png",
+    "/images/logo/gsc.png",
+    "/images/logo/adc.png",
     "/images/logo/bcore.png",
-    "/images/logo/partner4.jpg",
+    "/images/logo/rru.png",
   ],
 };
 

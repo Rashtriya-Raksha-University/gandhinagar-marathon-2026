@@ -57,7 +57,7 @@ const TeamRunDetail = () => {
                 REGISTRATION FEE
               </h3>
               <p className="text-lg text-gray-600 dark:text-white/80">
-                ₹398/- (per team of 2)
+                ₹1200/- (per team of 3)
               </p>
             </div>
 
