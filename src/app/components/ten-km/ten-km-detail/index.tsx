@@ -133,7 +133,7 @@ const TenKmDetail = () => {
         {/* Registration Button */}
         <div className="flex justify-center mt-16 lg:mt-20">
           <Link
-            href="/registration"
+            href="/register"
             className="group relative inline-flex items-center justify-center px-12 py-4 bg-primary text-white font-semibold text-lg rounded-full transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-xl active:scale-95"
           >
             <span className="relative z-10">Register Now</span>
