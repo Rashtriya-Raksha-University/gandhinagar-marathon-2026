@@ -12,7 +12,7 @@ const HalfMarathonDetail = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
               <br />
-              HALF-MARATHON
+              21 Kadam Aage(21 km)
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">

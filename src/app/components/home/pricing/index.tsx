@@ -280,12 +280,11 @@ function Pricing() {
               className="flex flex-col gap-10"
             >
               <p className="text-secondary dark:text-white text-center">
-                More than 320 trusted partners & clients
+                Many trusted partners & clients
               </p>
               <Slider duration={20} pauseOnHover={true} blurBorders={false}>
                 {(pricingData?.partnerLogo || []).map(
                   (items: PartnerLogo | any, index: number) => {
-                    // normalize different possible shapes into the expected { light: string; dark: string }
                     const logo =
                       (items as any)?.light || (items as any)?.dark
                         ? {

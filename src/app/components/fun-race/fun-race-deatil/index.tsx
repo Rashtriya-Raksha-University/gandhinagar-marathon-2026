@@ -11,7 +11,8 @@ const FunRunDetail = () => {
           <div className="flex flex-col gap-8">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
-              <br />3 KM FUN RUN
+              <br />
+              Mini Mini Mini Marathon
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">

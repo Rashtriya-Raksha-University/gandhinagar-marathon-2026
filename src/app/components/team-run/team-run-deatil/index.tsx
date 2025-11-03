@@ -12,7 +12,7 @@ const TeamRunDetail = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
               BCORE
               <br />
-              TEAM NIGHT RUN
+              Bhaag Milkar Bhaag(Team Run)
             </h2>
             <div className="flex flex-col gap-6">
               <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed">
@@ -30,9 +30,7 @@ const TeamRunDetail = () => {
             </div>
           </div>
 
-          {/* Right Side - Runner Amenities, Fee, and Prizes */}
           <div className="flex flex-col gap-12">
-            {/* Runner Amenities */}
             <div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 RUNNER AMENITIES INCLUDED

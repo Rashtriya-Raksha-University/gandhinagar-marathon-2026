@@ -197,7 +197,7 @@ const teamData = {
 const pricingData = {
   data: [
     {
-      planName: "3 km Fun Run",
+      planName: "Mini Mini Mini Marathon(3 km)",
       planPrice: "Rs.240/-",
       cancelPrice: "",
       tag: "",
@@ -213,13 +213,13 @@ const pricingData = {
       slug: "race/fun-run",
     },
     {
-      planName: "5 km Run",
+      planName: " 5k Ka Funda(5 km)",
       planPrice: "Rs.710/-",
       cancelPrice: "",
       tag: "",
       planDescp:
         "Perfect for beginners and fitness enthusiasts above 16 years.",
-      eligibility: "Civilians (Men/Boy, Women/Girl)",
+      eligibility: "Civilians (Men/Boy, Women/Girl) , Law Enforcement Officers",
       tags: [
         "Base Fee: Rs.710/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -244,13 +244,13 @@ const pricingData = {
       slug: "race/five-km",
     },
     {
-      planName: "10 km Run",
+      planName: "Dus ke Dam (10 km)",
       planPrice: "Rs.830/-",
       cancelPrice: "",
       tag: "Most Popular",
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
-      eligibility: "Civilians (Men/Boy, Women/Girl)",
+      eligibility: "Civilians (Men/Boy, Women/Girl) , Law Enforcement Officers",
       tags: [
         "Base Fee: Rs.830/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -275,13 +275,13 @@ const pricingData = {
       slug: "race/ten-km",
     },
     {
-      planName: "Half Marathon",
+      planName: "21 Kadam Aage (21 km)",
       planPrice: "Rs.1200/-",
       cancelPrice: "",
       tag: "",
       planDescp:
         "Challenge yourself with India's prestigious night half-marathon.",
-      eligibility: "Civilians (Above 16 only)",
+      eligibility: "Civilians (Above 16 only) , Law Enforcement Officers",
       tags: [
         "Base Fee: Rs.1200/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -307,13 +307,14 @@ const pricingData = {
       slug: "race/half-marathon",
     },
     {
-      planName: "Team Run",
+      planName: "Bhaag Milkar Bhaag(team)",
       planPrice: "1200/- per team",
       cancelPrice: "",
       tag: "Teamwork",
       planDescp:
         "Run together with your team of 3 members in this exciting night challenge.",
-      eligibility: "Teams of 3 Members ",
+      eligibility:
+        "Teams of 3 Members both civilians & law enforcement officers",
       tags: [
         "Team Category",
         "Based on Race Type (3 km, 5 km, 10 km, Half Marathon)",
