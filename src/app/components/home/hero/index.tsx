@@ -78,23 +78,28 @@ function HeroSection() {
 
               {/* Heading + Button */}
               <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-6">
-                <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold leading-tight tracking-tight">
+                {/* <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold leading-tight tracking-tight">
                   Register
-                </h1>
+                </h1> */}
 
                 {/* Updated Registration Button */}
                 <Link
                   href="/register"
-                  className="mt-2 sm:mt-0 inline-flex items-center justify-center gap-2 bg-primary px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-white text-base sm:text-lg transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-95"
+                  className="mt-2 sm:mt-0 inline-flex items-center justify-center gap-3
+  bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600 px-10 py-5 sm:px-14 sm:py-6 rounded-full
+  font-extrabold text-white text-2xl sm:text-3xl tracking-wide
+  transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,100,200,0.7)]
+  active:scale-95 animate-pulse relative"
                 >
-                  Register Now
+                  <span className="drop-shadow-lg">Register Now</span>
                   <Image
                     src="/images/Icon/arrow-icon.svg"
                     alt="arrow icon"
-                    width={26}
-                    height={26}
-                    className="sm:w-[32px] sm:h-[32px]"
+                    width={40}
+                    height={40}
+                    className="sm:w-[44px] sm:h-[44px] drop-shadow-lg"
                   />
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-900 via-green-900 to-orange-900 opacity-50 blur-xl animate-pulse -z-10"></span>
                 </Link>
               </div>
             </div>

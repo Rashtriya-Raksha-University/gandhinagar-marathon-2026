@@ -19,12 +19,12 @@ const MenuData = [
     path: "/register",
     newTab: false,
   },
-  {
-    id: 5,
-    title: "General",
-    path: "/general",
-    newTab: false,
-  },
+  // {
+  //   id: 5,
+  //   title: "General",
+  //   path: "/general",
+  //   newTab: false,
+  // },
   {
     id: 2,
     title: "Races",
@@ -65,7 +65,7 @@ const MenuData = [
   {
     id: 3,
     title: "About",
-    path: "/about",
+    path: "https://bcore.rru.ac.in/",
     newTab: false,
   },
   {
@@ -94,9 +94,9 @@ const footerData = {
   links: [
     { name: "Registration", href: "/register" },
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
+    { name: "About", href: "https://bcore.rru.ac.in/" },
     { name: "Donation", href: "/donation" },
-    { name: "General", href: "/general" },
+    // { name: "General", href: "/general" },
     { name: "Races", href: "/race" },
     { name: "Contact", href: "/contact" },
   ],
