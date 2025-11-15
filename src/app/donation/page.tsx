@@ -137,30 +137,6 @@ const DonationPage = () => {
                   </ul>
                 </div>
               </div>
-
-              {/* Statistics */}
-              <div className="bg-primary/10 dark:bg-primary/20 p-6 rounded-lg">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-                  Our Impact
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { number: "10,000+", label: "Participants" },
-                    { number: "₹50L+", label: "Funds Raised" },
-                    { number: "25+", label: "Programs" },
-                    { number: "500+", label: "Athletes Trained" },
-                  ].map((stat, index) => (
-                    <div key={index} className="text-center">
-                      <div className="text-2xl font-bold text-primary mb-1">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-gray-600 dark:text-white/70">
-                        {stat.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Right Side - Donation Form */}

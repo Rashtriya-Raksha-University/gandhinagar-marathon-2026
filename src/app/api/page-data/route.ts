@@ -219,7 +219,8 @@ const pricingData = {
       tag: "",
       planDescp:
         "Perfect for beginners and fitness enthusiasts above 16 years.",
-      eligibility: "Civilians (Men/Boy, Women/Girl) , Law Enforcement Officers",
+      eligibility:
+        "Civilians (Men/Boy, Women/Girl) , Law Enforcement Officers , NCC",
       tags: [
         "Base Fee: Rs.710/- Including GST",
         "Age-Based Discounts (Women/Girl)",
