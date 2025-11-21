@@ -113,6 +113,15 @@ const footerData = {
     { name: "Email", href: "mailto:bcorenightrun@rru.ac.in" },
     { name: "Phone", href: "tel:+916357436705" },
   ],
+  policyLinks: [
+    { name: "Eligibility Criteria", href: "/policies/eligibility-criteria" },
+    { name: "Rules & Regulations", href: "/policies/rules-regulations" },
+    { name: "Refund Policy", href: "/policies/refund" },
+    { name: "Health & Safety", href: "/policies/health-safety" },
+    { name: "Data Protection", href: "/policies/data-protection" },
+    { name: "Accessibility", href: "/policies/accessibility" },
+  ],
+
   copyright: "© BCORE copyright 2025",
 };
 

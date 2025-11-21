@@ -4,11 +4,11 @@ import Link from "next/link";
 
 const EligibilityCriteriaPage = () => {
   const raceCategories: { name: string; distance: string }[] = [
-    { name: "Half Marathon (21 Kadam Aage)", distance: "21 kilometres" },
-    { name: "10km (Dus ke Dam)", distance: "10 kilometres" },
-    { name: "5km (5k ka funda)", distance: "5 kilometres" },
-    { name: "Team Run (Bhaag Milkar Bhaag)", distance: "5 kilometres" },
-    { name: "3km Fun Run (Mini Mini Mini Marathon)", distance: "3 kilometres" },
+    { name: "21 Kadam Aage", distance: "21 kilometres" },
+    { name: "Dus ke Dam", distance: "10 kilometres" },
+    { name: "5k ka funda", distance: "5 kilometres" },
+    { name: "Bhaag Milkar Bhaag", distance: "5 kilometres" },
+    { name: "Mini Mini Mini Marathon", distance: "3 kilometres" },
   ];
 
   const startTimes: { race: string; time: string }[] = [

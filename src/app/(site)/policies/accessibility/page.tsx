@@ -1,16 +1,24 @@
-import GeneralHero from "@/app/components/general/general-hero";
-import GeneralDetail from "@/app/components/general/general-deatil";
 import { Metadata } from "next";
+import AccessibilityPage from "@/app/components/policies/accessibility";
 
 export const metadata: Metadata = {
-  title: "BCORE Gandhinagar Marathon | Accessibility",
-  description: "Accessibility policy for BCORE Gandhinagar Marathon.",
+  title: "BCORE Night Run 2026 | Accessibility & Inclusivity",
+  description:
+    "Learn about accessibility and inclusivity initiatives at BCORE Night Run. Information on wheeled equipment, support services, and inclusive participation options for all abilities.",
+  keywords: [
+    "accessibility",
+    "inclusivity",
+    "wheelchair",
+    "para-athletes",
+    "BCORE Night Run",
+    "adaptive sports",
+  ],
 };
 
-export default function AccessibilityPage() {
+export default function Page() {
   return (
     <main>
-      <GeneralDetail />
+      <AccessibilityPage />
     </main>
   );
 }
