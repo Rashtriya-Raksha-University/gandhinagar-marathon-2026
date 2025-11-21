@@ -65,9 +65,6 @@ const FunRunDetail = () => {
                 <p>
                   <strong>Women/Girls:</strong> Under 16 | Para-Abled
                 </p>
-                <p className="mt-2">
-                  <strong>Team:</strong> Up to 5 Members
-                </p>
               </div>
             </div>
 

@@ -24,23 +24,21 @@ const statsFactData = {
   name: "Stats & facts",
   heading: "We're more than just a running event...",
   description:
-    "The BCORE Night Run 2026 is set to welcome thousands of participants, spectators, and sponsors, making it one of India's most remarkable running events. The twist to the tale is that it take place in the glowing night of Gandhinagar. From all across the country, the law enforcement officers shall blend with the civilians, para-abled and u-16 athletes runners. Excited? Simply Register.",
+    "The BCORE Night Run 2026 is set to welcome thousands of participants, spectators, and sponsors, making it one of India's most remarkable running events envisioning the Olympism Movement. The BCORE Night Run builds on one foundation pillar – safe sport and safe space for female runners. Aside from that, you will enjoy the following:",
+
+  descriptionPoints: [
+    "Be part of the Indian Olympic Movement",
+    "Promote women safety and security in the evening hours",
+    "Glow in the Night theme run and also an after-party",
+    "Engraved Medal and T-shirt customised to the event",
+    "Bonfires, Workshops, and Exhibition for families and friends",
+    "Fulfill your New Year Resolution and not wake up at 6am to run!!!",
+  ],
+
   scoreData: [
-    {
-      number: 1500,
-      numberValue: "",
-      scoreDescp: "Expected Participants",
-    },
-    {
-      number: 500,
-      numberValue: "",
-      scoreDescp: "Spectators",
-    },
-    {
-      number: 5,
-      numberValue: "",
-      scoreDescp: "Sponsors",
-    },
+    { number: 1500, numberValue: "", scoreDescp: "Expected Participants" },
+    { number: 500, numberValue: "", scoreDescp: "Spectators" },
+    { number: 5, numberValue: "", scoreDescp: "Sponsors" },
   ],
 };
 
@@ -203,7 +201,7 @@ const pricingData = {
       tag: "",
       planDescp:
         "Fun and family-friendly race for civilians, including para-athletes.",
-      eligibility: "Under 16 + Para-Abled (Men/Boy, Women/Girl)",
+      eligibility: "Abled (Under 16) + Para Abled (All ages)",
       tags: [
         "Flat Fee: Rs.240/- Including GST",
         "Open for Under 16 & Para-Abled",
@@ -220,7 +218,7 @@ const pricingData = {
       planDescp:
         "Perfect for beginners and fitness enthusiasts above 16 years.",
       eligibility:
-        "For civilian, law enforcement and RRU/NCC/NSS/Bharat Scout & Guide",
+        "For civilian, law enforcement off and RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.710/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -252,7 +250,7 @@ const pricingData = {
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
       eligibility:
-        "For civilian, law enforcement and RRU/NCC/NSS/Bharat Scout & Guide",
+        "For civilian, law enforcement officers and RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.830/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -284,7 +282,7 @@ const pricingData = {
       planDescp:
         "Challenge yourself with India's prestigious night half-marathon.",
       eligibility:
-        "(Above 16 only) For civilian, law enforcement and RRU/NCC/NSS/Bharat Scout & Guide",
+        " For civilian, law enforcement officers and RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.1200/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -317,13 +315,8 @@ const pricingData = {
       planDescp:
         "Run together with your team of 3 members in this exciting night challenge.",
       eligibility:
-        "Teams of 3 Members both civilians & law enforcement officers",
-      tags: [
-        "Team Category",
-        "Based on Race Type (3 km, 5 km, 10 km, Half Marathon)",
-        "Same Discounts Apply per Race",
-      ],
-      discounts: ["Applicable as per selected race (A & B tables)"],
+        "Teams of 3 Members can be  civilians or law enforcement officers",
+      tags: ["Team Category", "Mixed Teams Allowed Male & Female"],
       slug: "race/team-run",
     },
   ],
@@ -361,7 +354,7 @@ const faqData = {
     },
     {
       faq_que: "What are the cut-off times for all the events?",
-      faq_ans: `- Half Marathon (HM): 3 hours 30 mins\n- 10K Run: 1 hour 30 mins\n- 5K Run: 1 hour\n- 3KM (3 km): 45 minutes`,
+      faq_ans: `- Half Marathon (HM): 3 hours 30 mins\n- 10K Run: 1 hour 30 mins\n- 5K Run: 1 hour\n- FUN RUN(3 km): 45 minutes`,
     },
     {
       faq_que: "Can I run barefoot in all the events?",
