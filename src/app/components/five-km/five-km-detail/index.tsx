@@ -98,33 +98,14 @@ const FiveKmDetail = () => {
               </h3>
               <div className="text-gray-600 dark:text-white/80 text-lg">
                 <p>
-                  <strong>1st Prize:</strong> ₹10,000
+                  <strong>1st Prize:</strong> TBA
                 </p>
                 <p>
-                  <strong>2nd Prize:</strong> ₹7,000
+                  <strong>2nd Prize:</strong> TBA
                 </p>
                 <p>
-                  <strong>3rd Prize:</strong> ₹5,000
+                  <strong>3rd Prize:</strong> TBA
                 </p>
-              </div>
-            </div>
-
-            {/* Add-Ons */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                Add-Ons
-              </h3>
-              <div className="flex flex-col gap-3">
-                {[
-                  "Customized race shirt",
-                  "Medal engraving",
-                  "Participation in International Olympic Conference",
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                    <p className="text-gray-600 dark:text-white/80">{item}</p>
-                  </div>
-                ))}
               </div>
             </div>
           </div>

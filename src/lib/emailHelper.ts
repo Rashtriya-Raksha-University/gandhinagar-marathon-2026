@@ -3,10 +3,9 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM_EMAIL = "Night Marathon 2026 <onboarding@resend.dev>"; // Replace with your verified domain later
-const ADMIN_EMAIL = "siddiqiss1234@gmail.com";
+const FROM_EMAIL = "Night Marathon 2026 <onboarding@resend.dev>";
+const ADMIN_EMAIL = "bcorenightrun@rru.ac.in";
 
-// ✅ Helper: Thank You Email (to user)
 const getThankYouEmailTemplate = (name: string) => `
 <!DOCTYPE html>
 <html lang="en">

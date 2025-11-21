@@ -90,25 +90,6 @@ const FunRunDetail = () => {
                 participants under 16 years of age.
               </p>
             </div>
-
-            {/* Add-Ons */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                Add-Ons
-              </h3>
-              <div className="flex flex-col gap-3">
-                {[
-                  "Customized size race shirt",
-                  "Medal engraving",
-                  "Photo session",
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
-                    <p className="text-gray-600 dark:text-white/80">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 

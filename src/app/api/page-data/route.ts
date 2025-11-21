@@ -220,7 +220,7 @@ const pricingData = {
       planDescp:
         "Perfect for beginners and fitness enthusiasts above 16 years.",
       eligibility:
-        "Civilians (Men/Boy, Women/Girl) , Law Enforcement Officers , NCC",
+        "For civilian, law enforcement and RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.710/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -251,7 +251,8 @@ const pricingData = {
       tag: "Most Popular",
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
-      eligibility: "Civilians (Men/Boy, Women/Girl) , Law Enforcement Officers",
+      eligibility:
+        "For civilian, law enforcement and RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.830/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -282,7 +283,8 @@ const pricingData = {
       tag: "",
       planDescp:
         "Challenge yourself with India's prestigious night half-marathon.",
-      eligibility: "Civilians (Above 16 only) , Law Enforcement Officers",
+      eligibility:
+        "(Above 16 only) For civilian, law enforcement and RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.1200/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -346,11 +348,12 @@ const faqData = {
     {
       faq_que: "Can I run any running event without a bib?",
       faq_ans:
-        "No. Running with a bib attached is mandatory for all four events.",
+        "No. Running with a bib attached is mandatory for all five events.",
     },
     {
       faq_que: "What is the minimum age of participants for all the events?",
-      faq_ans: `Minimum age as on 4 January 2025:\n- Half Marathon (HM): 18 years\n- 10K Run: 12 years\n- 5K Run: 6 years\n- 3KM (3 km): 6 years`,
+      faq_ans: `Minimum age as on 4 January 2025:\n- Half Marathon (HM): 18 years\n- 10K Run: 12 years\n- 5 Kilometres - 1 hour (Team Run as well)
+\n-3 Kilometres - 30 minutes for u-16 and 1 hour for para-abled participants.`,
     },
     {
       faq_que: "When is the last date to register?",
@@ -358,7 +361,7 @@ const faqData = {
     },
     {
       faq_que: "What are the cut-off times for all the events?",
-      faq_ans: `- Half Marathon (HM): 3 hours\n- 10K Run: 1 hour 30 mins\n- 5K Run: 1 hour\n- 3KM (3 km): 45 minutes`,
+      faq_ans: `- Half Marathon (HM): 3 hours 30 mins\n- 10K Run: 1 hour 30 mins\n- 5K Run: 1 hour\n- 3KM (3 km): 45 minutes`,
     },
     {
       faq_que: "Can I run barefoot in all the events?",
@@ -367,7 +370,7 @@ const faqData = {
     },
     {
       faq_que: "Can I get a refund or transfer my registration to a friend?",
-      faq_ans: "No. We do not have a refund or transfer policy for any event.",
+      faq_ans: "No. Please read the Refund Policy or contact us.",
     },
     {
       faq_que:
