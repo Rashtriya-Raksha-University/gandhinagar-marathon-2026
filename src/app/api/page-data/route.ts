@@ -359,6 +359,7 @@ const faqData = {
     {
       faq_que: "Can I run barefoot in all the events?",
       faq_ans:
+      
         "Yes. However, we do not recommend running the race barefooted. Barefoot runners must account for their own risks and responsibilities.",
     },
     {
