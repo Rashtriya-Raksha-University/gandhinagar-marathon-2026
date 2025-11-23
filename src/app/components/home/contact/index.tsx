@@ -181,7 +181,7 @@ const Contact = ({
                     onChange={handleChange}
                   >
                     <option value="general">General Inquiry</option>
-                    <option value="support">Payment iss</option>
+                    <option value="support">Payment issue</option>
                     <option value="complaint">Complaint/Issue</option>
                     <option value="feedback">Feedback</option>
                   </select>
