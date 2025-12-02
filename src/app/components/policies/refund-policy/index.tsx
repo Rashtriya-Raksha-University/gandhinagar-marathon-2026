@@ -14,7 +14,7 @@ const RefundPolicyPage = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 dark:bg-secondary">
+    <section className="py-16 md:py-24 bg-blue-200 lg:py-32 dark:bg-secondary">
       <div className="container">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
