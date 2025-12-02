@@ -9,6 +9,7 @@ import ScrollToTop from "./components/scroll-to-top";
 import { Analytics } from "@vercel/analytics/next";
 import PageTransition from "@/app/components/PageTransition"; // ✅ import transition wrapper
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const manrope = Manrope({
   subsets: ["latin"],
 });
@@ -50,6 +51,7 @@ export default function RootLayout({
         {!hideLayout && <Footer />}
         <ScrollToTop />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
