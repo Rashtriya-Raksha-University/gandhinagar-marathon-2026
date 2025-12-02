@@ -149,9 +149,18 @@ function Pricing() {
                           <p className="text-xs font-semibold text-secondary/60 dark:text-white/60 mb-2">
                             ELIGIBILITY
                           </p>
-                          <p className="text-sm text-secondary/80 dark:text-white/80">
-                            {value.eligibility}
-                          </p>
+                          <ul className="list-disc list-inside space-y-1">
+                            {value.eligibility
+                              .split(/[,+]/)
+                              .map((item: string, idx: number) => (
+                                <li
+                                  key={idx}
+                                  className="text-sm text-secondary/80 dark:text-white/80"
+                                >
+                                  {item.trim()}
+                                </li>
+                              ))}
+                          </ul>
                         </div>
                       </div>
 

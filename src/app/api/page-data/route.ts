@@ -201,7 +201,7 @@ const pricingData = {
       tag: "",
       planDescp:
         "Fun and family-friendly race for civilians, including para-athletes.",
-      eligibility: "Abled (Under 16) + Para Abled (All ages)",
+      eligibility: "Abled (Under 16) , Para Abled (All ages)",
       tags: [
         "Flat Fee: Rs.240/- Including GST",
         "Open for Under 16 & Para-Abled",
@@ -218,7 +218,7 @@ const pricingData = {
       planDescp:
         "Perfect for beginners and fitness enthusiasts above 16 years.",
       eligibility:
-        "For civilian, law enforcement off and RRU/NCC/NSS/Bharat Scout & Guide",
+        "For Civilian, Law Enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.710/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -250,7 +250,7 @@ const pricingData = {
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
       eligibility:
-        "For civilian, law enforcement officers and RRU/NCC/NSS/Bharat Scout & Guide",
+        "For civilian, Law enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.830/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -282,7 +282,7 @@ const pricingData = {
       planDescp:
         "Challenge yourself with India's prestigious night half-marathon.",
       eligibility:
-        " For civilian, law enforcement officers and RRU/NCC/NSS/Bharat Scout & Guide",
+        " For civilian, Law enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Base Fee: Rs.1200/- Including GST",
         "Age-Based Discounts (Women/Girl)",
@@ -315,7 +315,7 @@ const pricingData = {
       planDescp:
         "Run together with your team of 3 members in this exciting night challenge.",
       eligibility:
-        "Teams of 3 Members can be  civilians or law enforcement officers",
+        "Teams of 3 Members can be  Civilians ,Teams of 3 Members can be Law enforcement officers",
       tags: ["Team Category", "Mixed Teams Allowed Male & Female"],
       slug: "race/team-run",
     },
@@ -343,11 +343,7 @@ const faqData = {
       faq_ans:
         "No. Running with a bib attached is mandatory for all five events.",
     },
-    {
-      faq_que: "What is the minimum age of participants for all the events?",
-      faq_ans: `Minimum age as on 4 January 2025:\n- Half Marathon (HM): 18 years\n- 10K Run: 12 years\n- 5 Kilometres - 1 hour (Team Run as well)
-\n-3 Kilometres - 30 minutes for u-16 and 1 hour for para-abled participants.`,
-    },
+
     {
       faq_que: "When is the last date to register?",
       faq_ans: "20 December 2025",
@@ -359,7 +355,6 @@ const faqData = {
     {
       faq_que: "Can I run barefoot in all the events?",
       faq_ans:
-      
         "Yes. However, we do not recommend running the race barefooted. Barefoot runners must account for their own risks and responsibilities.",
     },
     {
@@ -385,6 +380,18 @@ const faqData = {
         "Will there be hydration and medical aid stations throughout the route?",
       faq_ans:
         "Yes. All participants can remain assured to receive sufficient hydration, energy and medical facilities. Physiotherapy services will also be provided at medical checkpoints and finish points.",
+    },
+    {
+      faq_que:
+        "Is it a relay race or all members will complete race together? ",
+      faq_ans:
+        " All the members will race together and will individually do 5km together, so 15km total.",
+    },
+    {
+      faq_que:
+        "What are the  rules of team run race completion and which time will get noted?  ",
+      faq_ans:
+        " The average team time will be noted. The purpose of this team run is to have leisure running people participate together in a comparatively reduced price compared to individual 5km. ",
     },
   ],
 };
