@@ -191,7 +191,7 @@ const pricingData = {
         "For Civilian, Law Enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
         "Flat Fee: Rs.120/- Including GST",
-        "Open for Under 16 & Para-Abled",
+        "Open to all age groups",
         "Inclusive Run for All",
       ],
 
@@ -206,10 +206,7 @@ const pricingData = {
         "Perfect for beginners and fitness enthusiasts above 16 years.",
       eligibility:
         "For Civilian, Law Enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
-      tags: [
-        "Base Fee: Rs.120/- Including GST",
-        "Age-Based Discounts (Women/Girl)",
-      ],
+      tags: ["Base Fee: Rs.120/- Including GST", "Open to all age groups"],
 
       slug: "race/five-km",
     },
@@ -222,10 +219,7 @@ const pricingData = {
         "Perfect for fitness enthusiasts looking for a competitive run.",
       eligibility:
         "For civilian, Law enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
-      tags: [
-        "Base Fee: Rs.830/- Including GST",
-        "Age-Based Discounts (Women/Girl)",
-      ],
+      tags: ["Base Fee: Rs.120/- Including GST", "Open to all age groups"],
       discounts: [
         {
           group: "Women/Girl (31–40 years)",
