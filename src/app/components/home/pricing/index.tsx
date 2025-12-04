@@ -176,55 +176,6 @@ function Pricing() {
                         ))}
                       </div>
 
-                      {/* Discounts Section */}
-                      {Array.isArray(value.discounts) &&
-                        value.discounts.length > 0 && (
-                          <div className="pt-4 border-t border-secondary/10 dark:border-white/10">
-                            <p className="text-xs font-semibold text-secondary/60 dark:text-white/60 mb-3">
-                              SPECIAL DISCOUNTS
-                            </p>
-                            <div className="flex flex-col gap-2">
-                              {value.discounts.map(
-                                (
-                                  discount: Discount | string,
-                                  discIndex: number
-                                ) => {
-                                  if (typeof discount === "string") {
-                                    return (
-                                      <p
-                                        key={discIndex}
-                                        className="text-xs text-secondary/70 dark:text-white/70 italic"
-                                      >
-                                        {discount}
-                                      </p>
-                                    );
-                                  }
-                                  return (
-                                    <div
-                                      key={discIndex}
-                                      className="flex items-center justify-between gap-2 bg-secondary/5 dark:bg-white/5 px-3 py-2 rounded-lg"
-                                    >
-                                      <span className="text-xs text-secondary/80 dark:text-white/80 flex-1">
-                                        {discount.group}
-                                      </span>
-                                      <div className="flex items-center gap-2">
-                                        <span
-                                          className={`${getDiscountColor(discount.discount)} px-2 py-1 rounded-md text-xs font-bold`}
-                                        >
-                                          {discount.discount} OFF
-                                        </span>
-                                        <span className="text-xs font-semibold text-secondary dark:text-white">
-                                          {discount.fee}
-                                        </span>
-                                      </div>
-                                    </div>
-                                  );
-                                }
-                              )}
-                            </div>
-                          </div>
-                        )}
-
                       {/* Button */}
                       {/* Buttons Section */}
                       <div className="mt-auto pt-4 flex flex-col sm:flex-row gap-3">

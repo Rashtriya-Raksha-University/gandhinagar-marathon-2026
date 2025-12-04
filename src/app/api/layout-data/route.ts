@@ -19,29 +19,11 @@ const MenuData = [
     path: "/register",
     newTab: false,
   },
-  // {
-  //   id: 5,
-  //   title: "General",
-  //   path: "/general",
-  //   newTab: false,
-  // },
   {
     id: 2,
     title: "Races",
     newTab: false,
     submenu: [
-      {
-        id: 50,
-        title: "Team Run",
-        path: "/race/team-run",
-        newTab: false,
-      },
-      {
-        id: 51,
-        title: "Half Marathon",
-        path: "/race/half-marathon",
-        newTab: false,
-      },
       {
         id: 52,
         title: "10 KM",

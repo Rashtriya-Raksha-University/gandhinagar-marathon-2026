@@ -129,10 +129,10 @@ const TenKmDetail = () => {
                     <tr className="bg-gray-50 dark:bg-gray-700">
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Men (Under 30 and Above 30)
+                        Men
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Women (Under 30)
+                        Women
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                     </tr>
@@ -146,67 +146,10 @@ const TenKmDetail = () => {
                         All Ages
                       </td>
                       <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-gray-600 dark:text-white/80">
-                        Up to 30
+                        All Ages
                       </td>
                       <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-white/90 font-semibold">
-                        Rs. 830/- Including GST
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Women's Discount Table */}
-              <div className="mt-4 overflow-x-auto">
-                <h5 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                  Women Masters Divisions (Above 30)
-                </h5>
-                <table className="w-full border-collapse border border-gray-300 dark:border-gray-600">
-                  <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
-                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold text-gray-800 dark:text-white">
-                        Age Category
-                      </th>
-                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold text-gray-800 dark:text-white">
-                        Registration Fee
-                      </th>
-                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold text-gray-800 dark:text-white">
-                        Discount
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-white/90">
-                        Above 31 to 40
-                      </td>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-600 dark:text-white/80">
-                        Rs. 747/- (Including GST)
-                      </td>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-600 dark:text-white/80">
-                        10% discount
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-white/90">
-                        Above 41 to 50
-                      </td>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-600 dark:text-white/80">
-                        Rs. 622/- (Including GST)
-                      </td>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-600 dark:text-white/80">
-                        25% discount
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-white/90">
-                        Above 51
-                      </td>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-600 dark:text-white/80">
-                        Rs. 415/- (Including GST)
-                      </td>
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-600 dark:text-white/80">
-                        50% discount
+                        Rs. 120/- Including GST
                       </td>
                     </tr>
                   </tbody>

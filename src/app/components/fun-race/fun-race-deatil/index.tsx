@@ -101,13 +101,13 @@ const FunRunDetail = () => {
                             3 km
                           </td>
                           <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-gray-600 dark:text-white/80">
-                            Under 16 + Para-Abled
+                            Open to all age groups
                           </td>
                           <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-gray-600 dark:text-white/80">
-                            Under 16 + Para-Abled
+                            Open to all age groups
                           </td>
                           <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-white/90 font-semibold">
-                            Rs. 240/- Including GST
+                            Rs. 120/- Including GST
                           </td>
                         </tr>
                       </tbody>
@@ -149,13 +149,7 @@ const FunRunDetail = () => {
                         are not met
                       </p>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-2"></div>
-                      <p>
-                        Half Marathon is not available for participants under 16
-                        years of age
-                      </p>
-                    </div>
+                    <div className="flex items-start gap-3"></div>
                   </div>
                 </div>
               </div>
@@ -192,10 +186,10 @@ const FunRunDetail = () => {
               </h3>
               <div className="text-gray-600 dark:text-white/80 text-lg">
                 <p>
-                  <strong>Men/Boys:</strong> Under 16 | Para-Abled
+                  <strong>Men/Boys:</strong> Open to all age groups{" "}
                 </p>
                 <p>
-                  <strong>Women/Girls:</strong> Under 16 | Para-Abled
+                  <strong>Women/Girls:</strong> Open to all age groups
                 </p>
               </div>
             </div>
@@ -207,17 +201,9 @@ const FunRunDetail = () => {
               </h3>
               <div className="text-gray-600 dark:text-white/80 text-lg">
                 <p>
-                  <strong>Individual:</strong> Rs.240/- (Including GST)
+                  <strong>Individual:</strong> Rs.120/- (Including GST)
                 </p>
               </div>
-            </div>
-
-            {/* Important Note */}
-            <div className="bg-primary/10 dark:bg-primary/20 p-6 rounded-lg">
-              <p className="text-base text-gray-700 dark:text-white/90">
-                <strong>Note:</strong> Half Marathon is not available for
-                participants under 16 years of age.
-              </p>
             </div>
           </div>
         </div>

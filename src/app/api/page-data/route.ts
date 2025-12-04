@@ -50,13 +50,6 @@ const servicesData = {
     "From challenging half-marathons to family-friendly team run, we have the perfect race category for every runner. Join us in Gandhinagar for an unforgettable running experience.",
   data: [
     {
-      id: 1,
-      image: "/images/home/services/service_1.jpg",
-      heading: "Half Marathon",
-      descp:
-        "The BCORE Half-Marathon is going to be one of the fastest and exciting marathons in India. It isn't just any other race – it's the first race organized by an Indian Olympic Centre.",
-    },
-    {
       id: 2,
       image: "/images/home/services/service_2.jpg",
       heading: "10KM Run",
@@ -76,13 +69,6 @@ const servicesData = {
       heading: "3KM",
       descp:
         " Get ready for big smiles and lots of excitement! The 3km race is accessible to the u-16 age category and the para-abled. It's all about celebrating the art of inclusivity, ideal for our next generation of runners and people looking to feel a mini mini minimarathon!",
-    },
-    {
-      id: 5,
-      image: "/images/crousal/img4.jpg",
-      heading: "Team Run",
-      descp:
-        "Bhaag Milkar Bhaag embodies the spirit of collaboration and endurance across every domain — sea, air, and land. Designed to foster unity and camaraderie, this unique team run invites 3- person pairs to achieve success or gossip together. The event culminates with winning teams receiving personalized gift vouchers, celebrating both achievement and teamwork.",
     },
   ],
 };
@@ -195,58 +181,43 @@ const teamData = {
 const pricingData = {
   data: [
     {
-      planName: "Mini Mini Mini Marathon(3 km)",
-      planPrice: "Rs.240/-",
+      planName: "3 km Run",
+      planPrice: "Rs.120/-",
       cancelPrice: "",
       tag: "",
       planDescp:
         "Fun and family-friendly race for civilians, including para-athletes.",
-      eligibility: "Abled (Under 16) , Para Abled (All ages)",
+      eligibility:
+        "For Civilian, Law Enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
-        "Flat Fee: Rs.240/- Including GST",
+        "Flat Fee: Rs.120/- Including GST",
         "Open for Under 16 & Para-Abled",
         "Inclusive Run for All",
       ],
-      discounts: [],
+
       slug: "race/fun-run",
     },
     {
-      planName: " 5k Ka Funda(5 km)",
-      planPrice: "Rs.710/-",
+      planName: " 5 km Run",
+      planPrice: "Rs.120/-",
       cancelPrice: "",
-      tag: "",
+      tag: "Most Popular",
       planDescp:
         "Perfect for beginners and fitness enthusiasts above 16 years.",
       eligibility:
         "For Civilian, Law Enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
       tags: [
-        "Base Fee: Rs.710/- Including GST",
+        "Base Fee: Rs.120/- Including GST",
         "Age-Based Discounts (Women/Girl)",
       ],
-      discounts: [
-        {
-          group: "Women/Girl (31–40 years)",
-          discount: "10%",
-          fee: "Rs.639/-",
-        },
-        {
-          group: "Women/Girl (41–50 years)",
-          discount: "25%",
-          fee: "Rs.532/-",
-        },
-        {
-          group: "Women/Girl (Above 51 years)",
-          discount: "50%",
-          fee: "Rs.355/-",
-        },
-      ],
+
       slug: "race/five-km",
     },
     {
-      planName: "Dus ke Dam (10 km)",
-      planPrice: "Rs.830/-",
+      planName: "10 km Run",
+      planPrice: "Rs.120/-",
       cancelPrice: "",
-      tag: "Most Popular",
+      tag: "",
       planDescp:
         "Perfect for fitness enthusiasts looking for a competitive run.",
       eligibility:
@@ -273,51 +244,6 @@ const pricingData = {
         },
       ],
       slug: "race/ten-km",
-    },
-    {
-      planName: "21 Kadam Aage (21 km)",
-      planPrice: "Rs.1200/-",
-      cancelPrice: "",
-      tag: "",
-      planDescp:
-        "Challenge yourself with India's prestigious night half-marathon.",
-      eligibility:
-        " For civilian, Law enforcement officers , RRU/NCC/NSS/Bharat Scout & Guide",
-      tags: [
-        "Base Fee: Rs.1200/- Including GST",
-        "Age-Based Discounts (Women/Girl)",
-        "Not Applicable for Under 16",
-      ],
-      discounts: [
-        {
-          group: "Women/Girl (31–40 years)",
-          discount: "10%",
-          fee: "Rs.1080/-",
-        },
-        {
-          group: "Women/Girl (41–50 years)",
-          discount: "25%",
-          fee: "Rs.900/-",
-        },
-        {
-          group: "Women/Girl (Above 51 years)",
-          discount: "50%",
-          fee: "Rs.600/-",
-        },
-      ],
-      slug: "race/half-marathon",
-    },
-    {
-      planName: "Bhaag Milkar Bhaag(team)",
-      planPrice: "1200/- per team",
-      cancelPrice: "",
-      tag: "Teamwork",
-      planDescp:
-        "Run together with your team of 3 members in this exciting night challenge.",
-      eligibility:
-        "Teams of 3 Members can be  Civilians ,Teams of 3 Members can be Law enforcement officers",
-      tags: ["Team Category", "Mixed Teams Allowed Male & Female"],
-      slug: "race/team-run",
     },
   ],
 
@@ -380,18 +306,6 @@ const faqData = {
         "Will there be hydration and medical aid stations throughout the route?",
       faq_ans:
         "Yes. All participants can remain assured to receive sufficient hydration, energy and medical facilities. Physiotherapy services will also be provided at medical checkpoints and finish points.",
-    },
-    {
-      faq_que:
-        "Is it a relay race or all members will complete race together? ",
-      faq_ans:
-        " All the members will race together and will individually do 5km together, so 15km total.",
-    },
-    {
-      faq_que:
-        "What are the  rules of team run race completion and which time will get noted?  ",
-      faq_ans:
-        " The average team time will be noted. The purpose of this team run is to have leisure running people participate together in a comparatively reduced price compared to individual 5km. ",
     },
   ],
 };
