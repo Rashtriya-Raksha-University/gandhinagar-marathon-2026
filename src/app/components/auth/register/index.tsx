@@ -23,6 +23,31 @@ const Registration = () => {
       {/* Overlay Content */}
       <div className="relative z-10 max-w-3xl w-full">
         <div className="bg-gray-900/80 backdrop-blur-lg rounded-3xl shadow-2xl p-6 sm:p-10 lg:p-12 border border-gray-700/50">
+          {/* Registration Deadline Banner */}
+          <div className="mb-6 flex justify-center">
+            <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 px-5 py-3 sm:px-6 sm:py-3.5 rounded-full shadow-xl border-2 border-white/30">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <p className="font-bold text-white text-sm sm:text-base tracking-wide whitespace-nowrap">
+                  Registration Ends{" "}
+                  <span className="text-yellow-200 font-extrabold">
+                    30th December
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-white mb-10 tracking-tight">
             Get Ready for the Run!
@@ -62,8 +87,8 @@ const Registration = () => {
                 icon: "🎉",
                 text: (
                   <>
-                    <strong className="text-xl">That’s it!</strong> You’re all
-                    set for the run — we can’t wait to see you at the starting
+                    <strong className="text-xl">That's it!</strong> You're all
+                    set for the run — we can't wait to see you at the starting
                     line!
                   </>
                 ),
