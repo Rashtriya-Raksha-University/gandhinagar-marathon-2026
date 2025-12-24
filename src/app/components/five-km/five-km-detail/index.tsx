@@ -170,7 +170,7 @@ const FiveKmDetail = () => {
                   "Official timing E-certificate",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-primary rounded-full shrink-0"></div>
                     <p className="text-gray-600 dark:text-white/80">{item}</p>
                   </div>
                 ))}

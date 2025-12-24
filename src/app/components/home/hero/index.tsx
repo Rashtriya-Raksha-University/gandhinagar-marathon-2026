@@ -42,29 +42,35 @@ function HeroSection() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50 sm:bg-black/40"></div>
 
-      {/* Registration Deadline Banner (Mobile Only) */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 z-20 sm:hidden">
-        <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 px-4 py-2 rounded-full shadow-xl backdrop-blur-sm border-2 border-white/30">
-          <div className="flex items-center gap-2">
-            <svg
-              className="w-4 h-4 animate-pulse"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <p className="font-bold text-white text-xs tracking-wide whitespace-nowrap">
-              Registration Ends{" "}
-              <span className="text-yellow-200 font-extrabold">
-                30th December
-              </span>
-            </p>
-          </div>
-        </div>
+      {/* Race Route Button (Top Right) */}
+      <div className="absolute top-20 sm:top-24 right-4 sm:right-8 z-20">
+        <Link
+          href="https://drive.google.com/file/d/1EN_ykicGeZpzPSWpKT0JoPnrAkr4GENr/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
+        >
+          <svg
+            className="w-4 h-4 sm:w-5 sm:h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+          <span>Race Route</span>
+        </Link>
       </div>
 
       {/* Carousel Indicators */}
@@ -86,12 +92,12 @@ function HeroSection() {
       {/* Content */}
       <div className="relative z-10 container text-left px-5 sm:px-10">
         <div className="flex flex-col gap-4 sm:gap-6 pb-16 sm:pb-20">
-          {/* Registration Deadline Banner (Desktop Only – Above Text) */}
-          <div className="hidden sm:flex">
-            <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 px-6 py-3 rounded-full shadow-xl backdrop-blur-sm border-2 border-white/30">
-              <div className="flex items-center gap-3">
+          {/* Registration Deadline Banner (All Screens – Above Text) */}
+          <div className="flex">
+            <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-xl backdrop-blur-sm border border-white/30">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <svg
-                  className="w-5 h-5 animate-pulse"
+                  className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -101,7 +107,7 @@ function HeroSection() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <p className="font-bold text-white text-base tracking-wide whitespace-nowrap">
+                <p className="font-bold text-white text-[10px] sm:text-xs tracking-wide whitespace-nowrap">
                   Registration Ends{" "}
                   <span className="text-yellow-200 font-extrabold">
                     30th December
