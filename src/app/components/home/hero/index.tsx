@@ -122,25 +122,50 @@ function HeroSection() {
             iconic cityscape, cultural landmarks, and scenic green avenues.
           </p>
 
-          {/* Register Button */}
-          <div className="flex">
+          {/* Register Buttons */}
+          <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-6">
             <Link
               href="/register"
-              className="inline-flex items-center justify-center gap-3
-              bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600 px-10 py-5 sm:px-14 sm:py-6 rounded-full
-              font-extrabold text-white text-2xl sm:text-3xl tracking-wide
-              transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,100,200,0.7)]
-              active:scale-95 animate-pulse relative"
+              className="inline-flex items-center justify-center gap-1.5 w-fit
+              bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full
+              font-bold text-white text-sm sm:text-lg tracking-wide
+              transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]
+              active:scale-95 relative border-2 border-white/20"
             >
               <span className="drop-shadow-lg">Register Now</span>
               <Image
                 src="/images/Icon/arrow-icon.svg"
                 alt="arrow icon"
-                width={40}
-                height={40}
-                className="sm:w-[44px] sm:h-[44px] drop-shadow-lg"
+                width={20}
+                height={20}
+                className="sm:w-[28px] sm:h-[28px] drop-shadow-lg"
               />
-              <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-900 via-green-900 to-orange-900 opacity-50 blur-xl animate-pulse -z-10"></span>
+            </Link>
+
+            <Link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSd7jQQQZdaqrJda18v1rjlqziulrDANjt-Y8r1FBFXgxRy-4A/viewform?usp=dialog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 w-fit
+              bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full
+              font-bold text-white text-sm sm:text-lg tracking-wide
+              transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]
+              active:scale-95 relative border-2 border-white/20"
+            >
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              <span className="drop-shadow-lg">Bulk Registration</span>
             </Link>
           </div>
         </div>
