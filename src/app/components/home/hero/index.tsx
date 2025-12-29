@@ -110,7 +110,7 @@ function HeroSection() {
                 <p className="font-bold text-white text-[10px] sm:text-xs tracking-wide whitespace-nowrap">
                   Registration Ends{" "}
                   <span className="text-yellow-200 font-extrabold">
-                    30th December
+                    2th January
                   </span>
                 </p>
               </div>

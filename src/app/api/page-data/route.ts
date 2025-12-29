@@ -247,6 +247,7 @@ const pricingData = {
     "/images/logo/adc.png",
     "/images/logo/bcore.png",
     "/images/logo/rru.png",
+    "/images/logo/ciss.png",
   ],
 };
 
