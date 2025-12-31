@@ -247,12 +247,25 @@ const pricingData = {
     "/images/logo/adc.png",
     "/images/logo/bcore.png",
     "/images/logo/rru.png",
-    "/images/logo/ciss.png",
+    "/images/logo/ciss01.png",
   ],
 };
 
 const faqData = {
   data: [
+    {
+      faq_que: "Where is the Race Route?",
+      faq_ans: "LIC Ground, Sector-11, Gandhinagar, Gujarat, India",
+    },
+    {
+      faq_que: "What time is bib collection?",
+      faq_ans:
+        " 9am to 6pm on 10th January at the LIC Ground, Sector-11, Gandhinagar.",
+    },
+    {
+      faq_que: "What time does the race start?",
+      faq_ans: "Race starts at 9pm.",
+    },
     {
       faq_que:
         "I have not received a confirmation email or SMS. What should I do?",
@@ -267,7 +280,7 @@ const faqData = {
 
     {
       faq_que: "When is the last date to register?",
-      faq_ans: "20 December 2025",
+      faq_ans: " 2th January 2026",
     },
     {
       faq_que: "What are the cut-off times for all the events?",

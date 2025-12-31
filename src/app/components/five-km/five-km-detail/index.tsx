@@ -129,10 +129,10 @@ const FiveKmDetail = () => {
                     <tr className="bg-gray-50 dark:bg-gray-700">
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Men (Under 30 and Above 30)
+                        Men (Open to all age groups)
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Women (Under 30)
+                        Women (Open to all age groups)
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                     </tr>
@@ -143,10 +143,10 @@ const FiveKmDetail = () => {
                         5 km
                       </td>
                       <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-gray-600 dark:text-white/80">
-                        All Ages
+                        Open to all age groups
                       </td>
                       <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-gray-600 dark:text-white/80">
-                        All Ages
+                        Open to all age groups
                       </td>
                       <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-white/90 font-semibold">
                         Rs. 120/- Including GST
@@ -163,10 +163,9 @@ const FiveKmDetail = () => {
               </h3>
               <div className="flex flex-col gap-3">
                 {[
-                  "Unique race bib with name",
+                  "Unique race bib with number",
                   "Limited edition race shirt",
                   "Exclusive medal",
-                  "Surprise goody kit",
                   "Official timing E-certificate",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
@@ -178,19 +177,77 @@ const FiveKmDetail = () => {
             </div>
             {/* Prize Money */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 PRIZE MONEY
               </h3>
-              <div className="text-gray-600 dark:text-white/80 text-lg">
-                <p>
-                  <strong>1st Prize:</strong> TBA
-                </p>
-                <p>
-                  <strong>2nd Prize:</strong> TBA
-                </p>
-                <p>
-                  <strong>3rd Prize:</strong> TBA
-                </p>
+              <div className="flex flex-col gap-4">
+                {/* Top 3 Winners */}
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 rounded-lg border-l-4 border-yellow-500">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🥇</span>
+                      <span className="font-semibold text-gray-800 dark:text-white">
+                        1st Place
+                      </span>
+                    </div>
+                    <span className="text-xl font-bold text-yellow-600 dark:text-yellow-400">
+                      ₹20,000
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/20 dark:to-gray-700/20 rounded-lg border-l-4 border-gray-400">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🥈</span>
+                      <span className="font-semibold text-gray-800 dark:text-white">
+                        2nd Place
+                      </span>
+                    </div>
+                    <span className="text-xl font-bold text-gray-600 dark:text-gray-300">
+                      ₹15,000
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg border-l-4 border-orange-500">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🥉</span>
+                      <span className="font-semibold text-gray-800 dark:text-white">
+                        3rd Place
+                      </span>
+                    </div>
+                    <span className="text-xl font-bold text-orange-600 dark:text-orange-400">
+                      ₹10,000
+                    </span>
+                  </div>
+                </div>
+
+                {/* 4th to 10th Place */}
+                <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg border-l-4 border-blue-500">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">🏆</span>
+                    <span className="font-semibold text-gray-800 dark:text-white">
+                      4th - 10th Place
+                    </span>
+                  </div>
+                  <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                    ₹1,000 each
+                  </span>
+                </div>
+
+                {/* Participation Awards */}
+                <div className="mt-2 p-4 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg border-l-4 border-purple-500">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-2xl">🎖️</span>
+                    <span className="font-semibold text-gray-800 dark:text-white text-lg">
+                      Special Recognition
+                    </span>
+                  </div>
+                  <p className="text-gray-600 dark:text-white/80 ml-10">
+                    <strong className="text-purple-600 dark:text-purple-400">
+                      50+ Awards
+                    </strong>{" "}
+                    for outstanding participants
+                  </p>
+                </div>
               </div>
             </div>
           </div>

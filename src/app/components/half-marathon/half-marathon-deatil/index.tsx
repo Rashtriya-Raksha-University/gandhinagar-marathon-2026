@@ -158,10 +158,10 @@ const HalfMarathonDetail = () => {
                     <tr className="bg-gray-50 dark:bg-gray-700">
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Men (Under 30 and Above 30)
+                        Men (Open to all age groups )
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Women (Under 30)
+                        Women (Open to all age groups)
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                     </tr>
