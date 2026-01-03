@@ -243,11 +243,13 @@ const pricingData = {
 
   partnerLogo: [
     "/images/logo/hyperlab.png",
+    "/images/logo/decathlon.png",
+    "/images/logo/perfume91.png",
     "/images/logo/gsc.png",
     "/images/logo/adc.png",
     "/images/logo/bcore.png",
     "/images/logo/rru.png",
-    "/images/logo/ciss01.png",
+    "/images/logo/ciss.png",
   ],
 };
 
