@@ -129,10 +129,10 @@ const FiveKmDetail = () => {
                     <tr className="bg-gray-50 dark:bg-gray-700">
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Men (Open to all age groups)
+                        Men
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-700 dark:text-white/90">
-                        Women (Open to all age groups)
+                        Women
                       </th>
                       <th className="border border-gray-300 dark:border-gray-600 px-4 py-2"></th>
                     </tr>
@@ -163,7 +163,7 @@ const FiveKmDetail = () => {
               </h3>
               <div className="flex flex-col gap-3">
                 {[
-                  "Unique race bib with number",
+                  "Unique race bib",
                   "Limited edition race shirt",
                   "Exclusive medal",
                   "Official timing E-certificate",

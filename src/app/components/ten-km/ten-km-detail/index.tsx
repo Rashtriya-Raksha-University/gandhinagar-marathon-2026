@@ -164,7 +164,7 @@ const TenKmDetail = () => {
               </h3>
               <div className="flex flex-col gap-3">
                 {[
-                  "Unique race bib with name",
+                  "Unique race bib",
                   "Limited edition race shirt",
                   "Exclusive medal",
                   "Surprise goody kit",

@@ -167,10 +167,10 @@ const FunRunDetail = () => {
               </h3>
               <div className="flex flex-col gap-3">
                 {[
-                  "Unique race bib with name",
+                  "Unique race bib",
                   "Limited edition race shirt",
                   "Exclusive medal",
-                  "Surprise goody kit",
+
                   "Official participation E-certificate",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
