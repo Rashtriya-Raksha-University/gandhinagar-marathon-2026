@@ -245,6 +245,7 @@ const pricingData = {
     "/images/logo/hyperlab.png",
     "/images/logo/decathlon.png",
     "/images/logo/perfume91.png",
+    "/images/logo/jaswal.png",
     "/images/logo/gsc.png",
     "/images/logo/adc.png",
     "/images/logo/bcore.png",
