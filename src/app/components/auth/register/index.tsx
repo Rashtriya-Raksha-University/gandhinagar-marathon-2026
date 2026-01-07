@@ -41,7 +41,7 @@ const Registration = () => {
                 <p className="font-bold text-white text-sm sm:text-base tracking-wide whitespace-nowrap">
                   Registration Ends{" "}
                   <span className="text-yellow-200 font-extrabold">
-                    30th December
+                    8th January
                   </span>
                 </p>
               </div>

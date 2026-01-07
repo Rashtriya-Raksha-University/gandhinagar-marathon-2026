@@ -68,7 +68,7 @@ const servicesData = {
       image: "/images/crousal/img2.jpg",
       heading: "3KM",
       descp:
-        " Get ready for big smiles and lots of excitement! The 3km race is accessible to the u-16 age category and the para-abled. It's all about celebrating the art of inclusivity, ideal for our next generation of runners and people looking to feel a mini mini minimarathon!",
+        " Get ready for big smiles and lots of excitement! The 3km race is accessible to all age category. It's all about celebrating the art of inclusivity, ideal for our next generation of runners and people looking to feel a mini minimarathon!",
     },
   ],
 };
@@ -248,9 +248,18 @@ const pricingData = {
     "/images/logo/jaswal.png",
     "/images/logo/gsc.png",
     "/images/logo/adc.png",
-    "/images/logo/bcore.png",
-    "/images/logo/rru.png",
     "/images/logo/ciss.png",
+    "/images/logo/108.png",
+    "/images/logo/police.png",
+    "/images/logo/GMC.png",
+    "/images/logo/madhuram.png",
+    "/images/logo/radio.png",
+    "/images/logo/sbm.png",
+    "/images/logo/sbm1.png",
+    "/images/logo/smvs.png",
+    "/images/logo/tripur.png",
+    "/images/logo/union-bank.png",
+    "/images/logo/gtpl.png",
   ],
 };
 
@@ -317,6 +326,10 @@ const faqData = {
         "Will there be hydration and medical aid stations throughout the route?",
       faq_ans:
         "Yes. All participants can remain assured to receive sufficient hydration, energy and medical facilities. Physiotherapy services will also be provided at medical checkpoints and finish points.",
+    },
+    {
+      faq_que: "When Will the race Start ?",
+      faq_ans: "The race will start at 8 PM onwords on 10th January 2026.",
     },
   ],
 };
