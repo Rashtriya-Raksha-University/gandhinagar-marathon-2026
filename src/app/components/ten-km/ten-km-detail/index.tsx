@@ -168,7 +168,7 @@ const TenKmDetail = () => {
                   "Limited edition race shirt",
                   "Exclusive medal",
                   "Surprise goody kit",
-                  "Official timing E-certificate",
+                  "E-certificate",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
