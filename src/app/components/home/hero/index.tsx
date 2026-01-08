@@ -110,8 +110,7 @@ function HeroSection() {
                 <p className="font-bold text-white text-[10px] sm:text-xs tracking-wide whitespace-nowrap">
                   Race Starts{" "}
                   <span className="text-white font-extrabold">
-                    10th January, 8pm onwards, LIC Ground, Sector-11,
-                    Gandhinagar
+                    10th January, 8pm onwards
                   </span>
                 </p>
               </div>
@@ -119,8 +118,14 @@ function HeroSection() {
           </div>
 
           <p className="text-white/80 max-w-md text-sm sm:text-base leading-relaxed">
-            The on-spot registration is open from 11am to 6pm, and will cost
-            350RS without any amenities provided.
+            The on-spot registration is open from 11am to 8pm onward,
+            <br />
+            and will cost 350 Rs amenities provided on first came first serve
+            bases.
+            <br />
+            <span className="text-blue-400">
+              LIC Ground, Sector-11, Gandhinagar
+            </span>
           </p>
 
           {/* Register Buttons */}
