@@ -266,11 +266,6 @@ const pricingData = {
 const faqData = {
   data: [
     {
-      faq_que: "What is the detail of the on-spot registration?",
-      faq_ans:
-        "The on-spot registration is open from 11am to 6pm, and will cost 350RS without any amenities provided.",
-    },
-    {
       faq_que: "Where is the Race Route?",
       faq_ans: "LIC Ground, Sector-11, Gandhinagar, Gujarat, India",
     },
@@ -281,7 +276,7 @@ const faqData = {
     },
     {
       faq_que: "What time does the race start?",
-      faq_ans: "Race starts at 9pm.",
+      faq_ans: "Race starts at 8pm.",
     },
     {
       faq_que:
@@ -297,7 +292,7 @@ const faqData = {
 
     {
       faq_que: "When is the last date to register?",
-      faq_ans: " 2th January 2026",
+      faq_ans: " 8th January 2026",
     },
     {
       faq_que: "What are the cut-off times for all the events?",

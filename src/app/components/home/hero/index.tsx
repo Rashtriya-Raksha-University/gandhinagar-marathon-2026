@@ -161,7 +161,7 @@ function HeroSection() {
               transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]
               active:scale-95 relative border-2 border-white/20"
             >
-              <span className="drop-shadow-lg">Registertion Closed</span>
+              <span className="drop-shadow-lg">Registration Closed</span>
               <Image
                 src="/images/Icon/arrow-icon.svg"
                 alt="arrow icon"
