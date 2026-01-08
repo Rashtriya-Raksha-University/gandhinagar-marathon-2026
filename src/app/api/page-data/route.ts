@@ -266,6 +266,11 @@ const pricingData = {
 const faqData = {
   data: [
     {
+      faq_que: "What is the detail of the on-spot registration?",
+      faq_ans:
+        "The on-spot registration is open from 11am to 6pm, and will cost 350RS without any amenities provided.",
+    },
+    {
       faq_que: "Where is the Race Route?",
       faq_ans: "LIC Ground, Sector-11, Gandhinagar, Gujarat, India",
     },

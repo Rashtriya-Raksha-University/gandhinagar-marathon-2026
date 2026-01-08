@@ -94,7 +94,7 @@ function HeroSection() {
         <div className="flex flex-col gap-4 sm:gap-6 pb-16 sm:pb-20">
           {/* Registration Deadline Banner (All Screens – Above Text) */}
           <div className="flex">
-            <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-xl backdrop-blur-sm border border-white/30">
+            <div className="bg-gradient-to-r from-blue-500 via-blue-500 to-blue-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-xl backdrop-blur-sm border border-white/30">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <svg
                   className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse"
@@ -108,9 +108,10 @@ function HeroSection() {
                   />
                 </svg>
                 <p className="font-bold text-white text-[10px] sm:text-xs tracking-wide whitespace-nowrap">
-                  Registration Ends{" "}
-                  <span className="text-yellow-200 font-extrabold">
-                    8 th January @1 PM
+                  Race Starts{" "}
+                  <span className="text-white font-extrabold">
+                    10th January, 8pm onwards, LIC Ground, Sector-11,
+                    Gandhinagar
                   </span>
                 </p>
               </div>
@@ -118,21 +119,21 @@ function HeroSection() {
           </div>
 
           <p className="text-white/80 max-w-md text-sm sm:text-base leading-relaxed">
-            Run through <span className="text-primary">Gandhinagar&apos;s</span>{" "}
-            iconic cityscape, cultural landmarks, and scenic green avenues.
+            The on-spot registration is open from 11am to 6pm, and will cost
+            350RS without any amenities provided.
           </p>
 
           {/* Register Buttons */}
           <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-6">
             <Link
-              href="/register"
+              href="/"
               className="inline-flex items-center justify-center gap-1.5 w-fit
-              bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full
+              bg-gradient-to-r from-red-500 via-red-500 to-orange-600 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full
               font-bold text-white text-sm sm:text-lg tracking-wide
               transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]
               active:scale-95 relative border-2 border-white/20"
             >
-              <span className="drop-shadow-lg">Individual Register</span>
+              <span className="drop-shadow-lg">Registertion Closed</span>
               <Image
                 src="/images/Icon/arrow-icon.svg"
                 alt="arrow icon"
@@ -142,7 +143,7 @@ function HeroSection() {
               />
             </Link>
 
-            <Link
+            {/* <Link
               href="https://docs.google.com/forms/d/e/1FAIpQLSd7jQQQZdaqrJda18v1rjlqziulrDANjt-Y8r1FBFXgxRy-4A/viewform?usp=dialog"
               target="_blank"
               rel="noopener noreferrer"
@@ -166,7 +167,7 @@ function HeroSection() {
                 />
               </svg>
               <span className="drop-shadow-lg">Group Registration</span>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
