@@ -5,8 +5,7 @@ import Image from "next/image";
 import { QRCodeCanvas } from "qrcode.react"; // ✅ QR Code package
 
 const Registration = () => {
-  const registrationUrl =
-    "https://rrulavad.nmediasoft.com/Marathon/MarathonRegistration";
+  const registrationUrl = "/";
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -115,20 +114,20 @@ const Registration = () => {
               href={registrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-lg font-semibold py-3 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="bg-gradient-to-r from-red-600 to-red-600 hover:from-red-700 hover:to-red-700 text-white text-lg font-semibold py-3 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
-              Register Now
+              Registeration Closed
             </a>
 
             {/* OR Divider */}
-            <div className="flex items-center w-full max-w-xs">
+            {/* <div className="flex items-center w-full max-w-xs">
               <div className="flex-grow h-px bg-gray-600" />
               <span className="mx-3 text-gray-300 font-medium text-sm">OR</span>
               <div className="flex-grow h-px bg-gray-600" />
-            </div>
+            </div> */}
 
             {/* QR Code */}
-            <div className="bg-white p-5 rounded-2xl shadow-lg flex flex-col items-center">
+            {/* <div className="bg-white p-5 rounded-2xl shadow-lg flex flex-col items-center">
               <QRCodeCanvas
                 value={registrationUrl}
                 size={180}
@@ -140,7 +139,7 @@ const Registration = () => {
               <p className="text-gray-800 mt-3 font-medium">
                 Scan this QR to Register
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
