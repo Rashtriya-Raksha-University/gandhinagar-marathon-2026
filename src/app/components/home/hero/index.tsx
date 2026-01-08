@@ -43,9 +43,9 @@ function HeroSection() {
       <div className="absolute inset-0 bg-black/50 sm:bg-black/40"></div>
 
       {/* Race Route Button (Top Right) */}
-      <div className="absolute top-20 sm:top-24 right-4 sm:right-8 z-20">
+      <div className="absolute top-20 sm:top-24 right-4 sm:right-8 z-20 flex flex-col gap-3 sm:gap-4">
         <Link
-          href="https://drive.google.com/file/d/1EN_ykicGeZpzPSWpKT0JoPnrAkr4GENr/view"
+          href="https://drive.google.com/file/d/1lne5vg8lRKDQuEWwgI09lE16ullg9Zwc/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
@@ -70,6 +70,34 @@ function HeroSection() {
             />
           </svg>
           <span>Race Route</span>
+        </Link>
+
+        <Link
+          href="https://drive.google.com/file/d/1x__tifybOuB4TF65V9qjZMjgyNC5BHlw/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 bg-green-500 hover:bg-green-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
+        >
+          <svg
+            className="w-4 h-4 sm:w-5 sm:h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 22a10 10 0 100-20 10 10 0 000 20z"
+            />
+          </svg>
+          <span>Race Timing</span>
         </Link>
       </div>
 
