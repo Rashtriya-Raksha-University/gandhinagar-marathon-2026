@@ -99,6 +99,36 @@ function HeroSection() {
           </svg>
           <span>Race Timing</span>
         </Link>
+
+        <Link
+          href="https://drive.google.com/file/d/1IXQPAa2QkV7sUMJuTz5h20zQLTIwALdo/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 bg-orange-500 hover:bg-orange-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-5 h-5 text-white-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 22a10 10 0 100-20 10 10 0 000 20z"
+            />
+          </svg>
+
+          <span>Race itinerary </span>
+        </Link>
       </div>
 
       {/* Carousel Indicators */}
@@ -146,9 +176,14 @@ function HeroSection() {
           </div>
 
           <p>
-            <span className="text-blue-400">
+            <a
+              href="https://maps.app.goo.gl/M4rfbQgm6YhtxiGi7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline"
+            >
               LIC Ground, Sector-11, Gandhinagar
-            </span>
+            </a>
           </p>
 
           {/* Register Buttons */}
